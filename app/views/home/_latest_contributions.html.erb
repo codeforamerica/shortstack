@@ -1,0 +1,13 @@
+<h1 class="h1_first">Latest Contributions</h1>
+  <ul id="milestones">
+    <% @contributions.each do |contribution|%>
+    <li style="list-style: none outside none;" class="milestone_addition">
+    <div class="milestone_favicon">
+    	<%= contribution_image_type(contribution.action)%>
+    	
+    </div>	
+    	<div class="milestone_text"><strong><%= link_to contribution.contributable.name, contribution.contributable%></strong> <%= contribution_word_type(contribution.action)%> CfABase</div>
+    	<div class="meta_milestone">Posted: <%= contribution.created_at("%m/%d/%y at %I:%M:%S %p") %> by <%= link_to contribution.user.profile.name, contribution.user.profile%></div>
+    </li>
+    <% end %>
+  </ul>

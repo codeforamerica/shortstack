@@ -1,0 +1,18 @@
+<div id="col1"></div>
+<div id="col2">
+  <div id="col2_internal">
+    <h1 class="h1_first">Edit <%= singular_table_name %></h1>
+      <%%= render 'form' %>
+  </div>
+</div>
+<div id="col3">
+  <h3>Actions</h3> 
+	<div class="col3_content contribute"> 
+    <%%= link_to 'New <%= human_name %>', new_<%= singular_table_name %>_path %><br>
+    <%%= link_to 'Back', <%= index_helper %>_path %>	
+	</div>
+  
+</div>
+
+
+

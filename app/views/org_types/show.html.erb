@@ -1,0 +1,22 @@
+<div id="col1"></div>
+<div id="col2">
+  <div id="col2_internal">
+    <h1 class="h1_first">Organization Type<h1>
+      <p>
+        <b>Name:</b>
+        <%= @org_type.name %>
+      </p>
+  </div>
+</div>
+<div id="col3">
+  <h3>Actions</h3> 
+	<div class="col3_content contribute"> 
+		<%= link_to 'New Organization Type', new_org_type_path %><br>
+    <%= link_to 'Back to All Organization Types', org_types_path %><br>
+    <%= link_to 'Edit', edit_org_type_path(@org_type) %>		
+	</div>
+  
+</div>
+
+
+

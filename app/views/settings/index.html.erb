@@ -1,0 +1,19 @@
+<% title "Settings" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Setting</th>
+  </tr>
+  <% for setting in @settings %>
+    <tr>
+      <td><%= setting.name %></td>
+      <td><%= setting.setting %></td>
+      <td><%= link_to "Show", setting %></td>
+      <td><%= link_to "Edit", edit_setting_path(setting) %></td>
+      <td><%= link_to "Destroy", setting, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Setting", new_setting_path %></p>

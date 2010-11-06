@@ -1,0 +1,32 @@
+<div id="col1"></div>
+<div id="col2">
+  <div id="col2_internal">
+    <h1 class="h1_first">Recent Links</h1>
+      <table>
+        <tr>
+          <th>Link</th>
+          <th>Type</th>          
+          <th>Linked To</th>
+          <th></th>
+        </tr>
+<% @links.each do |link| %>
+        <tr>
+          <td><%= link_to link.name, link.url %></td>
+          <td><%= link.link_type.name%></td>                    
+          <td><%= link_to link.linkable.name, link.linkable %></td>
+          <td><%= link_to 'Edit', edit_link_path(link) %> | <%= link_to 'Destroy', link, :confirm => 'Are you sure?', :method => :delete %></td>
+        </tr>
+      <% end %>
+      </table>
+  </div>
+</div>
+<div id="col3">
+  <h3>Actions</h3> 
+  	<div class="col3_content contribute"> 
+  	</div>	
+</div>
+
+
+
+
+

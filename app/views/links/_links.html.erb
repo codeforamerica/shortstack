@@ -1,0 +1,10 @@
+<h2>Links:</h2>
+<div class="col1_content">
+<ul id="milestones">
+<% item.links.order("created_at DESC").each do |link|%>
+<li style="list-style: none outside none;" class="milestone_addition">
+	<%=link_to link.name, link.link_url %> <span id="edit_link">(<%=link_to "Edit #{link.link_type.name}", edit_link_path(link)%>)</span>
+</li>
+<% end %>
+</ul>
+</div>

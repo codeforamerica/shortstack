@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN"> 
+<html> 
+	<head> 
+    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+		<!--removes image toolbar in ie6 when hovering over an image--> 
+		<meta content="OrgBase is the free database of technology organizations, caompanies, people, and foundations." name="description" /> 
+    <%= csrf_meta_tag %>
+    <%= stylesheet_link_tag "application" %>
+    <%= javascript_include_tag :defaults %>
+    <%= yield(:head) %>
+	</head> 
+	<body>
+
+  <div id="header"> 
+  	<%= link_to image_tag('codeforamerica.png'), :root%>
+  	<div id="session"> 
+  	  <%= render 'layouts/sign_in'%>
+    </div> 
+  </div>
+  <%= render 'home/search'%>
+
+  	  	<div id="strip"> 
+  	<div id="strip_right">Browse:
+  	  <%= link_to "Organizations", organizations_path %> | <%= link_to "People", people_path %> | <%= link_to "Conributors", profiles_path %> | <%= link_to "Products", products_path %>
+  	</div> 
+  	<a href="/" title="Home" rel="nofollow">Home</a> 
+  </div> 
+  
+      <%= yield %>
+    </div>
+  </body>
+</html>

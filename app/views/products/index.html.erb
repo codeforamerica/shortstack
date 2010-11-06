@@ -1,0 +1,26 @@
+<div id="col1"></div>
+<div id="col2">
+  <div id="col2_internal">
+    <h1 class="h1_first">Products</h1>
+      <table>
+        <tr>
+        </tr>
+<% @products.each do |product| %>
+        <tr>
+          <td><%= link_to product.name, product %></td>
+        </tr>
+      <% end %>
+      </table>
+  </div>
+</div>
+<div id="col3">
+  <h3>Actions</h3> 
+  	<div class="col3_content contribute"> 
+    <%= link_to 'New Product', new_product_path %><br>
+  	</div>	
+</div>
+
+
+
+
+

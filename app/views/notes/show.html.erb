@@ -1,0 +1,20 @@
+<div id="col1"></div>
+<div id="col2">
+  <div id="col2_internal">
+    <h1 class="h1_first"><%= @note.name %></h1>
+      <p>
+        <%= link_to @note.noteable.name, @note.noteable %>: <%= @note.note %>
+      </p>
+  </div>
+</div>
+<div id="col3">
+  <h3>Actions</h3> 
+	<div class="col3_content contribute"> 
+    <%= link_to 'Recent Notes', notes_path %><br>
+    <%= link_to 'Edit', edit_note_path(@note) %>
+	</div>
+  
+</div>
+
+
+

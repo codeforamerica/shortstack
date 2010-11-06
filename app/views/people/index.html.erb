@@ -1,0 +1,29 @@
+<div id="col1"></div>
+<div id="col2">
+  <div id="col2_internal">
+    <h1 class="h1_first">People</h1>
+      <table>
+        <tr>
+          <th>Name</th>
+          <th></th>
+        </tr>
+<% @people.each do |person| %>
+        <tr>
+          <td><%= link_to person.name, person %></td>
+          <td><%= link_to 'Edit', edit_person_path(person) %> | <%= link_to 'Destroy', person, :confirm => 'Are you sure?', :method => :delete %></td>
+        </tr>
+      <% end %>
+      </table>
+  </div>
+</div>
+<div id="col3">
+  <h3>Actions</h3> 
+	<div class="col3_content contribute"> 
+    <%= link_to 'New Person', new_person_path %><br>
+	</div>
+</div>
+
+
+
+
+

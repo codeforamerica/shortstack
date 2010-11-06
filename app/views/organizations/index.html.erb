@@ -1,0 +1,35 @@
+<div id="col1"></div>
+<div id="col2">
+  <div id="col2_internal">
+    <h1 class="h1_first">Organizations</h1>
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th></th>
+        </tr>
+<% @organizations.each do |organization| %>
+        <tr>
+          <td><%= link_to organization.name , organization %></td>
+          <td><%= organization.org_type.name %></td>
+          <td><%= link_to 'Edit', edit_organization_path(organization) %> | <%= link_to 'Destroy', organization, :confirm => 'Are you sure?', :method => :delete %></td>
+        </tr>
+      <% end %>
+      </table>
+  </div>
+</div>
+<div id="col3">
+	<div class="col3_content contribute"> 
+    <h3>Actions</h3> 
+  	<div class="col3_content contribute"> 
+    <%= link_to 'New Organization', new_organization_path %><br>
+    <%= link_to 'New Organization Type', new_org_type_path %><br>    
+  	</div>
+	</div> 
+	
+</div>
+
+
+
+
+

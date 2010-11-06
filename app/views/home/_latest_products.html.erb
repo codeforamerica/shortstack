@@ -1,0 +1,11 @@
+<h1 class="h1_first">Recently Added Products</h1>
+  <ul id="milestones">
+    <% @products.each do |product|%>
+    <li style="list-style: none outside none;" class="milestone_addition">
+    <div class="milestone_favicon">
+    	<%= contribution_image_type("added")%>
+    </div>	
+    	<div class="milestone_text"><strong><%= link_to product.name, product%></strong> added by <%= link_to product.contributions.last.user.profile.name, product.contributions.last.user.profile.name%></div>
+    </li>
+    <% end %>
+  </ul>

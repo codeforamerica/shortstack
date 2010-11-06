@@ -1,0 +1,33 @@
+<div id="col1"></div>
+<div id="col2">
+  <div id="col2_internal">
+    <h1 class="h1_first"><%= plural_table_name %></h1>
+      <table>
+        <tr>
+          <% for attribute in attributes -%>
+          <th><%= attribute.human_name %></th>
+          <% end -%>
+          <th></th>
+        </tr>
+<%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
+        <tr>
+          <% for attribute in attributes -%>
+          <td><%%= <%= singular_table_name %>.<%= attribute.name %> %></td>
+          <% end -%>
+          <td><%%= link_to 'Show', <%= singular_table_name %> %> | <%%= link_to 'Edit', edit_<%= singular_table_name %>_path(<%= singular_table_name %>) %> | <%%= link_to 'Destroy', <%= singular_table_name %>, :confirm => 'Are you sure?', :method => :delete %></td>
+        </tr>
+      <%% end %>
+      </table>
+  </div>
+</div>
+<div id="col3">
+  <h3>Actions</h3> 
+  	<div class="col3_content contribute"> 
+    <%%= link_to 'New <%= human_name %>', new_<%= singular_table_name %>_path %><br>
+  	</div>	
+</div>
+
+
+
+
+

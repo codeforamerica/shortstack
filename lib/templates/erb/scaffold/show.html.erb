@@ -1,0 +1,24 @@
+<div id="col1"></div>
+<div id="col2">
+  <div id="col2_internal">
+    <h1 class="h1_first"><%= singular_table_name %></h1>
+      <% for attribute in attributes -%>
+      <p>
+        <b><%= attribute.human_name %>:</b>
+        <%%= @<%= singular_table_name %>.<%= attribute.name %> %>
+      </p>
+      <% end -%>
+  </div>
+</div>
+<div id="col3">
+  <h3>Actions</h3> 
+	<div class="col3_content contribute"> 
+    <%%= link_to 'New <%= human_name %>', new_<%= singular_table_name %>_path %><br>
+    <%%= link_to 'Back', <%= index_helper %>_path %><br>
+    <%%= link_to 'Edit', edit_<%= singular_table_name %>_path(@<%= singular_table_name %>) %>
+	</div>
+  
+</div>
+
+
+

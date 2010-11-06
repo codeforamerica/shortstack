@@ -1,0 +1,27 @@
+<div id="col1">
+    <%= render :partial => 'links/links', :locals => {:item => @product}%>  
+  
+</div>
+<div id="col2">
+  <div id="col2_internal">
+    <h1 class="h1_first"><%= @product.name %></h1>
+    <%= render :partial => 'notes/form', :locals => {:item => @product}%>
+    <%= render :partial => 'links/form', :locals => {:item => @product}%>
+    <%= render :partial => 'notes/notes', :locals => {:item => @product}%>    
+  </div>
+</div>
+<div id="col3">
+  <h3>Actions</h3> 
+	<div class="col3_content contribute"> 
+    <%= link_to 'New Product', new_product_path %><br>
+    <%= link_to 'All Products', products_path %><br>
+    <%= link_to 'Edit this Product', edit_product_path(@product) %><br>
+    <a href="#" id="hide_link" onClick="$('#link-form').show();">Add a Link</a><br>    
+    <a href="#" id="hide_link" onClick="$('#note-form').show();">Add a Note</a>        
+    
+	</div>
+  
+</div>
+
+
+

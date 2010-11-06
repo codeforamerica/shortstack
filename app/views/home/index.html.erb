@@ -1,0 +1,167 @@
+<div id="container"> 
+			
+<div id="col1"> 
+	<h2>What is CrunchBase?</h2> 
+	<div class="col1_content"> 
+		<p>CrunchBase is the free database of technology companies, people, and 
+		investors that anyone can edit.</p><br/> 
+		<p>Here, you can learn and edit everything about companies like <a href="/company/facebook" title="Facebook">Facebook</a>, <a href="/company/youtube" title="YouTube">YouTube</a>, <a href="/company/twitter" title="Twitter">Twitter</a>, <a href="/company/myspace" title="MySpace">MySpace</a> and <a href="/company/tagged" title="Tagged">Tagged</a>, products like <a href="/product/droid" title="Droid">Droid</a> and <a href="/product/google-wave" title="Google Wave">Google Wave</a>, and people like <a href="/person/mark-zuckerberg" title="Mark Zuckerberg">Mark Zuckerberg</a> and <a href="/person/steve-jobs" title="Steve Jobs">Steve Jobs</a>.</p> 
+	</div> 
+	
+<%= render 'stats'%>
+	
+	<h2>Location Search</h2> 
+	<div class="col1_content"> 
+	  Search companies in CrunchBase by location.  
+	  <a href="/maps" rel="nofollow" title="Browse Startup Offices">Browse Startup Offices</a> 
+	</div> 
+	
+	<h2>Embed Widget</h2> 
+	<div class="col1_content"> 
+		Display information from CrunchBase on your website and we'll link back to 
+		you! <a href="/widget" rel="nofollow" title="Learn more">Learn more</a> 
+	</div> 
+	
+	<h2>BloggerBoard</h2> 
+	<div class="col1_content"> 
+	  See the top blogs and which companies they write about.
+	  <a href="/bloggerboard/tech/publications" title="BloggerBoard">Go to BloggerBoard</a> 
+	</div> 
+</div> 
+<div id="col2">
+  <div id="col2_internal">
+    <%= render 'latest_products'%>
+    <%= render 'latest_organizations'%>
+    <%= render 'latest_people'%>
+    <%= render 'latest_contributions'%>
+  </div>
+</div>  
+ 
+<div id="col3"> 
+	<h3>Contribute</h3> 
+	<div class="col3_content contribute"> 
+    <%= link_to 'New Organization', new_organization_path %><br>
+    <%= link_to 'New Person', new_person_path %><br>
+    <%= link_to 'New Product', new_product_path %><br>
+	</div> 
+  
+	
+
+	
+<h3> 
+	TechCrunch Posts
+	<a href="http://www.techcrunch.com" rel="nofollow"><img src="http://www.crunchbase.com/images/icons/techcrunch_new_logo_sm.png" alt="TechCrunch Logo Small Picture" border="0" /></a> 
+</h3> 
+<div class="col3_content"> 
+	<ul> 
+		<li> 
+	
+		<div class="recently_link"> 
+			
+				<a href="http://techcrunch.com/2010/11/05/so-you-want-to-start-a-web-startup/" title="So You Want To Start A Web&amp;nbsp;Startup?">So You Want To Start A Web&amp;nbsp;Startup?</a> 
+			
+		</div> 
+		<div class="recently_desc"> 
+			November 5, 2010
+		</div> 
+	
+</li><li> 
+	
+		<div class="recently_link"> 
+			
+				<a href="http://techcrunch.com/2010/11/05/memolane-tell-your-stories-with-an-internet-time-machine/" title="Memolane: Tell Your Stories With An Internet...">Memolane: Tell Your Stories With An Internet...</a> 
+			
+		</div> 
+		<div class="recently_desc"> 
+			November 5, 2010
+		</div> 
+	
+</li><li> 
+	
+		<div class="recently_link"> 
+			
+				<a href="http://techcrunch.com/2010/11/05/mobilecrunch-reviews-the-blackberry-style-goofy-yet-impressive/" title="MobileCrunch Reviews The Blackberry Style: Goofy...">MobileCrunch Reviews The Blackberry Style: Goofy...</a> 
+			
+		</div> 
+		<div class="recently_desc"> 
+			November 5, 2010
+		</div> 
+	
+</li><li> 
+	
+		<div class="recently_link"> 
+			
+				<a href="http://techcrunch.com/2010/11/05/swipegood-lets-you-donate-to-charity-each-time-you-swipe-your-creditcard/" title="SwipeGood Lets You Donate To Charity With Each Credit...">SwipeGood Lets You Donate To Charity With Each Credit...</a> 
+			
+		</div> 
+		<div class="recently_desc"> 
+			November 5, 2010
+		</div> 
+	
+</li><li> 
+	
+		<div class="recently_link"> 
+			
+				<a href="http://techcrunch.com/2010/11/05/survey-says-men-more-likely-than-women-to-use-skype-or-mobile-voip-apps/" title="Survey Says: Men More Likely Than Women To Use Skype Or Mobile...">Survey Says: Men More Likely Than Women To Use Skype Or Mobile...</a> 
+			
+		</div> 
+		<div class="recently_desc"> 
+			November 5, 2010
+		</div> 
+	
+</li> 
+	</ul> 
+	
+</div> 
+ 
+ 
+ 
+	
+	<h3>Sponsors</h3> 
+	<div class="col3_content sponsors"> 
+		<script type="text/javascript"> 
+		  GA_googleFillSlot("CB_home_sponsor1");
+		</script> 
+		<script type="text/javascript"> 
+		  GA_googleFillSlot("CB_home_sponsor2");
+		</script> 
+		<script type="text/javascript"> 
+		  GA_googleFillSlot("CB_home_sponsor3");
+		</script> 
+		<script type="text/javascript"> 
+		  GA_googleFillSlot("CB_home_sponsor4");
+		</script> 
+		<script type="text/javascript"> 
+		  GA_googleFillSlot("CB_home_sponsor5");
+		</script> 
+		<script type="text/javascript"> 
+		  GA_googleFillSlot("CB_home_sponsor6");
+		</script> 
+		<br /><br /> 
+		<a href="http://www.techcrunch.com/advertise/" rel="nofollow" title="Become a Sponsor">Become a Sponsor</a>			
+	</div> 
+ 
+</div> 
+		</div> 
+		<div id="footer"> 
+  <a href="/about" rel="nofollow" title="About">About</a> |
+  <a href="http://www.techcrunch.com/advertise/" rel="nofollow" title="Advertise">Advertise</a> |
+  <a href="/help/api" title="API">API</a> |        
+  <a href="http://blog.crunchbase.com" title="Blog">Blog</a> |        
+  <a href="/help/faq" title="FAQ">FAQ</a> |
+  <a href="/feedback/new" rel="nofollow" title="Feedback">Feedback</a> |
+  <a href="http://twitter.com/crunchbase" rel="nofollow" title="Twitter">Twitter</a> |
+  <a href="/widget" title="Widget">Widget</a> |
+  
+  &copy; 2010 CrunchBase
+  
+	<a href="http://www.techcrunch.com/" id="footer_logo"><img src="http://www.crunchbase.com/images/techcrunch_logo_footer.png" alt="TechCrunch Picture" border="0" /></a> 
+	<a href="http://www.rackspace.com" id="footer_rs_logo"> 
+<img alt="Cloud Computing" src="http://cdn.cloudfiles.mosso.com/c110782/the-rackspace-cloud-125-wide.png" border="0"/></a> 
+</div> 
+<div id="subfooter"> 
+	<a href="/help/terms-of-service" rel="nofollow" title="Terms of Service">Terms of Service</a> | <a href="/help/privacy-policy" rel="nofollow" title="Privacy Policy">Privacy Policy</a> | <a href="/help/licensing-policy" rel="nofollow" title="Licensing Policy">Licensing Policy</a> 
+</div> 
+
+	</body> 
+</html>

@@ -1,0 +1,13 @@
+<% form_for [item, Link.new], :html => {:id =>"link-form", :style => "display:none;" } do |f| -%>
+<fieldset>
+  <legend>Add a Link</legend>
+  <a href="#" onClick="$('#link-form').hide();" id="hide">Hide Form</a>
+  <p><%= f.label :name, "Name:" %><%=f.text_field :name %> </p> 
+  <p><%= f.label :link_url, "Url:" %><%=f.text_field :link_url %> </p>   
+  <p><%= f.label :link_type %><%= select("link", "link_type_id", LinkType.all.collect {|p| [ p.name, p.id ] })%>
+  </p>  
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+</fieldset>  
+<% end %>

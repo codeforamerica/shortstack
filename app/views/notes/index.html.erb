@@ -1,0 +1,28 @@
+<div id="col1"></div>
+<div id="col2">
+  <div id="col2_internal">
+    <h1 class="h1_first">Recent Notes</h1>
+      <table>
+        <tr>
+          <th>Note</th>
+          <th></th>
+        </tr>
+<% @notes.each do |note| %>
+        <tr>
+          <td><%= link_to note.noteable.name, note.noteable %> >> <%= link_to note.name, note %>:<%= note.note[0..50] %></td>
+        </tr>
+      <% end %>
+      </table>
+  </div>
+</div>
+<div id="col3">
+  <h3>Actions</h3> 
+  	<div class="col3_content contribute"> 
+    <%= link_to 'New Note', new_note_path %><br>
+  	</div>	
+</div>
+
+
+
+
+
