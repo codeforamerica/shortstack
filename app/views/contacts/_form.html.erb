@@ -1,0 +1,14 @@
+<% form_for [item, Contact.new], :html => {:id =>"contact-form", :style => "display:none;" } do |f| -%>
+<fieldset>
+  <legend>Add Contact Details</legend>
+  <a href="#" onClick="$('#contact-form').hide();" id="hide">Hide Form</a>
+  <p><%= f.label :phone %>: <%= f.text_field :phone %></p>
+  <p><%= f.label :email %>: <%= f.text_field :email %></p>
+  <p><%= f.label :twitter %>: <%= f.text_field :twitter %></p>
+  <p><%= f.label :facebook %>: <%= f.text_field :facebook %></p>
+  <p><%= f.label :linkedin %>: <%= f.text_field :linkedin %></p>
+  <p><%= f.label :github %>: <%= f.text_field :github %></p>        
+    <%= f.submit 'Create' %>
+  </p>
+</fieldset>  
+<% end %>

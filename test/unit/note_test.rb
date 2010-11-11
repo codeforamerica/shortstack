@@ -1,7 +1,11 @@
 require 'test_helper'
 
 class NoteTest < ActiveSupport::TestCase
-  should "be valid" do
-    assert Note.new.valid?
+  context "Note " do
+    setup do
+      Factory(:note)
+    end
+  
+    should belong_to :noteable
   end
 end

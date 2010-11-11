@@ -12,6 +12,7 @@ gem 'omniauth'
 gem 'pivotal-tracker'
 gem 'rails3-generators'
 gem 'jquery-rails'
+gem 'awesome_print', :require => 'ap'
 
 # Use unicorn as the web server
 # gem 'unicorn'

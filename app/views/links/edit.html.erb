@@ -2,7 +2,7 @@
 <div id="col2">
   <div id="col2_internal">
     <h1 class="h1_first">Edit link</h1>
-    <% form_for [@link.linkable, @link], :html => {:id =>"link-form" } do |f| -%>
+    <%= form_for [@link.linkable, @link], :html => {:id =>"link-form" } do |f| -%>
       <p><%= f.label :name, "Title:" %><%=f.text_field :name %> </p> 
       <p><%= f.label :link_url, "Url:" %><%=f.text_field :link_url %> </p>   
       <p><%= f.label :link_type %><%= select("link", "link_type_id", LinkType.all.collect {|p| [ p.name, p.id ] })%>

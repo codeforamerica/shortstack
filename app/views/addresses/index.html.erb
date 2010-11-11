@@ -1,0 +1,33 @@
+<div id="col1"></div>
+<div id="col2">
+  <div id="col2_internal">
+    <h1 class="h1_first">Addresses</h1>
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Address</th>
+          <th></th>
+        </tr>
+<% @addresses.each do |address| %>
+        <tr>
+          <td><%= link_to address.addressable.name , address.addressable  %></td>
+          <td><%= address.address %> <%= address.city %>, <%= address.state %> <%= address.zipcode %> <%= address.country %></td>
+          <td><%= link_to 'Edit', edit_address_path(address) %> | <%= link_to 'Destroy', address, :confirm => 'Are you sure?', :method => :delete %></td>
+        </tr>
+      <% end %>
+      </table>
+  </div>
+</div>
+<div id="col3">
+	<div class="col3_content contribute"> 
+    <h3>Actions</h3> 
+  	<div class="col3_content contribute"> 
+  	</div>
+	</div> 
+	
+</div>
+
+
+
+
+

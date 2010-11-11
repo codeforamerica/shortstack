@@ -2,8 +2,10 @@
 <div id="col2">
   <div id="col2_internal">
     <h1 class="h1_first">Edit note</h1>
-    <% form_for [@note.noteable, @note], :html => {:id =>"note-form" } do |f| -%>
+    <%= form_for @note do |f| -%>
       <p><%= f.label :name, "Title:" %><%=f.text_field :name %> </p> 
+      <p><%= f.label :note_type %><%= select("note", "note_type_id", NoteType.all.collect {|p| [ p.name, p.id ] })%>
+      </p>        
       <p><%=f.text_area :note %></p>
       <p>
         <%= f.submit 'Create' %>

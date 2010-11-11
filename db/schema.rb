@@ -10,12 +10,39 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101106200048) do
+ActiveRecord::Schema.define(:version => 20101111044305) do
+
+  create_table "addresses", :force => true do |t|
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zipcode"
+    t.string   "country"
+    t.string   "lat"
+    t.string   "long"
+    t.string   "addressable_type"
+    t.integer  "addressable_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
     t.string   "provider"
     t.string   "uid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "contacts", :force => true do |t|
+    t.string   "phone"
+    t.string   "email"
+    t.string   "twitter"
+    t.string   "facebook"
+    t.string   "linkedin"
+    t.string   "github"
+    t.integer  "contactable_id"
+    t.string   "contactable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -90,6 +117,22 @@ ActiveRecord::Schema.define(:version => 20101106200048) do
   create_table "profiles", :force => true do |t|
     t.integer  "user_id"
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "relation_types", :force => true do |t|
+    t.string   "name"
+    t.string   "type_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "relationships", :force => true do |t|
+    t.integer  "person_id"
+    t.integer  "organization_id"
+    t.integer  "product_id"
+    t.string   "relation_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

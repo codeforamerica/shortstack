@@ -7,7 +7,9 @@ class UserTest < ActiveSupport::TestCase
       @user = Factory(:user)
     end
     
-    should_have_many :authentications
+    should have_many :authentications
+    should have_many :contributions
+    should have_one :profile        
     
   end
 end

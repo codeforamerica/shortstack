@@ -1,0 +1,31 @@
+<div id="col1"></div>
+<div id="col2">
+  <div id="col2_internal">
+    <h1 class="h1_first">Edit contact</h1>
+    <%= form_for @contact do |f| -%>
+    <fieldset>
+      <legend>Add Contact Details</legend>
+      <a href="#" onClick="$('#contact-form').hide();" id="hide">Hide Form</a>
+      <p><%= f.label :phone %>: <%= f.text_field :phone %></p>
+      <p><%= f.label :email %>: <%= f.text_field :email %></p>
+      <p><%= f.label :twitter %>: <%= f.text_field :twitter %></p>
+      <p><%= f.label :facebook %>: <%= f.text_field :facebook %></p>
+      <p><%= f.label :linkedin %>: <%= f.text_field :linkedin %></p>
+      <p><%= f.label :github %>: <%= f.text_field :github %></p>      
+        <%= f.submit 'Update' %>
+      </p>
+    </fieldset>  
+    <% end %>
+  </div>
+</div>
+<div id="col3">
+  <h3>Actions</h3> 
+	<div class="col3_content contribute"> 
+    <%= link_to 'New Contact', new_contact_path %><br>
+    <%= link_to 'Back', contacts_path %>	
+	</div>
+  
+</div>
+
+
+

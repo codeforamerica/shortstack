@@ -1,24 +1,30 @@
 <div id="col1">
+    <%= render :partial => 'contacts/contact', :locals => {:item => @product}%>        
+    <%= render :partial => 'addresses/address', :locals => {:item => @product}%>        
     <%= render :partial => 'links/links', :locals => {:item => @product}%>  
-  
+    <%= render :partial => 'relationships/relations', :locals => {:item => @product.relationships.role('owns'), :item_name => "Owned By", :model => 'product'}%>      
+    <%= render :partial => 'relationships/relations', :locals => {:item => @product.relationships.role("uses"), :item_name => "Used By", :model => 'product'}%>
+      <%= render :partial => 'relationships/relations', :locals => {:item => @product.relationships.role("services"), :item_name => "Services", :model => 'product'}%>  
 </div>
 <div id="col2">
   <div id="col2_internal">
     <h1 class="h1_first"><%= @product.name %></h1>
-    <%= render :partial => 'notes/form', :locals => {:item => @product}%>
-    <%= render :partial => 'links/form', :locals => {:item => @product}%>
+    <%= render :partial => 'relationships/product_to_org_relationships', :locals => {:item => @product}%>
+    <%= render :partial => 'relationships/product_to_people_relationships', :locals => {:item => @product}%>    
+
+    <%= render :partial => 'layouts/common_forms', :locals => {:item => @product}%>
+    
+    <%= render :partial => 'notes/note', :locals => {:notes => @product.notes.about}%>    
+    
     <%= render :partial => 'notes/notes', :locals => {:item => @product}%>    
   </div>
 </div>
 <div id="col3">
-  <h3>Actions</h3> 
+  <%= render :partial => 'layouts/actions'%>
+  <%= render :partial => 'layouts/details'%>	<h3>Add a Relationship</h3> 
 	<div class="col3_content contribute"> 
-    <%= link_to 'New Product', new_product_path %><br>
-    <%= link_to 'All Products', products_path %><br>
-    <%= link_to 'Edit this Product', edit_product_path(@product) %><br>
-    <a href="#" id="hide_link" onClick="$('#link-form').show();">Add a Link</a><br>    
-    <a href="#" id="hide_link" onClick="$('#note-form').show();">Add a Note</a>        
-    
+    <a href="#" id="hide_link" onClick="$('#org-relationship-form').show();">Organization</a><br>    
+    <a href="#" id="hide_link" onClick="$('#people-relationship-form').show();">Person</a>            
 	</div>
   
 </div>

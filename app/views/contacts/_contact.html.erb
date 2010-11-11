@@ -1,0 +1,18 @@
+<% if !item.contacts.blank?%>
+<h2>Contact Details:</h2>
+<div class="col1_content">
+<ul id="milestones">
+<% item.contacts.order("created_at DESC").each do |contact|%>
+  <li style="list-style: none outside none;" class="milestone_addition">
+    <% if contact.phone?%>Phone: <%=contact.phone%><br><%end%>
+    <% if contact.email?%>Email: <%=link_to contact.email, "mailto:#{contact.email}"%><br><%end%>
+    <% if contact.twitter?%>Twitter: <%=link_to contact.twitter, "http://www.twitter.com/#{contact.twitter}"%><br><%end%>
+    <% if contact.linkedin?%>LinkedIn: <%=link_to contact.linkedin, "http://www.twitter.com/#{contact.linkedin}" %><br><%end%>
+    <% if contact.facebook?%>Facebook: <%=link_to contact.twitter, "http://www.facebook.com/#{contact.facebook}"%><br><%end%>
+    <% if contact.github?%>GitHub: <%=link_to contact.twitter, "http://www.github.com/#{contact.github}"%><br><%end%>
+  	<br><span id="edit_link">(<%=link_to "Edit", edit_contact_path(contact)%>) | (<%= link_to 'Remove', contact, :confirm => 'Are you sure?', :method => :delete %>) </span><br>
+  </li>
+<% end %>
+</ul>
+</div>
+<% end %>

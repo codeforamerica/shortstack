@@ -44,7 +44,7 @@ class NoteTypesController < ApplicationController
 
     respond_to do |format|
       if @note_type.save
-        format.html { redirect_to(@note_type, :notice => 'Note type was successfully created.') }
+        format.html { redirect_to(note_types_path, :notice => 'Note type was successfully created.') }
         format.xml  { render :xml => @note_type, :status => :created, :location => @note_type }
       else
         format.html { render :action => "new" }

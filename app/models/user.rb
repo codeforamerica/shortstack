@@ -2,7 +2,6 @@ class User < ActiveRecord::Base
   has_many :authentications
   has_many :contributions
   has_one :profile
-  after_create :build_profile
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
@@ -21,7 +20,4 @@ class User < ActiveRecord::Base
     (authentications.empty? || !password.blank?) && super
   end
   
-  def build_profile
-    self.create_profile
-  end
 end

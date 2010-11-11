@@ -57,11 +57,12 @@ class LinksController < ApplicationController
   # PUT /links/1
   # PUT /links/1.xml
   def update
-    @link = Link.find(params[:id])
+    @link = Address.find(params[:id])
+    linkable = @link.linkable    
 
     respond_to do |format|
       if @link.update_attributes(params[:link])
-        format.html { redirect_to(@link, :notice => 'Link was successfully updated.') }
+        format.html { redirect_to(linkable, :notice => 'Link was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -74,10 +75,11 @@ class LinksController < ApplicationController
   # DELETE /links/1.xml
   def destroy
     @link = Link.find(params[:id])
+    linkable = @link.linkable        
     @link.destroy
 
     respond_to do |format|
-      format.html { redirect_to(links_url) }
+      format.html { redirect_to(linkable) }
       format.xml  { head :ok }
     end
   end

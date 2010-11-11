@@ -1,0 +1,25 @@
+<div id="col1"></div>
+<div id="col2">
+  <div id="col2_internal">
+    <h1 class="h1_first">Edit Address</h1>
+    <%= form_for @address do |f| -%>
+      <p><%= f.label :address, "Address:" %><%=f.text_field :address %> </p> 
+      <p><%= f.label :city, "City:" %><%=f.text_field :city %> </p>   
+      <p><%= f.label :state, "State:" %><%=f.text_field :state %> </p> 
+      <p><%= f.label :zipcode, "Zipcode:" %><%=f.text_field :zipcode %> </p>         
+      <p><%= f.label :country, "Country:" %><%=f.text_field :country %> </p>     
+        <%= f.submit 'Update' %>
+      </p>
+    <% end %>
+  </div>
+</div>
+<div id="col3">
+  <h3>Actions</h3> 
+	<div class="col3_content contribute"> 
+    <%= link_to 'Back', @address.addressable %>	
+	</div>
+  
+</div>
+
+
+

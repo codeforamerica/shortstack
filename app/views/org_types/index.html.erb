@@ -5,25 +5,21 @@
     <h1 class="h1_first">Organization Types</h1>
       <table>
         <tr>
-          <th>Name</th>
+          <th></th>
           <th></th>
         </tr>
 
       <% @org_types.each do |org_type| %>
         <tr>
-          <td><%= org_type.name %></td>
-          <td><%= link_to 'Show', org_type %> | <%= link_to 'Edit', edit_org_type_path(org_type) %> | <%= link_to 'Destroy', org_type, :confirm => 'Are you sure?', :method => :delete %></td>
+          <td><%= link_to org_type.name, edit_org_type_path(org_type) %></td>
+          <td><%= link_to 'Destroy', org_type, :confirm => 'Are you sure?', :method => :delete %></td>
         </tr>
       <% end %>
       </table>
   </div>
 </div>
 <div id="col3">
-  <h3>Actions</h3> 
-	<div class="col3_content contribute"> 
-		<%= link_to 'New Organization Type', new_org_type_path %>
-	</div> 
-	
+  <%= render 'layouts/types'%>
 </div>
 
 

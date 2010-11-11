@@ -1,7 +1,11 @@
 require 'test_helper'
 
 class NoteTypeTest < ActiveSupport::TestCase
-  should "be valid" do
-    assert NoteType.new.valid?
+  context "Note Type " do
+    setup do
+      Factory(:note_type)
+    end
+  
+    should have_many :notes
   end
 end

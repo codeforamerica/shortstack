@@ -44,7 +44,7 @@ class OrgTypesController < ApplicationController
 
     respond_to do |format|
       if @org_type.save
-        format.html { redirect_to(@org_type, :notice => 'Org type was successfully created.') }
+        format.html { redirect_to(org_types_path, :notice => 'Org type was successfully created.') }
         format.xml  { render :xml => @org_type, :status => :created, :location => @org_type }
       else
         format.html { render :action => "new" }

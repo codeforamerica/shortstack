@@ -44,7 +44,7 @@ class LinkTypesController < ApplicationController
 
     respond_to do |format|
       if @link_type.save
-        format.html { redirect_to(@link_type, :notice => 'Link type was successfully created.') }
+        format.html { redirect_to(link_types_path, :notice => 'Link type was successfully created.') }
         format.xml  { render :xml => @link_type, :status => :created, :location => @link_type }
       else
         format.html { render :action => "new" }

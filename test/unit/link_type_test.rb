@@ -1,7 +1,11 @@
 require 'test_helper'
 
 class LinkTypeTest < ActiveSupport::TestCase
-  should "be valid" do
-    assert LinkType.new.valid?
+  context "LinkType " do
+    setup do
+      Factory(:link_type)
+    end
+  
+    should have_many :links
   end
 end

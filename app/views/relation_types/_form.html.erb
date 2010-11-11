@@ -1,0 +1,23 @@
+<%= form_for(@relation_type) do |f| %>
+  <% if @relation_type.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@relation_type.errors.count, "error") %> prohibited this relation_type from being saved:</h2>
+
+      <ul>
+      <% @relation_type.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+  <p><%= f.label :type_name %><%= select("relation_type", "type_name", %w[Person Organization Product])%></p>
+  </div>
+
+  <div class="field">
+    <p><%= f.label :name, "Action" %>: <%= f.text_field :name %></p>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

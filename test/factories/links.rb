@@ -2,8 +2,6 @@
 
 Factory.define :link do |f|
   f.name "MyString"
-  f.url "MyText"
-  f.linkable_id 1
-  f.linkable_type "MyString"
+  f.link_url "MyText"
   f.link_type_id 1
 end
