@@ -27,13 +27,14 @@ class ProfilesController < ApplicationController
   # GET /profiles/1/edit
   def edit
     @profile = current_user.profile
+
   end
 
 
   # PUT /profiles/1
   # PUT /profiles/1.xml
   def update
-    @profile = Profile.find(params[:id])
+    @profile = current_user.profile
 
     respond_to do |format|
       if @profile.update_attributes(params[:profile])
@@ -49,7 +50,7 @@ class ProfilesController < ApplicationController
   # DELETE /profiles/1
   # DELETE /profiles/1.xml
   def destroy
-    @profile = Profile.find(params[:id])
+    @profile = current_user.profile.find(params[:id])
     @profile.destroy
 
     respond_to do |format|
