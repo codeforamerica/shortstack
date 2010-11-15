@@ -1,6 +1,4 @@
-<div id="col1"></div>
-<div id="col2">
-  <div id="col2_internal">
+<% content_for :column2 do%>
     <h1 class="h1_first">Edit link</h1>
     <%= form_for [@link.linkable, @link], :html => {:id =>"link-form" } do |f| -%>
       <p><%= f.label :name, "Title:" %><%=f.text_field :name %> </p> 
@@ -11,17 +9,7 @@
         <%= f.submit 'Update' %>
       </p>
     <% end %>
-
-  </div>
-</div>
-<div id="col3">
-  <h3>Actions</h3> 
-	<div class="col3_content contribute"> 
-    <%= link_to 'New Link', new_link_path %><br>
-    <%= link_to 'Back', links_path %>	
-	</div>
-  
-</div>
+<% end %>
 
 
 

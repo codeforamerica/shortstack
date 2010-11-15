@@ -1,7 +1,7 @@
 class Note < ActiveRecord::Base
   belongs_to :note_type
   belongs_to :noteable, :polymorphic => true
-  has_many :contributions, :as => :contributable, :class_name => "Contribution"
+  has_many :contributions, :as => :contributable, :class_name => "Contribution", :dependent => :destroy
   after_update :update_contribution  
   after_create :create_contribution
   

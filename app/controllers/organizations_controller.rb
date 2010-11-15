@@ -3,7 +3,7 @@ class OrganizationsController < ApplicationController
   # GET /organizations.xml
   def index
     @organizations = Organization.all
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @organizations }

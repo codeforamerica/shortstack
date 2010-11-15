@@ -1,30 +1,11 @@
-<div id="container"> 
-			
-<div id="col1"> 
-	<h2>What is CrunchBase?</h2> 
-	<div class="col1_content"> 
-		<p>CrunchBase is the free database of technology companies, people, and 
-		investors that anyone can edit.</p><br/> 
-		<p>Here, you can learn and edit everything about companies like <a href="/company/facebook" title="Facebook">Facebook</a>, <a href="/company/youtube" title="YouTube">YouTube</a>, <a href="/company/twitter" title="Twitter">Twitter</a>, <a href="/company/myspace" title="MySpace">MySpace</a> and <a href="/company/tagged" title="Tagged">Tagged</a>, products like <a href="/product/droid" title="Droid">Droid</a> and <a href="/product/google-wave" title="Google Wave">Google Wave</a>, and people like <a href="/person/mark-zuckerberg" title="Mark Zuckerberg">Mark Zuckerberg</a> and <a href="/person/steve-jobs" title="Steve Jobs">Steve Jobs</a>.</p> 
-	</div> 
-	
+<% content_for :column1 do%>
+				
 <%= render 'stats'%>
-	
-</div> 
-<div id="col2">
-  <div id="col2_internal">
+<% end %>
+
+<% content_for :column2 do%>	
     <%= render 'latest_products'%>
     <%= render 'latest_organizations'%>
     <%= render 'latest_people'%>
     <%= render 'latest_contributions'%>
-  </div>
-</div>  
- 
-<div id="col3"> 
-  <%= render :partial => 'layouts/actions'%>
-</div> 
-</div> 
-<div id="footer"></div> 
-
-	</body> 
-</html>
+<% end %> 

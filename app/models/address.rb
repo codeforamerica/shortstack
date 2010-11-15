@@ -1,6 +1,6 @@
 class Address < ActiveRecord::Base
   belongs_to :addressable, :polymorphic => true
-  has_many :contributions, :as => :contributable, :class_name => "Contribution"
+  has_many :contributions, :as => :contributable, :class_name => "Contribution", :dependent => :destroy
   after_update :update_contribution  
   after_create :create_contribution
 

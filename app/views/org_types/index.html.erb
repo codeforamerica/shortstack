@@ -1,7 +1,4 @@
-
-<div id="col1"></div>
-<div id="col2">
-  <div id="col2_internal">
+<% content_for :column2 do%>
     <h1 class="h1_first">Organization Types</h1>
       <table>
         <tr>
@@ -16,12 +13,7 @@
         </tr>
       <% end %>
       </table>
-  </div>
-</div>
-<div id="col3">
-  <%= render 'layouts/types'%>
-</div>
-
+<%end%>
 
 
 
