@@ -20,10 +20,6 @@ class Person < ActiveRecord::Base
   after_create :create_contribution
   after_update :update_contribution  
   
-  searchable do
-    text :name
-  end
-  
   def create_contribution
     self.contributions << Contribution.new(:user =>$current_user, :action => "Create")
   end
