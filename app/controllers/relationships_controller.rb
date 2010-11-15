@@ -1,5 +1,6 @@
 class RelationshipsController < ApplicationController
-  
+
+  before_filter :authenticate_user!    
   # GET /relationships
   # GET /relationships.xml
   def index

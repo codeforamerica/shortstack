@@ -1,4 +1,5 @@
 class AddressesController < ApplicationController
+    before_filter :authenticate_user!  
   # GET /address
   # GET /address.xml
   def index

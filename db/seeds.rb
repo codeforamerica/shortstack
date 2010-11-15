@@ -25,7 +25,7 @@ end
 
 #Organization Types
 %w(nonprofit foundation company).each do |org_type|
-  OrganizationType.create!(:name => org_type)
+  OrgType.create!(:name => org_type)
 end
 
 #Note Types
@@ -34,6 +34,6 @@ end
 end
 
 #Social Account Settings
-[['github_key', 'bc26368331e1c5448ad8'],['github_secret', '12d49cf3bc803557934f396e739a388d1151af8d'],['facebook_key', '159760180721815'],['facebook_secret', '91ac6ce27fcb09d6b65d8be47c47784e'],['twitter_key', 'g6ECF8TKdbGQQI7bgkKVg']].each do |setting|
+[['github_key', 'bc26368331e1c5448ad8'],['github_secret', '12d49cf3bc803557934f396e739a388d1151af8d'],['facebook_key', '159760180721815'],['facebook_secret', '91ac6ce27fcb09d6b65d8be47c47784e'],['twitter_key', 'g6ECF8TKdbGQQI7bgkKVg'], ['twitter_secret', 'WIIaOGyBkOo0Y1kOpkBMYJEPgLNHiskLmvOWGGQnZkI']].each do |setting|
   Setting.create!(:name => setting[0], :setting => setting[1])
 end  

@@ -1,4 +1,5 @@
 class NotesController < ApplicationController
+  before_filter :authenticate_user!  
   # GET /notes
   # GET /notes.xml
   def index

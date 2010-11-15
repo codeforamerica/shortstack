@@ -57,4 +57,5 @@ class ProfilesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
 end

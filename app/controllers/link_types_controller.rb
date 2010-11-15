@@ -1,4 +1,5 @@
 class LinkTypesController < ApplicationController
+  before_filter :authenticate_user!  
   # GET /link_types
   # GET /link_types.xml
   def index

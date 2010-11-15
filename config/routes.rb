@@ -32,5 +32,8 @@ Orgbase::Application.routes.draw do
 
   #home
   root :to => "home#index"
+  
+  #profilename
+  
 
 end

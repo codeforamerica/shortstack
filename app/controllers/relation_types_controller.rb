@@ -1,4 +1,5 @@
 class RelationTypesController < ApplicationController
+  before_filter :authenticate_user!  
   # GET /relation_types
   # GET /relation_types.xml
   def index
