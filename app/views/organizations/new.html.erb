@@ -1,17 +1,16 @@
-<div id="col1"></div>
-<div id="col2">
-  <div id="col2_internal">
-    <h1 class="h1_first">New organization</h1>
+<%= content_for :column2 do%>
+    <h1 class="h1_first">New Organization</h1>
       <%= render 'form' %>
-  </div>
+<% end %>
+
+<%= content_for :column3 do %>
+<h3>Actions</h3> 
+<div class="col3_content contribute"> 
+  <%= link_to 'Back', organizations_path %>	
 </div>
-<div id="col3">
-  <h3>Actions</h3> 
-	<div class="col3_content contribute"> 
-    <%= link_to 'Back', organizations_path %>	
-	</div>
-  
-</div>
+<% end %>
+
+
 
 
 

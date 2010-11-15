@@ -1,26 +1,36 @@
-<div id="col1"></div>
-<div id="col2">
-  <div id="col2_internal">
+<%= content_for :column2 do%>
+<% if !@organizations.blank?%>
     <h1 class="h1_first">Organizations</h1>
-      <table>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th></th>
-        </tr>
-<% @organizations.each do |organization| %>
-        <tr>
-          <td><%= link_to organization.name , organization %></td>
-          <td><%= organization.org_type.name %></td>
-          <td><%= link_to 'Edit', edit_organization_path(organization) %> | <%= link_to 'Destroy', organization, :confirm => 'Are you sure?', :method => :delete %></td>
-        </tr>
+    <table class= "col2_table_listing">
+      <tr>
+        <td>
+          <ul>
+      <% @organizations[0..(@organizations.size/3)].each do |organization| %>
+            <li><%= alphabet_header(@organizations, organization)%></li>  
+            <li><%= link_to organization.name , organization %></li>
       <% end %>
-      </table>
-  </div>
-</div>
-<div id="col3">
-  <%= render :partial => 'layouts/actions'%>
-</div>
+          </ul>
+        </td>
+        <td>
+          <ul>
+      <% @organizations[(@organizations.size/3)+1..(2*@organizations.size/3)].each do |organization| %>
+            <li><%= alphabet_header(@organizations, organization)%></li>  
+            <li><%= link_to organization.name , organization %></li>
+      <% end %>
+          </ul>
+        </td>
+        <td>
+          <ul>
+      <% @organizations[(@organizations.size/3)*2+1..(@organizations.size)].each do |organization| %>
+            <li><%= alphabet_header(@organizations, organization)%></li>  
+            <li><%= link_to organization.name , organization %></li>
+      <% end %>
+          </ul>
+        </td>                  
+      </tr>
+    </table>
+    <%end%>
+<% end %>
 
 
 

@@ -1,33 +1,26 @@
-<div id="col1">
-    <%= render :partial => 'contacts/contact', :locals => {:item => @product}%>        
-    <%= render :partial => 'addresses/address', :locals => {:item => @product}%>        
-    <%= render :partial => 'links/links', :locals => {:item => @product}%>  
-    <%= render :partial => 'relationships/relations', :locals => {:item => @product.relationships.role('owns'), :item_name => "Owned By", :model => 'product'}%>      
-    <%= render :partial => 'relationships/relations', :locals => {:item => @product.relationships.role("uses"), :item_name => "Used By", :model => 'product'}%>
-      <%= render :partial => 'relationships/relations', :locals => {:item => @product.relationships.role("services"), :item_name => "Services", :model => 'product'}%>  
-</div>
-<div id="col2">
-  <div id="col2_internal">
-    <h1 class="h1_first"><%= @product.name %></h1>
-    <%= render :partial => 'relationships/product_to_org_relationships', :locals => {:item => @product}%>
-    <%= render :partial => 'relationships/product_to_people_relationships', :locals => {:item => @product}%>    
+<%= content_for :column1 do%>
+  <%= render :partial => 'layouts/detail_boxes', :locals => {:item => @product}%>          
+  <%= render :partial => 'relationships'%>            
+<% end %>  
 
-    <%= render :partial => 'layouts/common_forms', :locals => {:item => @product}%>
-    
-    <%= render :partial => 'notes/note', :locals => {:notes => @product.notes.about}%>    
-    
-    <%= render :partial => 'notes/notes', :locals => {:item => @product}%>    
-  </div>
-</div>
-<div id="col3">
-  <%= render :partial => 'layouts/actions'%>
-  <%= render :partial => 'layouts/details'%>	<h3>Add a Relationship</h3> 
+<%= content_for :column2 do%>
+    <h1 class="h1_first"><%=link_to @product.name, edit_product_path(@product) %></h1>
+      <%= render :partial => 'relationship_forms'%>
+      <%= render :partial => 'layouts/common_forms', :locals => {:item => @product}%>
+      <%= render :partial => 'notes/note', :locals => {:notes => @product.notes.about}%>      
+      <%= render :partial => 'notes/notes', :locals => {:item => @product}%>
+<% end %>
+
+<%= content_for :column3 do%>
+  <%= render :partial => 'layouts/details'%>
+	<h3>Add a Relationship</h3> 
 	<div class="col3_content contribute"> 
-    <a href="#" id="hide_link" onClick="$('#org-relationship-form').show();">Organization</a><br>    
-    <a href="#" id="hide_link" onClick="$('#people-relationship-form').show();">Person</a>            
-	</div>
-  
-</div>
+    <a href="#" id="hide_link" onClick="$('#organization-parent-relationship-form').show();">Add an Organization</a><br>
+    <a href="#" id="hide_link" onClick="$('#organization-child-relationship-form').show();">Add an Organization User</a><br>    
+    <a href="#" id="hide_link" onClick="$('#product-child-relationship-form').show();">Add a Dependency</a><br>
+    <a href="#" id="hide_link" onClick="$('#person-parent-relationship-form').show();">Add a Person</a><br>    
+	</div>	
+<% end %>
 
 
 

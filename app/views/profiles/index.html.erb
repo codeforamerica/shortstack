@@ -1,25 +1,49 @@
-<div id="col1"></div>
-<div id="col2">
-  <div id="col2_internal">
-    <h1 class="h1_first">Users</h1>
-      <table>
 
-<% @profiles.each do |profile| %>
-        <tr>
-          <td><%= link_to profile.name, profile %></td>
-        </tr>
+<%= content_for :column2 do%>
+<% if !@profiles.blank?%>
+    <h1 class="h1_first">Contributors</h1>
+    <table class= "col2_table_listing">
+      <tr>
+        <td>
+          <ul>
+      <% @profiles[0..(@profiles.size/3)].each do |profile| %>
+            <li><%= alphabet_header(@profiles, profile)%></li>  
+            <li><%= link_to profile.name , profile %></li>
       <% end %>
-      </table>
-  </div>
+          </ul>
+        </td>
+        <td>
+          <ul>
+      <% @profiles[(@profiles.size/3)+1..(2*@profiles.size/3)].each do |profile| %>
+            <li><%= alphabet_header(@profiles, profile)%></li>  
+            <li><%= link_to profile.name , profile %></li>
+      <% end %>
+          </ul>
+        </td>
+        <td>
+          <ul>
+      <% @profiles[(@profiles.size/3)*2+1..(@profiles.size)].each do |profile| %>
+            <li><%= alphabet_header(@profiles, profile)%></li>  
+            <li><%= link_to profile.name , profile %></li>
+      <% end %>
+          </ul>
+        </td>                  
+      </tr>
+    </table>
+    <%end%>
+<% end %>
+
+<% content_for :column3 do %>
+<h3>Actions</h3>
+	<div class="col3_content contribute"> 
+  <%if current_user%><%= link_to 'Edit Your Profile', edit_profile_path(current_user.profile) %><br><%end%>
+	</div>
 </div>
-<div id="col3">
-  <h3>Actions</h3>
-  	<div class="col3_content contribute"> 
-    <%if current_user%><%= link_to 'Edit Your Profile', edit_profile_path(current_user.profile) %><br><%end%>
-  	</div>
-	</div> 
-	
-</div>
+<% end %>
+
+
+
+
 
 
 

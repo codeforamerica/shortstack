@@ -1,40 +1,20 @@
-<div id="col1"></div>
-<div id="col2">
-  <div id="col2_internal">
+<% content_for :column2 do%>
     <h1 class="h1_first">contacts</h1>
       <table>
         <tr>
-                    <th>Phone</th>
-                    <th>Email</th>
-                    <th>Twitter</th>
-                    <th>Facebook</th>
-                    <th>Linkedin</th>
-                    <th>Contactable</th>
-                    <th>Contactable type</th>
+                    <th>Name</th>
+                    <th>Contact Details</th>
                     <th></th>
         </tr>
 <% @contacts.each do |contact| %>
         <tr>
-                    <td><%= contact.phone %></td>
-                    <td><%= contact.email %></td>
-                    <td><%= contact.twitter %></td>
-                    <td><%= contact.facebook %></td>
-                    <td><%= contact.linkedin %></td>
-                    <td><%= contact.contactable_id %></td>
-                    <td><%= contact.contactable_type %></td>
-                    <td><%= link_to 'Show', contact %> | <%= link_to 'Edit', edit_contact_path(contact) %> | <%= link_to 'Destroy', contact, :confirm => 'Are you sure?', :method => :delete %></td>
+                    <td><%=link_to contact.contactable.name, contact.contactable %></td>
+                    <td>Phone:<%= contact.phone %><br> Email:<%= contact.email %> <br> Twitter: <%= contact.twitter %> <br> Facebook: <%= contact.facebook %> <br> LinkedIn: <%= contact.linkedin %></td>
+                    <td><%= link_to 'Edit', edit_contact_path(contact) %> | <%= link_to 'Destroy', contact, :confirm => 'Are you sure?', :method => :delete %></td>
         </tr>
       <% end %>
       </table>
-  </div>
-</div>
-<div id="col3">
-  <h3>Actions</h3> 
-  	<div class="col3_content contribute"> 
-    <%= link_to 'New Contact', new_contact_path %><br>
-  	</div>	
-</div>
-
+<% end %>
 
 
 

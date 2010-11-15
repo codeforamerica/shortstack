@@ -1,6 +1,4 @@
-<div id="col1"></div>
-<div id="col2">
-  <div id="col2_internal">
+<% content_for :column2 do%>
     <h1 class="h1_first">Edit Address</h1>
     <%= form_for @address do |f| -%>
       <p><%= f.label :address, "Address:" %><%=f.text_field :address %> </p> 
@@ -11,15 +9,14 @@
         <%= f.submit 'Update' %>
       </p>
     <% end %>
-  </div>
-</div>
-<div id="col3">
+<% end %>    
+
+<% content_for :column3 do%>
   <h3>Actions</h3> 
 	<div class="col3_content contribute"> 
     <%= link_to 'Back', @address.addressable %>	
 	</div>
-  
-</div>
+<%end%>
 
 
 

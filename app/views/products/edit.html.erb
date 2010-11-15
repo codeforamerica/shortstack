@@ -1,17 +1,12 @@
-<div id="col1"></div>
-<div id="col2">
-  <div id="col2_internal">
-    <h1 class="h1_first">Edit Product</h1>
-      <%= render 'form' %>
-  </div>
-</div>
-<div id="col3">
-  <h3>Actions</h3> 
-	<div class="col3_content contribute"> 
-    <%= link_to 'New Product', new_product_path %><br>
-    <%= link_to 'All Products', products_path %>	
-	</div>
-</div>
+<%= content_for :column1 do%>
+  <%= render :partial => 'layouts/detail_boxes', :locals => {:item => @product}%>          
+  <%= render :partial => 'relationships'%>
+<% end %>
+
+<%= content_for :column2 do%>
+    <h1 class="h1_first">Edit <%= link_to @product.name, @product%></h1>
+    <%= render 'form' %>
+<% end %>
 
 
 

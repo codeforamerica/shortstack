@@ -1,24 +1,37 @@
-<div id="col1"></div>
-<div id="col2">
-  <div id="col2_internal">
+<%= content_for :column2 do%>
+
     <h1 class="h1_first">People</h1>
-      <table>
-        <tr>
-          <th>Name</th>
-          <th></th>
-        </tr>
-<% @people.each do |person| %>
-        <tr>
-          <td><%= link_to person.name, person %></td>
-          <td><%= link_to 'Edit', edit_person_path(person) %> | <%= link_to 'Destroy', person, :confirm => 'Are you sure?', :method => :delete %></td>
-        </tr>
+<% if !@people.blank?%>
+    <table class= "col2_table_listing">
+      <tr>
+        <td>
+          <ul>
+      <% @people[0..(@people.size/3)].each do |person| %>
+            <li><%= alphabet_header(@people, person)%></li>
+            <li><%= link_to person.name , person %></li>
       <% end %>
-      </table>
-  </div>
-</div>
-<div id="col3">
-  <%= render :partial => 'layouts/actions'%>
-</div>
+          </ul>
+        </td>
+        <td>
+          <ul>
+      <% @people[(@people.size/3)+1..(2*@people.size/3)].each do |person| %>
+            <li><%= alphabet_header(@people, person)%></li>
+            <li><%= link_to person.name , person %></li>
+      <% end %>
+          </ul>
+        </td>
+        <td>
+          <ul>
+      <% @people[(@people.size/3)*2+1..(@people.size)].each do |person| %>
+            <li><%= alphabet_header(@people, person)%></li>
+            <li><%= link_to person.name , person %></li>
+      <% end %>
+          </ul>
+        </td>                  
+      </tr>
+    </table>
+    <% end %>
+<% end %>
 
 
 

@@ -13,6 +13,7 @@ gem 'pivotal-tracker'
 gem 'rails3-generators'
 gem 'jquery-rails'
 gem 'awesome_print', :require => 'ap'
+gem 'sunspot_rails', '1.2.rc4'
 
 # Use unicorn as the web server
 # gem 'unicorn'

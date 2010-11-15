@@ -11,23 +11,32 @@
     <%= yield(:head) %>
 	</head> 
 	<body>
-
-  <div id="header"> 
-  	<%= link_to image_tag('codeforamerica.png'), :root%>
-  	<div id="session"> 
-  	  <%= render 'layouts/sign_in'%>
-    </div> 
-  </div>
-  <%= render 'home/search'%>
-
-  	  	<div id="strip"> 
-  	<div id="strip_right">Browse:
-  	  <%= link_to "Organizations", organizations_path %> | <%= link_to "People", people_path %> | <%= link_to "Conributors", profiles_path %> | <%= link_to "Products", products_path %>
-  	</div> 
-  	<a href="/" title="Home" rel="nofollow">Home</a> 
-  </div> 
-  
-      <%= yield %>
+    <div id="header"> 
+    	<%= link_to image_tag('codeforamerica.png'), :root%>
+    	<div id="session"> 
+    	  <%= render 'layouts/sign_in'%>
+      </div> 
     </div>
+    
+    <%= render 'home/search'%>
+
+    <div id="strip"> 
+    	<div id="strip_right">Browse:
+    	  <%= link_to "Organizations", organizations_path %> | <%= link_to "People", people_path %> | <%= link_to "Conributors", profiles_path %> | <%= link_to "Products", products_path %>
+    	</div> 
+    	<a href="/" title="Home" rel="nofollow">Home</a> 
+    </div> 
+    <div id="col1">
+      <%= yield :column1%>
+    </div>
+    <div id="col2">
+      <div id="col2_internal">
+      <%= yield :column2%>
+      </div>
+    </div>
+    <div id="col3">
+      <%= render :partial => 'layouts/actions'%>            
+      <%= yield :column3%>
+    </div>	
   </body>
 </html>

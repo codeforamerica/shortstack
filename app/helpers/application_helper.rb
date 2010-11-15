@@ -21,4 +21,8 @@ module ApplicationHelper
       "added to"
     end
   end
+  
+  def alphabet_header(items, item)
+    item.name[0..0] unless item.name[0] == items[items.index(item)-1].name[0]
+  end
 end

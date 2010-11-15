@@ -2,7 +2,6 @@
   <% if @organization.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@organization.errors.count, "error") %> prohibited this organization from being saved:</h2>
-
       <ul>
       <% @organization.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -10,12 +9,11 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
-    <p><%= f.label :name %>: <%= f.text_field :name %></p>
+    <p><%= f.label :name, "Organization Name" %>: <%= f.text_field :name %></p>
   </div>
   <div class="field">
-    <p><%= f.label :org_type %><%= select("organization", "org_type_id", OrgType.all.collect {|p| [ p.name, p.id ] })%>
+    <p><%= f.label :org_type, "Organization Type:" %><%= select("organization", "org_type_id", OrgType.all.collect {|p| [ p.name, p.id ] })%>
     </p>
   </div>
   <div class="actions">

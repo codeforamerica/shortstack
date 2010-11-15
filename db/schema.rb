@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101111044305) do
+ActiveRecord::Schema.define(:version => 20101113175814) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address"
@@ -126,13 +126,15 @@ ActiveRecord::Schema.define(:version => 20101111044305) do
     t.string   "type_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "parent",     :default => false
   end
 
   create_table "relationships", :force => true do |t|
-    t.integer  "person_id"
-    t.integer  "organization_id"
-    t.integer  "product_id"
     t.string   "relation_type"
+    t.string   "parentable_type"
+    t.integer  "parentable_id"
+    t.string   "childable_type"
+    t.integer  "childable_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

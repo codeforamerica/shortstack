@@ -17,6 +17,9 @@
   <div class="field">
     <p><%= f.label :name, "Action" %>: <%= f.text_field :name %></p>
   </div>
+  <div class="field">
+    <p><%= f.label :parent, "Is this a parent relationship?" %>: <%= f.check_box :parent %></p>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

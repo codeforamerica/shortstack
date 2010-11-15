@@ -1,21 +1,36 @@
-<div id="col1"></div>
-<div id="col2">
-  <div id="col2_internal">
+<%= content_for :column2 do%>
+<% if !@products.blank?%>
     <h1 class="h1_first">Products</h1>
-      <table>
-        <tr>
-        </tr>
-<% @products.each do |product| %>
-        <tr>
-          <td><%= link_to product.name, product %></td>
-        </tr>
+    <table class= "col2_table_listing">
+      <tr>
+        <td>
+          <ul>
+      <% @products[0..(@products.size/3)].each do |product| %>
+            <li><%= alphabet_header(@products, product)%></li>  
+            <li><%= link_to product.name , product %></li>
       <% end %>
-      </table>
-  </div>
-</div>
-<div id="col3">
-  <%= render :partial => 'layouts/actions'%>
-</div>
+          </ul>
+        </td>
+        <td>
+          <ul>
+      <% @products[(@products.size/3)+1..(2*@products.size/3)].each do |product| %>
+            <li><%= alphabet_header(@products, product)%></li>  
+            <li><%= link_to product.name , product %></li>
+      <% end %>
+          </ul>
+        </td>
+        <td>
+          <ul>
+      <% @products[(@products.size/3)*2+1..(@products.size)].each do |product| %>
+            <li><%= alphabet_header(@products, product)%></li>  
+            <li><%= link_to product.name , product %></li>
+      <% end %>
+          </ul>
+        </td>                  
+      </tr>
+    </table>
+    <%end%>
+<% end %>
 
 
 

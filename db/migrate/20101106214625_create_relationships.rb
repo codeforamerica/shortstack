@@ -1,10 +1,11 @@
 class CreateRelationships < ActiveRecord::Migration
   def self.up
     create_table :relationships do |t|
-      t.integer :person_id
-      t.integer :organization_id
-      t.integer :product_id
-      t.string :relation_type
+      t.string  :relation_type
+      t.string  :parentable_type
+      t.integer  :parentable_id
+      t.string  :childable_type
+      t.integer  :childable_id
       t.timestamps
     end
   end

@@ -1,35 +1,25 @@
-<div id="col1">
-  <%= render :partial => 'addresses/address', :locals => {:item => @organization}%>    
-  <%= render :partial => 'links/links', :locals => {:item => @organization}%>  
-  <%= render :partial => 'relationships/relations', :locals => {:item => @organization.relationships.role('works'), :item_name => "Employs", :model => 'organization'}%>      
-  <%= render :partial => 'relationships/relations', :locals => {:item => @organization.relationships.role("uses"), :item_name => "Uses", :model => 'organization'}%>
-    <%= render :partial => 'relationships/relations', :locals => {:item => @organization.relationships.role("owns"), :item_name => "Owns", :model => 'organization'}%>              
-    <%= render :partial => 'relationships/relations', :locals => {:item => @organization.relationships.role("services"), :item_name => "Services", :model => 'organization'}%>                  
-  
-</div>
-<div id="col2">
-  <div id="col2_internal">
-    <h1 class="h1_first"><%= @organization.name %></h1>
-      <%= render :partial => 'relationships/org_to_product_relationships', :locals => {:item => @organization}%>
-      <%= render :partial => 'relationships/org_to_people_relationships', :locals => {:item => @organization}%>    
+<%= content_for :column1 do%>
+  <%= render :partial => 'layouts/detail_boxes', :locals => {:item => @organization}%>          
+  <%= render :partial => 'relationships'%>            
+<% end %>  
 
+<%= content_for :column2 do%>
+    <h1 class="h1_first"><%=link_to @organization.name, edit_organization_path(@organization) %></h1>
+      <%= render :partial => 'relationship_forms'%>
       <%= render :partial => 'layouts/common_forms', :locals => {:item => @organization}%>
-
       <%= render :partial => 'notes/note', :locals => {:notes => @organization.notes.about}%>      
-         
       <%= render :partial => 'notes/notes', :locals => {:item => @organization}%>
-  </div>
-</div>
-<div id="col3">
-  <%= render :partial => 'layouts/actions'%>
+<% end %>
+
+<%= content_for :column3 do%>
   <%= render :partial => 'layouts/details'%>
 	<h3>Add a Relationship</h3> 
 	<div class="col3_content contribute"> 
-    <a href="#" id="hide_link" onClick="$('#product-relationship-form').show();">Product</a><br>    
-    <a href="#" id="hide_link" onClick="$('#people-relationship-form').show();">Person</a>            
+    <a href="#" id="hide_link" onClick="$('#organization-parent-relationship-form').show();">Add an Organization</a><br>
+    <a href="#" id="hide_link" onClick="$('#person-parent-relationship-form').show();">Add a Donor or Board Member</a><br>
+    <a href="#" id="hide_link" onClick="$('#product-child-relationship-form').show();">Add a Product</a><br>    
 	</div>	
-  
-</div>
+<% end %>
 
 
 

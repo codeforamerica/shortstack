@@ -1,26 +1,22 @@
-<div id="col1"></div>
-<div id="col2">
-  <div id="col2_internal">
+<%= content_for :column2 do%>
     <h1 class="h1_first">Relation Types</h1>
       <table>
         <tr>
           <th>Name</th>
+          <th>Parent Relationship</th>          
           <th>Action</th>
           <th></th>
         </tr>
 <% @relation_types.each do |relation_type| %>
         <tr>
           <td><%= relation_type.type_name %></td>
+          <td><%= relation_type.parent %></td>          
           <td><%= link_to relation_type.name, edit_relation_type_path(relation_type) %></td>
           <td><%= link_to 'Destroy', relation_type, :confirm => 'Are you sure?', :method => :delete %></td>
         </tr>
       <% end %>
       </table>
-  </div>
-</div>
-<div id="col3">
-  <%= render 'layouts/types'%>
-</div>
+<% end %>
 
 
 
