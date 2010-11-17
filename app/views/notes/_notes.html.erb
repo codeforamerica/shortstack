@@ -2,7 +2,7 @@
 <ul id="milestones  ">
 <% item.notes.order("created_at DESC").each do |note|%>
 <li style="list-style: none outside none;" class="milestone_addition">
-	<div class="milestone_text"><strong><%=link_to note.name, note%>:</strong> <%=note.note%> </div>
+	<div class="milestone_text"><strong><%=link_to note.name, note%>:</strong> <%=note.note[0..100]%> </div>
 	<div class="meta_milestone">Posted: <%= note.contributions.last.created_at("%m/%d/%y at %I:%M:%S %p") %> by <%= link_to note.contributions.last.user.profile.name, note.contributions.last.user.profile%></div>
 </li>
 <% end %>
