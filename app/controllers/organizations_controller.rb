@@ -3,7 +3,7 @@ class OrganizationsController < ApplicationController
   # GET /organizations
   # GET /organizations.xml
   def index
-    @organizations = Organization.all
+    @organizations = Organization.alpha
     
     respond_to do |format|
       format.html # index.html.erb

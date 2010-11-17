@@ -3,7 +3,7 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.xml
   def index
-    @people = Person.all
+    @people = Person.alpha
 
     respond_to do |format|
       format.html # index.html.erb

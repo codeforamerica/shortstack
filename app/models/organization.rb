@@ -14,7 +14,8 @@ class Organization < ActiveRecord::Base
   accepts_nested_attributes_for :addresses     
   accepts_nested_attributes_for :notes
      
-  default_scope order("name ASC")  
+  scope :alpha, order("name ASC")  
+  scope :recent, ("created_at DESC")  
   
   validates_presence_of :name, :on => :create, :message => "can't be blank"
   validates_presence_of :org_type, :on => :create, :message => "can't be blank"  
