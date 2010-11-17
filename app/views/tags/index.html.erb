@@ -2,7 +2,7 @@
   <h1>Products tagged with <%=@tag%></h1>
   <%= render :partial => "block_list", :locals => {:items => @products}%>
 <% end%>
-<% if !@organiations.blank?%>
+<% if !@organizations.blank?%>
   <h1>Organizations tagged with <%=@tag%></h1>
   <%= render :partial => "block_list", :locals => {:items => @organizations}%>
 <% end%>
