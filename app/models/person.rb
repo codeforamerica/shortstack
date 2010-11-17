@@ -16,7 +16,7 @@ class Person < ActiveRecord::Base
   accepts_nested_attributes_for :children
 
   scope :alpha, order("name ASC")  
-  scope :recent, ("created_at DESC")    
+  scope :recent, order("created_at DESC")    
 
   after_create :create_contribution
   after_update :update_contribution  
