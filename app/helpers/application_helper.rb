@@ -23,6 +23,14 @@ module ApplicationHelper
   end
   
   def alphabet_header(items, item)
-    item.name[0..0] unless item.name[0] == items[items.index(item)-1].name[0]
+    item.name[0..0] unless item.name[0..0].downcase == items[items.index(item)-1].name[0..0].downcase
+  end
+  
+  def tag_links(tags)
+    tag_links = []
+    tags.each do |tag| 
+      tag_links << "<a href='/tags/#{tag.tag.id}/#{tag.tag.name}'>#{tag.tag.name}</a>"
+    end
+    "Tags: " + tag_links.to_sentence
   end
 end

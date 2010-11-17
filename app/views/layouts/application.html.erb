@@ -8,6 +8,8 @@
     <%= csrf_meta_tag %>
     <%= stylesheet_link_tag "application" %>
     <%= javascript_include_tag :defaults %>
+
+
     <%= yield(:head) %>
 	</head> 
 	<body>
@@ -18,7 +20,7 @@
       </div> 
     </div>
     
-    <%= render 'home/search'%>
+    <%= render 'layouts/search'%>
 
     <div id="strip"> 
     	<div id="strip_right">Browse:

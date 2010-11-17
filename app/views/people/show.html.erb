@@ -5,6 +5,8 @@
 
 <%= content_for :column2 do%>
     <h1 class="h1_first"><%=link_to @person.name, edit_person_path(@person) %></h1>
+      <%= simple_format(tag_links(@person.taggings))%>
+      <%= render :partial => 'tags/tags', :locals => {:item => @person}%>
       <%= render :partial => 'relationship_forms'%>
       <%= render :partial => 'layouts/common_forms', :locals => {:item => @person}%>
       <%= render :partial => 'notes/note', :locals => {:notes => @person.notes.about}%>      

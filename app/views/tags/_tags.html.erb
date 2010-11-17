@@ -1,0 +1,18 @@
+<a href="#" onClick="$('fieldset#tags').show();">Add Tags</a> | 
+<fieldset id="tags" style="display:none;">
+	<legend>Tags:</legend>
+	<div id="actions">
+		<a href="#" id="createTag" onClick="$('ul#tags').append('<li><input type=\'text\' value=\'\' name=\'<%=item.class.name.downcase%>[tag_list][]\' id=\'new_tag\'/></li>');">Add New</a> | <a href="#" id="createTag" onClick="$('fieldset#tags').hide();">Hide Form</a>
+	</div>
+<% form_for item do |f| %>	
+<ul id="tags" class="lists">
+	  <% taggings = item.taggings.collect{|x| x.tag.name}.to_sentence%>
+<% Tag.all.each do |tag| -%>
+<li><%= check_box_tag :tag_list, tag.name, taggings.include?(tag.name), :name => "#{item.class.name.downcase}[tag_list][]" -%>
+  <%= label_tag :tag_list, tag.name -%></li>
+<% end %>
+</ul>
+<%= f.submit "Submit" %>
+<%end%>
+
+</fieldset>

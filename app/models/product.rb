@@ -20,6 +20,8 @@ class Product < ActiveRecord::Base
   after_create :create_contribution
   after_update :update_contribution
   
+  acts_as_taggable
+  
   def create_contribution
     self.contributions << Contribution.new(:user =>$current_user, :action => "Create")
   end

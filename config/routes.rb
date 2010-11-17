@@ -6,7 +6,9 @@ Orgbase::Application.routes.draw do
   resources :addresses  
   resources :links
   resources :notes
-
+  resources :managetags, :collection => {:tags => :any, :categories => :any, :rename => :any, :remove => :any, :remove_tagging => :any}
+  match "/tags/:id/:name" => "tags#index"
+  
   #objects
   resources :people, :organizations, :products do
     resources :notes

@@ -5,6 +5,8 @@
 
 <%= content_for :column2 do%>
     <h1 class="h1_first"><%=link_to @organization.name, edit_organization_path(@organization) %></h1>
+      <%= simple_format(tag_links(@organization.taggings))%>
+      <%= render :partial => 'tags/tags', :locals => {:item => @organization}%>
       <%= render :partial => 'relationship_forms'%>
       <%= render :partial => 'layouts/common_forms', :locals => {:item => @organization}%>
       <%= render :partial => 'notes/note', :locals => {:notes => @organization.notes.about}%>      

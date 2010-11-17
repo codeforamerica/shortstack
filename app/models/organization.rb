@@ -21,6 +21,8 @@ class Organization < ActiveRecord::Base
     
   after_create :create_contribution
   after_update :update_contribution 
+  
+  acts_as_taggable
 
    
   
