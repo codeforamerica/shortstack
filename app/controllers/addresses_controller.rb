@@ -41,7 +41,7 @@ class AddressesController < ApplicationController
   # POST /address
   # POST /address.xml
   def create
-    @addressable = find_polymorphic_owner :address
+    @addressable = find_addressable
     @address = @addressable.addresses.build(params[:address])
 
     respond_to do |format|
@@ -82,6 +82,18 @@ class AddressesController < ApplicationController
       format.html { redirect_to(addressable, :notice => 'Address was successfully destroyed.') }
       format.xml  { head :ok }
     end
+  end
+  
+  private
+
+  def find_addressable
+    
+    params.each do |name, value|
+      if name =~ /(.+)_id$/
+        return $1.classify.constantize.find(value)
+      end
+    end
+    nil
   end
   
 end
