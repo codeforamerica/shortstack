@@ -8,4 +8,14 @@ class ApplicationController < ActionController::Base
     $current_user = current_user #make current_user accessible to models for post_hooks
     end
   end
+
+
+  private
+  
+
+  def find_polymorphic_owner(name)
+    type = params[name][:"#{name}able_type"]
+    id = params[name][:"#{name}able_id"]
+    type.classify.constantize.find(id)
+  end
 end

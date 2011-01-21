@@ -41,7 +41,7 @@ class NotesController < ApplicationController
   # POST /notes
   # POST /notes.xml
   def create
-    @noteable = find_noteable
+    @noteable = find_polymorphic_owner :note
     @note = @noteable.notes.build(params[:note])
 
     respond_to do |format|
@@ -82,14 +82,6 @@ class NotesController < ApplicationController
       format.html { redirect_to(noteable) }
       format.xml  { head :ok }
     end
-  end
-  
-  private
-
-  def find_noteable
-    type = params[:note][:noteable_type]
-    id = params[:note][:noteable_id]
-    type.classify.constantize.find(id)
   end
   
 end
