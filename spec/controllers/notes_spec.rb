@@ -11,7 +11,6 @@ describe NotesController do
 
   describe '#create' do
      before do
-       puts Person.all.inspect
        post :create, :note => Factory.attributes_for(:note)
      end
      
