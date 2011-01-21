@@ -5,12 +5,14 @@ describe NotesController do
 
   before do
     @admin = Factory(:user)
+    Factory(:person)
     sign_in @admin
   end
 
   describe '#create' do
      before do
-       post :index, Factory.attributes_for(:note)
+       puts Person.all.inspect
+       post :create, :note => Factory.attributes_for(:note)
      end
      
      it "should create a note" do
@@ -18,7 +20,7 @@ describe NotesController do
      end
      
      it "should have a parent object" do
-       Note.first.noteable_type.should be 'Person'
+       Note.first.noteable_type.should == 'Person'
      end
    end
    

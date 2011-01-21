@@ -87,13 +87,9 @@ class NotesController < ApplicationController
   private
 
   def find_noteable
-    
-    params.each do |name, value|
-      if name =~ /(.+)_id$/
-        return $1.classify.constantize.find(value)
-      end
-    end
-    nil
+    type = params[:note][:noteable_type]
+    id = params[:note][:noteable_id]
+    type.classify.constantize.find(id)
   end
   
 end
