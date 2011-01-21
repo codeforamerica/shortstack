@@ -2,6 +2,7 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
 { 
 	margin: 0;
 	padding: 0;
+	color:#10394b;
 }
 
 table 
@@ -52,7 +53,7 @@ body
 {
 	font-family:"Lucida Grande",Geneva,Verdana,Arial,sans-serif;
 	font-size: 12px;
-	background: #f7f9f9;
+	background: #C9D7D8;
 	padding: 0;
 	margin: 0;
 	border-top: 5px solid #409DD6; 
@@ -115,7 +116,7 @@ td
 
 a
 {
-	color: #3F87BB;
+	color: #409DD6;
 }
 
 a:hover
@@ -164,8 +165,9 @@ span.tip {
 
 #header
 {
-	background: white;
+	background:url(../images/bg.gif) repeat-x #FFF;
 	position: relative;
+	padding:1.2em;
 }
 
 #logo
@@ -184,8 +186,9 @@ span.tip {
 #search
 {
 	position: absolute;
-	top: 2.8em;
-	left: 23em;
+	top: 1em;
+	right: 1em;
+	text-align:right;
 }
 
 #search_box
@@ -228,9 +231,10 @@ span.tip {
 #session
 {
 	position: absolute;
-	top: 40px;
-	right: 1em;
+	top: 0.8em;
+	right: 37.5em;
 	font-weight: bold;
+	text-align:right;
 }
 
 div.facebook_small_image img
@@ -260,12 +264,31 @@ div.facebook_small_image img
 	font-size: 1.4em;
 }
 
+#login-form {
+	position:absolute;
+	top:15em;
+	left:50%;
+	margin-left:-185px;
+	padding:1em;
+	border:#C9D7D8 1px solid;
+	background-color:#f3f9f8;
+}
+
+#login-form p {
+	margin-bottom:10px;
+}
+
+label {
+	line-height:250%;
+}
+
 #strip
 {
-	background: #c9d7d8;
+	background: #409DD6;
 	padding: .6em 2em .6em 2em;
 	min-height: 1.2em;
-	border-bottom: 1px solid white;
+	border-bottom: 3px solid white;
+	color:#10394b;
 }
 
 #strip_right
@@ -276,7 +299,7 @@ div.facebook_small_image img
 #strip a
 {
 	font-weight: bold;
-	color: #3a6b80;
+	color: #FFF;
 }
 
 #strip a:hover
@@ -289,13 +312,20 @@ div.facebook_small_image img
 	font-weight: bold;
 }
 
-#container
-{
-	overflow: hidden;
-	height: auto;
-	position: relative;
-	width: 100em;
-	margin-bottom: 2em;
+#container {
+	position:absolute;
+	top:14em;
+	left:50%;
+	margin-left:-540px;
+	width:1080px;
+}
+
+#wrapper {
+	position:absolute;
+	top:14em;
+	left:50%;
+	margin-left:-540px;
+	width:1080px;
 }
 
 #col1
@@ -304,6 +334,8 @@ div.facebook_small_image img
 	width: 20.8em;
 	text-align: left;
 	padding-top: 1em;
+	background-color:#ecf3f2;
+	border-bottom:#FFFFFF 3px solid;
 }
 
 #company_logo
@@ -618,7 +650,7 @@ table#full_top_contributors_table {
 
 #col2_internal h1
 {
-	border-bottom: 3px solid #f0f5f4;
+	border-bottom: 3px solid #ecf3f2;
 	font-size: 1.8em;
 	padding-bottom: 0.5em;
 	margin: 2em 0 0.5em 0;
@@ -1375,6 +1407,8 @@ div#search_suggest ul {
 {
 	float: left;
 	width: 20.8em;
+	background-color:#ecf3f2;
+	border-bottom:#FFFFFF 3px solid;
 }
 
 #col3 h1, #col3 h3
@@ -1939,7 +1973,6 @@ input.big {
 }
 
 #advanced_search {
-	padding-left: 0.75em;
 	font-size: 0.9em;
 }
 
