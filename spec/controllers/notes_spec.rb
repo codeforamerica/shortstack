@@ -14,12 +14,12 @@ describe NotesController do
      end
      
      it "should create a note" do
-        Note.all.size.should be 1
-      end
-      
-      it "should have a parent object" do
-        Note.first.noteable_type.should be 'Person'
-      end
+       Note.all.size.should be 1
+     end
+     
+     it "should have a parent object" do
+       Note.first.noteable_type.should be 'Person'
+     end
    end
    
    describe '#update' do
