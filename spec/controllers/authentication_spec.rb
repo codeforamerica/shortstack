@@ -1,0 +1,2 @@
+describe AuthenticationsController do
+end
