@@ -9,7 +9,7 @@
       <%= render :partial => 'tags/tags', :locals => {:item => @product}%>
       <%= render :partial => 'relationship_forms'%>
       <%= render :partial => 'layouts/common_forms', :locals => {:item => @product}%>
-      <%= render :partial => 'notes/note', :locals => {:notes => @product.notes.about}%>      
+      <%= render :partial => 'notes/note', :locals => {:notes => @product.notes}%>      
       <%= render :partial => 'notes/notes', :locals => {:item => @product}%>
 <% end %>
 
