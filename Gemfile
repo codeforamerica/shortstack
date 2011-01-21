@@ -35,7 +35,7 @@ gem 'acts-as-taggable-on'
 # and rake tasks are available in development mode:
 group :development, :test do
   gem "shoulda"
-  gem "rspec-rails", "2.0.0.beta.12"
+  gem "rspec-rails"
   gem 'factory_girl_rails'
 end
 gem "mocha", :group => :test

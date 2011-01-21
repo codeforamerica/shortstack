@@ -6,7 +6,6 @@ describe NotesController do
   before do
     @admin = Factory(:user)
     sign_in @admin
-    @note = Factory(:note)
   end
 
   describe '#create' do
@@ -15,14 +14,12 @@ describe NotesController do
      end
      
      it "should create a note" do
-       # pending "should specify create action"
-       assigns[:notes].length.should == 1
-       assigns[:notes].should include(@note)
-     end
-     
-     it "should have a parent object" do
-       assigns[:notes].first.noteable_id.should be
-     end
+        Note.all.size.should be 1
+      end
+      
+      it "should have a parent object" do
+        Note.first.noetable_type.should be 'Person'
+      end
    end
    
    describe '#update' do
