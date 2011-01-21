@@ -26,7 +26,8 @@ describe NotesController do
    
    describe '#update' do
      before do
-       put :update, :id => @note.id, :name => "pizza party at dan's house"
+       @note = Factory(:note)
+       put :update, :id => @note.id, :note => { :name => "pizza party at dan's house" }
      end
    
      it "should update a note" do
@@ -37,12 +38,15 @@ describe NotesController do
    
    describe '#destroy' do
      before do
+       @note = Factory(:note)
+       @note_count = Note.all.size
        delete :destroy, :id => @note.id
      end
    
      it "should destroy a note" do
        # pending "should specify destroy action"
-       @note.reload.should be_nil
+       Note.all.size.should == @note_count - 1
+       expect{@note.reload}.to raise_error ActiveRecord::RecordNotFound
      end
    end
 end
