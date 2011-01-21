@@ -18,7 +18,7 @@ describe NotesController do
       end
       
       it "should have a parent object" do
-        Note.first.noetable_type.should be 'Person'
+        Note.first.noteable_type.should be 'Person'
       end
    end
    
