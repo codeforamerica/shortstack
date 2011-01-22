@@ -4,9 +4,9 @@ class OrganizationsController < ApplicationController
   # GET /organizations.xml
   def index
     @organizations = if params[:org_type_id]
-      Organization.alpha.where(:org_type_id => params[:org_type_id])
+      Organization.alpha.where(:org_type_id => params[:org_type_id]).limit(100)
     else
-      Organization.alpha
+      Organization.alpha.limit(100)
     end
     
     respond_to do |format|
