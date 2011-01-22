@@ -3,7 +3,11 @@ class OrganizationsController < ApplicationController
   # GET /organizations
   # GET /organizations.xml
   def index
-    @organizations = Organization.alpha
+    @organizations = if params[:org_type_id]
+      Organization.alpha.where(:org_type_id => params[:org_type_id])
+    else
+      Organization.alpha
+    end
     
     respond_to do |format|
       format.html # index.html.erb

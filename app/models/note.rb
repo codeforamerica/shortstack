@@ -5,7 +5,7 @@ class Note < ActiveRecord::Base
   after_update :update_contribution  
   after_create :create_contribution
   
-  scope :about, lambda {|name| {:joins => :note_type, :conditions => ["note_types.name = 'about'"]}}           
+  scope :about, :joins => :note_type, :conditions => ["note_types.name = 'about'"]
 
   def create_contribution
     self.contributions << Contribution.new(:user =>$current_user, :action => "Create")

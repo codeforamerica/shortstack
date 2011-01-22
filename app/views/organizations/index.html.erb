@@ -1,6 +1,7 @@
 <%= content_for :column2 do%>
 <% if !@organizations.blank?%>
     <h1 class="h1_first">Organizations</h1>
+    <%= org_type_list.html_safe %>
     <table class= "col2_table_listing">
       <tr>
         <td>

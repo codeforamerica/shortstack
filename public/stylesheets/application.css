@@ -27,6 +27,15 @@ ol,ul
 	list-style: none;
 }
 
+#submenu li {
+    float: left;
+    padding-left: 15px;
+}
+
+#submenu {
+    margin-bottom: 50px;
+}
+
 caption,th 
 {
 	text-align: left;

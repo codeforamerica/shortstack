@@ -1,3 +1,5 @@
+require 'builder'
+
 module ApplicationHelper
   
   def contribution_image_type(action)
@@ -19,6 +21,14 @@ module ApplicationHelper
       "edited in"
     when "Added"
       "added to"
+    end
+  end
+  
+  def org_type_list
+    Builder::XmlMarkup.new.ul(:id => "submenu") do |item|
+      OrgType.all.each do |org_type|
+        item.li { |li| li.a(org_type.name.capitalize, :href => "?org_type_id=#{org_type.id}") }
+      end
     end
   end
   
