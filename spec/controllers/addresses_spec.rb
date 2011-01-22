@@ -1,4 +1,3 @@
-#spec/controllers/addresss_spec.rb
 require 'spec_helper'
 
 describe AddressesController do

@@ -1,4 +1,3 @@
-#spec/controllers/notes_spec.rb
 require 'spec_helper'
 
 describe NotesController do
