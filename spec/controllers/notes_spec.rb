@@ -6,20 +6,21 @@ describe NotesController do
   before do
     @admin = Factory(:user)
     Factory(:person)
+    @product = Factory(:product)
     sign_in @admin
   end
 
   describe '#create' do
      before do
-       post :create, :note => Factory.attributes_for(:note)
+       post :create, :note => Factory.attributes_for(:note, :noteable => @product), :product_id => @product.id
      end
      
      it "should create a note" do
-       Note.all.size.should be 1
+       Note.all.size.should == 1
      end
      
      it "should have a parent object" do
-       Note.first.noteable_type.should == 'Person'
+       Note.first.noteable_type.should == 'Product'
      end
    end
    
