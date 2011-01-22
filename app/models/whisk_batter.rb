@@ -15,16 +15,18 @@ class WhiskBatter
     usetype = RelationType.where(:name => "uses").first    
     #get the url for the item
     link = @item.links.where(:link_type_id => linktype).first
-    #grab the whisk
-    whisk = product.whisks.where(:whisk_type_id => whisktype).first
-    #search for the whisk setting on the website
-    if !whisk.nil? and !link.nil?
-      s = google_search(whisk.setting, link.link_url)
-      if !s.nil? and s > 0
-        #if a result is found, add the relationship item 'uses' product unless that relationship already exists
-        @item.parents.create(:childable => product, :relation_type => 'uses') unless !@item.parents.where(:childable_id => product.id).blank?
-      end
-    end    
+    #grab the whisks
+    whisk = product.whisks.where(:whisk_type_id => whisktype)
+    #loop through search whisks for the whisk setting on the website
+    whisk.each do |whisk|
+      if !link.nil?
+        s = google_search(whisk.setting, link.link_url)
+        if !s.nil? and s > 0
+          #if a result is found, add the relationship item 'uses' product unless that relationship already exists
+          @item.parents.create(:childable => product, :relation_type => 'uses') unless !@item.parents.where(:childable_id => product.id).blank?
+        end
+      end    
+    end
   end
 
 

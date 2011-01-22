@@ -32,7 +32,7 @@ class Product < ActiveRecord::Base
     self.contributions << Contribution.new(:user =>$current_user, :action => "Update")
   end
   
-  def whisk_cities_for_this_product
+  def whisk_cities
     #grab all cities
     orgtype = OrgType.where(:name => "City").first
     orgs = Organization.where(:org_type_id => orgtype.id)

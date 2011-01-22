@@ -80,4 +80,10 @@ class ProductsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def whiskme
+    @product = Product.find(params[:id])
+    @product.send_later(:whisk_cities)
+    redirect_to(@product, :notice => 'Whisking some batter. Lots of pancakes. So, come back later to eat.')
+  end
 end

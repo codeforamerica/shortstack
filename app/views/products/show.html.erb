@@ -22,6 +22,13 @@
     <a href="#" id="hide_link" onClick="$('#product-child-relationship-form').show();">Add a Dependency</a><br>
     <a href="#" id="hide_link" onClick="$('#person-parent-relationship-form').show();">Add a Person</a><br>    
 	</div>	
+	<% if !@product.whisks.blank?%> 
+	<h3>Batter Options</h3>
+	<div class="col3_content contribute"> 	
+	  <a href="/products/whiskme/#{@product.id}">Whisk Me!</a>
+  </div>
+	<%end%>
+	
 <% end %>
 
 
