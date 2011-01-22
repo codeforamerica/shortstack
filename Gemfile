@@ -12,6 +12,7 @@ gem 'awesome_print', :require => 'ap'
 gem 'sunspot_rails', '1.2.rc4'
 gem 'acts-as-taggable-on'
 gem 'google-search'
+gem 'delayed_job'
 
 
 # Use unicorn as the web server
