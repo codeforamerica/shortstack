@@ -4,7 +4,7 @@
   <legend>Add a <%=parent.name%> Relationship</legend>
   <a href="#" onClick="$('#<%=parent.name.downcase%>-child-relationship-form').hide();" id="hide">Hide Form</a>
   <p>  
-<%=child.name%> <%= select("relationship", "relation_type", RelationType.where("type_name = '#{child.class.name}' AND parent = ?", false).all.collect {|p| [ p.name, p.name ] })%>  <%= select("relationship", "childable_id", parent.all.collect {|p| [ p.name, p.id ] })%>  
+<%=child.name%> <%= select("relationship", "relation_type", RelationType.where("type_name = '#{child.class.name}' AND parent = ?", false).all.collect {|p| [ p.name, p.name ] })%>  <%= select("relationship", "childable_id", parent.select("LOWER(name) AS name").order("name").collect {|p| [ p.name, p.id ] })%>  
 <%= f.hidden_field :parentable_type, :value => child.class.name %>
 <%= f.hidden_field :childable_type, :value => parent.name %>  
 <%= f.hidden_field :parentable_id, :value => child.id %>
