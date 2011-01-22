@@ -1,0 +1,9 @@
+<% content_for :column2 do%>
+    <h1 class="h1_first"><%= @whisk.name %></h1>
+      <p>
+        <%= link_to @whisk.whiskable.name, @whisk.whiskable %>: <%= @whisk.whisk %>
+      </p>
+<%end%>
+
+
+

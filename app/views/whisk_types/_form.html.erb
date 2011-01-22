@@ -1,0 +1,21 @@
+<%= form_for(@whisk_type) do |f| %>
+  <% if @whisk_type.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@whisk_type.errors.count, "error") %> prohibited this whisk_type from being saved:</h2>
+
+      <ul>
+      <% @whisk_type.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <p><%= f.label :name %>: <%= f.text_field :name %></p>
+    <p><%= f.label :setting, "Setting:" %><%=f.text_field :setting %> </p>       
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

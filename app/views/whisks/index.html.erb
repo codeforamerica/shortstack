@@ -1,0 +1,19 @@
+<% content_for :column2 do%>
+    <h1 class="h1_first">Recent Whisks</h1>
+      <table>
+        <tr>
+          <th>Note</th>
+          <th></th>
+        </tr>
+<% @whisks.each do |whisk| %>
+        <tr>
+          <td><%= link_to whisk.whiskable.name, whisk.whiskable %> >> <%= link_to whisk.name, whisk %>:<%= whisk.whisk[0..50] %></td>
+        </tr>
+      <% end %>
+      </table>
+<% end %>
+
+
+
+
+

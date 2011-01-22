@@ -1,0 +1,17 @@
+<% content_for :column2 do%>
+    <h1 class="h1_first">Whisk Types</h1>
+      <table>
+  <% @whisk_types.each do |whisk_type| %>
+        <tr>
+          <td><%= link_to whisk_type.name, edit_whisk_type_path(whisk_type) %></td>
+          <td><%=whisk_type.setting%></td>          
+          <td><%= link_to 'Destroy', whisk_type, :confirm => 'Are you sure?', :method => :delete %></td>
+        </tr>
+      <% end %>
+      </table>
+<%end%>
+
+
+
+
+
