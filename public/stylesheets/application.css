@@ -36,6 +36,20 @@ ol,ul
     margin-bottom: 50px;
 }
 
+ul.lists {
+list-style-image:none;
+list-style-position:outside;
+list-style-type:none;
+margin:0 0 15px;
+overflow:auto;
+}
+
+ul.lists li {
+display:block;
+float:left;
+width:140px;
+}
+
 caption,th 
 {
 	text-align: left;

@@ -6,11 +6,11 @@
 	</div>
 <% form_for item do |f| %>	
 <ul id="tags" class="lists">
-	  <% taggings = item.taggings.collect{|x| x.tag.name}.to_sentence%>
-<% Tag.all.each do |tag| -%>
-<li><%= check_box_tag :tag_list, tag.name, taggings.include?(tag.name), :name => "#{item.class.name.downcase}[tag_list][]" -%>
-  <%= label_tag :tag_list, tag.name -%></li>
-<% end %>
+	  <% taggings = item.taggings.collect{|x| x.tag.name}%>
+    <% Tag.select("LOWER(name) AS name").order("name").each do |tag| -%>
+  <li><%= check_box_tag :tag_list, tag.name, taggings.include?(tag.name), :name => "#{item.class.name.downcase}[tag_list][]" -%>
+    <%= label_tag :tag_list, tag.name -%></li>
+      <% end %>
 </ul>
 <%= f.submit "Submit" %>
 <%end%>
