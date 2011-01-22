@@ -58,7 +58,7 @@ class LinksController < ApplicationController
   # PUT /links/1
   # PUT /links/1.xml
   def update
-    @link = Address.find(params[:id])
+    @link = Link.find(params[:id])
     linkable = @link.linkable    
 
     respond_to do |format|
