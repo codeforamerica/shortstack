@@ -5,12 +5,13 @@ describe AddressesController do
   before do
     @admin = Factory(:user)
     Factory(:person)
+    @product = Factory(:product)
     sign_in @admin
   end
 
   describe '#create' do
      before do
-       post :create, :address => Factory.attributes_for(:address)
+       post :create, :address => Factory.attributes_for(:address, :addressable => @product), :product_id => @product.id
      end
      
      it "should create a address" do
@@ -18,7 +19,7 @@ describe AddressesController do
      end
      
      it "should have a parent object" do
-       Address.first.addressable_type.should == 'Person'
+       Address.first.addressable_type.should == 'Product'
      end
    end
    
