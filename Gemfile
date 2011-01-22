@@ -26,4 +26,5 @@ gem 'acts-as-taggable-on'
 group :development, :test do
   gem "rspec-rails"
   gem 'factory_girl_rails'
+  gem 'ZenTest'
 end
