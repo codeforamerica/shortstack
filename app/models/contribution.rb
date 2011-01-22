@@ -6,5 +6,5 @@ class Contribution < ActiveRecord::Base
     def top_contributors
       Contribution.group(:user_id)
     end
-    
+        
 end

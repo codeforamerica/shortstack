@@ -12,4 +12,8 @@ class Whisk < ActiveRecord::Base
   def update_contribution
     self.contributions << Contribution.new(:user =>$current_user, :action => "Update")
   end
+  
+  def name
+    self.whisk_type.name
+  end
 end
