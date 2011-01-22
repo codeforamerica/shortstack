@@ -31,4 +31,18 @@ class Product < ActiveRecord::Base
   def update_contribution
     self.contributions << Contribution.new(:user =>$current_user, :action => "Update")
   end
+  
+  def whisk_cities_for_this_product
+    #grab all cities
+    orgtype = OrgType.where(:name => "City").first
+    orgs = Organization.where(:org_type_id => orgtype.id)
+    countdown = orgs.size
+    orgs.each do |org|
+    puts "#{org.name}, #{org.id}"
+      s = WhiskBatter.new(org)
+      s.check_for_product(self)
+      countdown = countdown - 1
+      puts countdown
+    end
+  end
 end
