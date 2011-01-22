@@ -1,0 +1,12 @@
+<% if !item.whisks.blank?%>
+<h2>Whisks:</h2>
+<div class="col1_content">
+<ul id="milestones">
+<% item.whisks.order("created_at DESC").each do |whisk|%>
+<li style="list-style: none outside none;" class="milestone_addition">
+	<%=link_to whisk.whisk_type.name, whisk.whisk_type %>:<%=whisk.setting %> <span id="edit_whisk">(<%=link_to "Edit", edit_whisk_path(whisk)%>) | (<%= link_to 'Remove', whisk, :confirm => 'Are you sure?', :method => :delete %>) </span><br>
+</li>
+<% end %>
+</ul>
+</div>
+<% end %>
