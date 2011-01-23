@@ -2,6 +2,6 @@
 
 Factory.define :whisk do |f|
   f.setting "1600"
-  f.whisk_type Factory(:whisk_type)
+  f.whisk_type {Factory(:whisk_type)}
   f.whiskable {Factory(:organization)}
 end
