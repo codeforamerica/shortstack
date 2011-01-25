@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+    <head>
+        <title>
+            Short Stack Map Demo
+        </title>
+        <style>
+            #shortstackmap a { 
+				color: #444; 
+				text-decoration: none; 
+			} 
+			#shortstackmap{
+				border:1px solid #10394b; 
+				font-size:50%;
+				color: #10394b;
+			}
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript" src="http://tile.cloudmade.com/wml/latest/web-maps-lite.js"></script>
+        <script type="text/javascript">
+            jQuery(document).ready(function() {
+                //Get the DOM ready and load in some data
+                jQuery.getJSON('sampledata.json', initializeMap);
+            });
+
+            function initializeMap(data) {
+				//Put the data into a variable
+				var location_data = data.location;
+                //Basic Map Parameters for Initialization
+                var CENTER_LATITUDE = data.location[0].lat; //37.76;
+                var CENTER_LONGITUDE = data.location[0].lon; //-122.44;
+                var INITIAL_ZOOM_LEVEL = 11;
+
+				//Getting our custom map tiles from CloudMade.  We're using a special API key for Short Stack.
+                var cloudmade = new CM.Tiles.CloudMade.Web({
+                    key: '62f1c690198043daa6a4fecfbfd29f0d',
+                    styleId: 1714,
+                    copyright: 'Map tiles &copy; 2011 CloudMade Map data CC-BY-SA OpenStreetMap.org ',
+                    minZoomLevel: 9
+                });
+
+				//Creating and centering the map
+                var map = new CM.Map('shortstackmap', cloudmade);
+                map.setCenter(new CM.LatLng(CENTER_LATITUDE, CENTER_LONGITUDE), INITIAL_ZOOM_LEVEL);
+               
+				//Using default map controls for now
+				map.addControl(new CM.SmallMapControl());
+                
+				//Defining the marker icon
+                var markerIcon = new CM.Icon();
+                markerIcon.image = "samplemarker.png";
+                markerIcon.iconSize = new CM.Size(8, 8);
+                markerIcon.iconAnchor = new CM.Point(4, 3.5);
+				
+				//Defining a sample marker
+				sampleMarker = new CM.Marker(new CM.LatLng(CENTER_LATITUDE, CENTER_LONGITUDE), {
+					title: data.location[0].name,
+					icon: markerIcon
+				});
+				
+				//We can have infobubbles if we want.  Put just place a string of html into the bindInfoWindow method.
+                 sampleMarker.bindInfoWindow("<h2 style='color:#10394b; text-align: center' >" + data.location[0].description + "</h2>", {
+                    maxWidth: 180
+                 });
+				
+				//Adding the marker to the map
+				map.addOverlay(sampleMarker);
+				
+                // This is code for custom map controls.
+                var CustomMapControl = function() {}; //Creating a "class"; function() as as the constructor method
+                CustomMapControl.prototype = {
+                    initialize: function(map, position) {
+                        var control = document.createElement('div');
+                        control.style.padding = '10px';
+
+                        function createZoomButton() {
+                            var zoomIn = document.createElement('img');
+                            zoomIn.setAttribute('src', 'images/plussign4.png');
+                            zoomIn.setAttribute('height', '20');
+                            zoomIn.setAttribute('width', '20');
+                            zoomIn.setAttribute('alt', 'Zoom In');
+                            zoomIn.style.cursor = "pointer";
+
+                            var zoomOut = document.createElement('img');
+                            zoomOut.setAttribute('src', 'images/minussign4.png');
+                            zoomOut.setAttribute('height', '20');
+                            zoomOut.setAttribute('width', '20');
+                            zoomOut.setAttribute('alt', 'Zoom In');
+                            zoomOut.style.cursor = "pointer";
+							
+                            zoomIn.onclick = function() {
+                                map.zoomIn();
+                                return false;
+                            }
+
+                            zoomOut.onclick = function() {
+                                map.zoomOut();
+                                return false;
+                            }
+                            control.appendChild(zoomIn);
+                            control.appendChild(document.createElement('br'));
+                            control.appendChild(zoomOut);
+                        }
+
+                        createZoomButton();
+                        map.getContainer().appendChild(control);
+                        return control;
+                    },
+
+                    getDefaultPosition: function() {
+                        return new CM.ControlPosition();
+                    }
+                }
+
+				//Use the following line of code to add your custom map control
+                //map.addControl(new CustomMapControl());
+            }
+        </script>
+    </head>
+    
+    <body>
+        <div id="shortstackmap" style="width: 250px; height: 300px">
+        </div>
+    </body>
+
+</html>
