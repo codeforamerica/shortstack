@@ -17,7 +17,10 @@
     	<%= link_to image_tag('codeforamerica.png'), :root%>
     	<div id="session"> 
     	  <%= render 'layouts/sign_in'%>
-      </div> 
+      </div>
+	<% flash.each do |name, msg| %>
+	  <%= content_tag :div, msg, :id => "flash_#{name}" %>
+	<% end %>
     </div>
     
     <%= render 'layouts/search'%>

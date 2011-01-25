@@ -211,8 +211,8 @@ span.tip {
     color: #FFFFFF;
     left: 300px;
     padding: 5px 10px;
-    position: fixed;
-    top: 110px;
+    position: absolute;
+    top: 105px;
 }
 #search
 {
