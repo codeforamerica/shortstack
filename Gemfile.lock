@@ -35,6 +35,10 @@ GEM
     awesome_print (0.3.1)
     bcrypt-ruby (2.1.4)
     builder (2.1.2)
+    daemons (1.1.0)
+    delayed_job (2.1.3)
+      activesupport (~> 3.0)
+      daemons
     devise (1.1.5)
       bcrypt-ruby (~> 2.1.2)
       warden (~> 1.0.2)
@@ -50,10 +54,13 @@ GEM
       addressable (~> 2.2.2)
       multipart-post (~> 1.1.0)
       rack (>= 1.1.0, < 2)
+    google-search (1.0.2)
+      json
     i18n (0.5.0)
     jquery-rails (0.2.6)
       rails (~> 3.0)
       thor (~> 0.14.4)
+    json (1.4.6)
     mail (2.2.14)
       activesupport (>= 2.3.6)
       i18n (>= 0.4.0)
@@ -167,9 +174,12 @@ DEPENDENCIES
   ZenTest
   acts-as-taggable-on
   awesome_print
+  delayed_job
   devise
   factory_girl_rails
+  google-search
   jquery-rails
+  json
   nifty-generators
   omniauth
   rails (= 3.0.3)

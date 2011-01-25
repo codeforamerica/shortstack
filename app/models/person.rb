@@ -1,6 +1,7 @@
 class Person < ActiveRecord::Base
   default_scope order("name ASC")  
   has_many :contributions, :as => :contributable, :class_name => "Contribution", :dependent => :destroy
+  has_many :whisks, :as => :whiskable, :class_name => "Whisk", :dependent => :destroy  
   has_many :notes, :as => :noteable, :class_name => "Note", :dependent => :destroy
   has_many :links, :as => :linkable, :class_name => "Link", :dependent => :destroy
   has_many :addresses, :as => :addressable, :class_name => "Address", :dependent => :destroy

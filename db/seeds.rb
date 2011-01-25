@@ -24,13 +24,17 @@ end
 end
 
 #Organization Types
-%w(nonprofit foundation company).each do |org_type|
+%w(Nonprofit Foundation Company City County).each do |org_type|
   OrgType.create!(:name => org_type)
 end
 
 #Note Types
 %w(about misc email conversation).each do |note_type|
   NoteType.create!(:name => note_type)
+end
+#Whisk Types
+[["Geoname", "http://geonames.usgs.gov/"], ["Census County Codes","	http://www.census.gov/datamap/fipslist/AllSt.txt"], ["LongLat", "none"]].each do |whisk_type|
+  WhiskType.create!(:name => whisk_type[0], :setting => whisk_type[1])
 end
 
 #Social Account Settings

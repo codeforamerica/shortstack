@@ -5,11 +5,15 @@ gem 'sqlite3'
 gem 'devise'
 gem 'nifty-generators'
 gem 'omniauth'
+gem 'json'
 gem 'rails3-generators'
 gem 'jquery-rails'
 gem 'awesome_print', :require => 'ap'
 gem 'sunspot_rails', '1.2.rc4'
 gem 'acts-as-taggable-on'
+gem 'google-search'
+gem 'delayed_job'
+
 
 # Use unicorn as the web server
 # gem 'unicorn'

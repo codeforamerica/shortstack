@@ -6,8 +6,10 @@ Orgbase::Application.routes.draw do
   resources :addresses  
   resources :links
   resources :notes
+  resources :whisks  
   resources :managetags, :collection => {:tags => :any, :categories => :any, :rename => :any, :remove => :any, :remove_tagging => :any}
   match "/tags/:id/:name" => "tags#index"
+  match 'products/whiskme/:id', :to => 'products#whiskme'  
   
   #objects
   resources :people, :organizations, :products do
@@ -16,6 +18,7 @@ Orgbase::Application.routes.draw do
     resources :relationships
     resources :addresses
     resources :contacts
+    resources :whisks
   end 
 
   #types
@@ -23,6 +26,7 @@ Orgbase::Application.routes.draw do
   resources :link_types
   resources :note_types
   resources :relation_types  
+  resources :whisk_types
 
   #users
   resources :contributions  
