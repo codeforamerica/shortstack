@@ -161,12 +161,12 @@ span.tip {
 
 /* Top Strip */
 
-#top 						{ color: #222222; position: relative; margin: auto; z-index: 5; background: url(../images/header/bg_top.png) white bottom repeat-x; border-bottom: 1px solid #fff; }
+#top 						{ color: #222222; position: relative; margin: auto; z-index: 5; background: url(../../../Downloads/Archive/images/header/bg_top.png) white bottom repeat-x; border-bottom: 1px solid #fff; }
 #top_strip 					{ margin-left: 24px; width: 1000px; height: 42px; position: relative; }
 #top_strip_left 			{ position: absolute; bottom: 0; left: 10px; }
 #top_strip_left li 			{ font-size: .9em; float: left; margin: 0 15px 0 0; }
-#top_active_tab 			{	 background: url(../images/header/top_corner_nw.png) top left no-repeat; padding-left: 5px; }
-#top_active_tab div 		{ background: url(../images/header/top_corner_ne.png) top right no-repeat; padding-right: 5px; }
+#top_active_tab 			{	 background: url(../../../Downloads/Archive/images/header/top_corner_nw.png) top left no-repeat; padding-left: 5px; }
+#top_active_tab div 		{ background: url(../../../Downloads/Archive/images/header/top_corner_ne.png) top right no-repeat; padding-right: 5px; }
 #top_active_tab a 			{ margin: 0 5px 0 5px; }
 * html #top_active_tab 		{ background: white; padding-left: 5px; }
 * html #top_active_tab div 	{ background: white; padding-right: 5px; }
@@ -178,7 +178,7 @@ span.tip {
 #top_strip_right li 		{ margin-left: 30px; }
 
 #tcnetwork_more 				{ position: relative; }
-#tcnetwork_more_link 			{ padding: 7px 18px 7px 5px !important; border: 0px solid #dcdcdc; border-bottom: none; background: url(../images/header/tcnetwork_more_arrow.png) top right no-repeat; }
+#tcnetwork_more_link 			{ padding: 7px 18px 7px 5px !important; border: 0px solid #dcdcdc; border-bottom: none; background: url(../../../Downloads/Archive/images/header/tcnetwork_more_arrow.png) top right no-repeat; }
 #tcnetwork_more_content 		{ position: absolute; top: 29px; left: 0px; background: white; display: none; font-size: 1.2em; width: 150px; border: 1px solid #c7c7c7; border-top: none; z-index: 5; }
 #tcnetwork_more_content a 		{ padding: 5px !important; display: block !important; width: 140px; text-align: left; } 
 #tcnetwork_more_content a:hover { text-decoration: none !important; color: white; font-weight: bold; background: #409DD6; }
@@ -188,7 +188,7 @@ span.tip {
 
 #header
 {
-	background:url(../images/bg.gif) repeat-x #FFF;
+	background:url(../../../Downloads/Archive/images/bg.gif) repeat-x #FFF;
 	position: relative;
 	padding:1.2em;
 }
@@ -205,9 +205,15 @@ span.tip {
 {
 	width: 18em;	
 }
-#flash_notice {
-	background:#F00;}
-
+#flash_notice
+{
+    background: none repeat scroll 0 0 #CB2B3D;
+    color: #FFFFFF;
+    left: 300px;
+    padding: 5px 10px;
+    position: fixed;
+    top: 110px;
+}
 #search
 {
 	position: absolute;
