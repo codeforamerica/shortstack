@@ -3,11 +3,11 @@
     <h1 class="h1_first">Contributors</h1>
     Sort by: 
     <ul id="submenu">
-      <li><a href="?sort_by=name">Name</a></li>
-      <li><a href="?sort_by=this_week">Contributions This Week</a></li>
-      <li><a href="?sort_by=this_month">Contributions This Month</a></li>
-      <li><a href="?sort_by=this_year">Contributions This Year</a></li>
-      <li><a href="?sort_by=all_time">Contributions All Time</a></li>
+      <li><%= sort_link 'sort_by', 'name', 'Name', true %></li>
+      <li><%= sort_link 'sort_by', 'this_week', 'Contributions This Week' %></li>
+      <li><%= sort_link 'sort_by', 'this_month', 'Contributions This Month' %></li>
+      <li><%= sort_link 'sort_by', 'this_year', 'Contributions This Year' %></li>
+      <li><%= sort_link 'sort_by', 'all_time', 'Contributions All Time' %></li>
     </ul> 
     <% @profiles.each do |profile| -%>
     <div class="profile_box">
@@ -18,7 +18,7 @@
         <%= link_to profile.name, profile %>
       </div>
       <div class="profile_description">
-        <%= pluralize(profile.contributions.count, "contribution") %>
+        <%= pluralize(profile.contributions_count, "contribution") %>
       </div>
     </div>
     <% end -%>

@@ -6,7 +6,7 @@ class ProfilesController < ApplicationController
   def index
     # params[:sort_by] => name || this_week || this_month || this_year || all_time
     # @profiles = Profile.joins(:contributions).all
-    @profiles = Profile.all
+    @profiles = Profile.sort_by(params[:sort_by]).all
 
     respond_to do |format|
       format.html # index.html.erb

@@ -49,4 +49,12 @@ module ApplicationHelper
 
     return image_tag src, :height => size, :width => size
   end
+
+  def sort_link(param, value, text, default = false)
+    if params[param] == value || (params[param].nil? && default)
+      text
+    else
+      link_to text, "?#{param}=#{value}"
+    end
+  end
 end
