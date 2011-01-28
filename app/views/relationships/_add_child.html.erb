@@ -1,33 +1,35 @@
 <% if parent.class == Class %>
-<%= form_for Relationship.new, :html => {:id =>"#{parent.name.downcase}-parent-relationship-form", :style => "display: none;" } do |f| -%>
+  <%= form_for Relationship.new, :html => {:id =>"#{parent.name.downcase}-parent-relationship-form", :style => "display: none;" } do |f| -%>
 <fieldset>
   <legend>Add a <%=parent.name%> Relationship</legend>
   <a href="#" onClick="$('#<%=parent.name.downcase%>-parent-relationship-form').hide();" id="hide">Hide Form</a>
   <p>  
-<%= select("relationship", "childable_id", parent.select("LOWER(name) AS name").order("name").collect {|p| [ p.name, p.id ] })%>  <%= select("relationship", "relation_type", RelationType.where("type_name = '#{parent.name}' AND parent = ?", true).all.collect {|p| [ p.name, p.name ] })%> <%=child.name%>
-<%= f.hidden_field :parentable_type, :value => child.class.name %>
-<%= f.hidden_field :childable_type, :value => parent.name %>  
-<%= f.hidden_field :parentable_id, :value => child.id %>
+    <%= select("relationship", "childable_id", parent.select("name, id").order("LOWER(name)").collect {|p| [ p.name, p.id ] }) %>
+    <%= select("relationship", "relation_type", RelationType.where("type_name = '#{parent.name}' AND parent = ?", true).all.collect {|p| [ p.name, p.name ] }) %> <%= child.name %>
+    <%= f.hidden_field :parentable_type, :value => child.class.name %>
+    <%= f.hidden_field :childable_type, :value => parent.name %>  
+    <%= f.hidden_field :parentable_id, :value => child.id %>
   </p>
   <p>
     <%= f.submit 'Create' %>
   </p>
 </fieldset>
-<%end %>
-<% else %>
-<%= form_for Relationship.new, :html => {:id =>"#{child.name.downcase}-parent-relationship-form", :style => "display: none;" } do |f| -%>
+  <%end %>
+  <% else %>
+  <%= form_for Relationship.new, :html => {:id =>"#{child.name.downcase}-parent-relationship-form", :style => "display: none;" } do |f| -%>
 <fieldset>
   <legend>Add a <%=parent.name%> Relationship</legend>
   <a href="#" onClick="$('#<%=child.name.downcase%>-parent-relationship-form').hide();" id="hide">Hide Form</a>
   <p>  
-<%=parent.name%><%= select("relationship", "relation_type", RelationType.where("type_name = '#{parent.class.name}' AND parent = ?", true).all.collect {|p| [ p.name, p.name ] })%> <%= select("relationship", "parentable_id", child.select("LOWER(name) AS name").order("name").collect {|p| [ p.name, p.id ] })%>  
-<%= f.hidden_field :parentable_type, :value => child.name %>
-<%= f.hidden_field :childable_type, :value => parent.class.name %>  
-<%= f.hidden_field :childable_id, :value => parent.id %>  
+    <%=parent.name%><%= select("relationship", "relation_type", RelationType.where("type_name = '#{parent.class.name}' AND parent = ?", true).all.collect {|p| [ p.name, p.name ] })%>
+    <%= select("relationship", "parentable_id", child.select("name, id").order("LOWER(name)").collect {|p| [ p.name, p.id ] })%>  
+    <%= f.hidden_field :parentable_type, :value => child.name %>
+    <%= f.hidden_field :childable_type, :value => parent.class.name %>  
+    <%= f.hidden_field :childable_id, :value => parent.id %>  
   </p>
   <p>
     <%= f.submit 'Create' %>
   </p>
 </fieldset>
-<%end %>
+  <%end %>
 <% end %> 
