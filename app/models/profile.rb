@@ -8,7 +8,6 @@ class Profile < ActiveRecord::Base
   scope :sort_by, lambda { |operand|
     query = select('profiles.*, profile_contributions.count AS contributions_count')
               .joins(:user)
-              .joins("LEFT JOIN (SELECT COUNT(*) AS count, user_id FROM contributions GROUP BY user_id) AS profile_contributions ON users.id = profile_contributions.user_id")
 
     operand = 'name' if operand.nil?
 
@@ -23,6 +22,20 @@ class Profile < ActiveRecord::Base
 
 
   def self.sort_by_contributions_since(start_time)
-    @query
+      time = case start_time
+             when 'this_week'
+               1.week.ago
+             when 'this_month'
+               1.month.ago
+             when 'this_year'
+               1.year.ago
+             end
+    if time
+      @query.joins("LEFT JOIN (SELECT COUNT(*) AS count, user_id FROM contributions
+        WHERE contributions.updated_at > '#{time.strftime('%Y-%m-%d')}'
+        GROUP BY user_id) AS profile_contributions ON users.id = profile_contributions.user_id") 
+    else
+      @query.joins("LEFT JOIN (SELECT COUNT(*) AS count, user_id FROM contributions GROUP BY user_id) AS profile_contributions ON users.id = profile_contributions.user_id")
+    end
   end
 end
