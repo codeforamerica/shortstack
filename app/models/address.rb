@@ -16,5 +16,8 @@ class Address < ActiveRecord::Base
     "Address"
   end
   
+  def map_json
+  end
+  
 
 end
