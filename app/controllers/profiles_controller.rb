@@ -4,6 +4,8 @@ class ProfilesController < ApplicationController
   # GET /profiles
   # GET /profiles.xml
   def index
+    # params[:sort_by] => name || this_week || this_month || this_year || all_time
+    # @profiles = Profile.joins(:contributions).all
     @profiles = Profile.all
 
     respond_to do |format|
