@@ -43,4 +43,10 @@ module ApplicationHelper
     end
     "Tags: " + tag_links.to_sentence
   end
+
+  def picture_for(user, size = 150)
+    src = user.picture :size => size
+
+    return image_tag src, :height => size, :width => size
+  end
 end
