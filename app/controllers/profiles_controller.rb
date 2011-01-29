@@ -4,7 +4,9 @@ class ProfilesController < ApplicationController
   # GET /profiles
   # GET /profiles.xml
   def index
-    @profiles = Profile.all
+    # params[:sort_by] => name || this_week || this_month || this_year || all_time
+    # @profiles = Profile.joins(:contributions).all
+    @profiles = Profile.sort_by(params[:sort_by]).all
 
     respond_to do |format|
       format.html # index.html.erb

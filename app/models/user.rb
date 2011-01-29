@@ -1,3 +1,5 @@
+require 'digest/md5'
+
 class User < ActiveRecord::Base
   has_many :authentications
   has_many :contributions
@@ -25,5 +27,16 @@ class User < ActiveRecord::Base
   def make_profile
     self.create_profile(:name => 'changeme')
   end
-  
+
+  def picture(opts = {})
+    # for now just returns a gravatar, put in place for the future
+    return gravatar(opts)
+  end
+
+  def gravatar(opts)
+    hash = Digest::MD5.hexdigest(self.email.downcase)
+    size = opts[:size]
+
+    return "https://secure.gravatar.com/avatar/#{hash}.jpg?d=mm&s=#{size.to_s}"
+  end
 end

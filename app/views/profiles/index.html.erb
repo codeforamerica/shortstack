@@ -1,44 +1,26 @@
-
 <%= content_for :column2 do%>
-<% if !@profiles.blank?%>
+  <% if !@profiles.blank?%>
     <h1 class="h1_first">Contributors</h1>
-    <table class= "col2_table_listing">
-      <tr>
-        <td>
-          <ul>
-      <% @profiles[0..(@profiles.size/3)].each do |profile| %>
-            <li><%= alphabet_header(@profiles, profile)%></li>  
-            <li><%= link_to profile.name , profile %></li>
-      <% end %>
-          </ul>
-        </td>
-        <td>
-          <ul>
-      <% @profiles[(@profiles.size/3)+1..(2*@profiles.size/3)].each do |profile| %>
-            <li><%= alphabet_header(@profiles, profile)%></li>  
-            <li><%= link_to profile.name , profile %></li>
-      <% end %>
-          </ul>
-        </td>
-        <td>
-          <ul>
-      <% @profiles[(@profiles.size/3)*2+1..(@profiles.size)].each do |profile| %>
-            <li><%= alphabet_header(@profiles, profile)%></li>  
-            <li><%= link_to profile.name , profile %></li>
-      <% end %>
-          </ul>
-        </td>                  
-      </tr>
-    </table>
-    <%end%>
+    Sort by: 
+    <ul id="submenu">
+      <li><%= sort_link 'sort_by', 'name', 'Name', true %></li>
+      <li><%= sort_link 'sort_by', 'this_week', 'Contributions This Week' %></li>
+      <li><%= sort_link 'sort_by', 'this_month', 'Contributions This Month' %></li>
+      <li><%= sort_link 'sort_by', 'this_year', 'Contributions This Year' %></li>
+      <li><%= sort_link 'sort_by', 'all_time', 'Contributions All Time' %></li>
+    </ul> 
+    <% @profiles.each do |profile| -%>
+    <div class="profile_box">
+      <div class="profile_image">
+        <%= link_to picture_for(profile.user), profile %>
+      </div>
+      <div class="profile_name">
+        <%= link_to profile.name, profile %>
+      </div>
+      <div class="profile_description">
+        <%= pluralize(profile.contributions_count, "contribution") %>
+      </div>
+    </div>
+    <% end -%>
+  <% end %>
 <% end %>
-
-
-
-
-
-
-
-
-
-

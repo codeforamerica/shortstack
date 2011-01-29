@@ -2219,3 +2219,16 @@ ul#presence_icons li {
     background-color:#4987A2;
     cursor:pointer;
 }
+
+.profile_box{
+  padding: 5px;
+  width: 160px;
+  float: left;
+}
+.profile_box .profile_image{
+}
+.profile_box .profile_name{
+}
+.profile_box .profile_description{
+  font-size: x-small;
+}

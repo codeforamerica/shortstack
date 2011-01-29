@@ -43,4 +43,18 @@ module ApplicationHelper
     end
     "Tags: " + tag_links.to_sentence
   end
+
+  def picture_for(user, size = 150)
+    src = user.picture :size => size
+
+    return image_tag src, :height => size, :width => size
+  end
+
+  def sort_link(param, value, text, default = false)
+    if params[param] == value || (params[param].nil? && default)
+      text
+    else
+      link_to text, "?#{param}=#{value}"
+    end
+  end
 end

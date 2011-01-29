@@ -1,8 +1,38 @@
-<script type="text/javascript" src="http://tile.cloudmade.com/wml/latest/web-maps-lite.js"></script>
+<h2>Map:</h2>
+<div class="col1_content">
+        <div id="shortstackmap" style="width: 200px; height: 200px">
+        </div>
+</div>
+<%= content_for :head do %>  
+  <style>
+      #shortstackmap a { 
+	color: #444; 
+	text-decoration: none; 
+} 
+#shortstackmap{
+	border:1px solid #10394b; 
+	font-size:50%;
+	color: #10394b;
+}
+  </style>
+  <script type="text/javascript" src="http://tile.cloudmade.com/wml/latest/web-maps-lite.js"></script>      
         <script type="text/javascript">
             jQuery(document).ready(function() {
+              <% @longlat = @organization.whisks.joins(:whisk_type).where("whisk_types.name = 'LongLat'").first.setting.split(', ') %>
+              
+              
                 //Get the DOM ready and load in some data
-                jQuery.getJSON(@map_json, initializeMap);
+                fabulous = {
+                  "location" : [
+                    {
+                      "lat" : <%=@longlat[1]%>,
+                      "lon" : <%=@longlat[0]%>,
+                	  "name" : "<%=@organization.name%>",
+                	  "description" : "<%=@organization.name%>"
+                    }
+                  ]
+                }
+                initializeMap(fabulous);
             });
 
             function initializeMap(data) {
@@ -18,7 +48,7 @@
                     key: '62f1c690198043daa6a4fecfbfd29f0d',
                     styleId: 1714,
                     copyright: 'Map tiles &copy; 2011 CloudMade Map data CC-BY-SA OpenStreetMap.org ',
-                    minZoomLevel: 9
+                    minZoomLevel: 5
                 });
 
 				//Creating and centering the map
@@ -98,11 +128,4 @@
                 //map.addControl(new CustomMapControl());
             }
         </script>
-    </head>
-    
-    <body>
-        <div id="shortstackmap" style="width: 250px; height: 300px">
-        </div>
-    </body>
-
-</html>
+      <%end %>  
