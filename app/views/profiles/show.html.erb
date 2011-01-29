@@ -11,7 +11,7 @@
           <%= contribution_word_type(contribution.action)%> CfABase
         </div>
         <div class="meta_milestone">
-          Posted <%= time_ago_in_words(contribution.created_at) %>
+          Posted <%= time_ago_in_words(contribution.created_at) %> ago
         </div>
       </div>
       <% end %>
@@ -19,11 +19,23 @@
   </div>
   <% end %>
 <% end %>
+
 <%= content_for :column2 do %>
-  <span class="profile_joined">joined <%= time_ago_in_words(@profile.user.created_at) %></span>
-  <h1 class="h1_first"><%= @profile.name %></h1>
-  <%= picture_for @profile.user, 150, :class => 'fl' %>
+  <div class="profile_header">
+    <span class="profile_joined">joined <%= time_ago_in_words(@profile.user.created_at) %> ago</span>
+    <h1 class="h1_first"><%= @profile.name %></h1>
+    <div class="profile_image">
+      <%= picture_for @profile.user, 150 %>
+    </div>
+    <div>
+      <p>Here would be a good place for a bio</p>
+    </div>
+  </div>
+  <div class="profile_more">
+    <p>Here's a space for more info</p>
+  </div>
 <% end %>
+
 <%= content_for :column3 do %>
   <h3>Actions</h3> 
 	<div class="col3_content contribute"> 
