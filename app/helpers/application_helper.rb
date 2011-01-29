@@ -44,10 +44,10 @@ module ApplicationHelper
     "Tags: " + tag_links.to_sentence
   end
 
-  def picture_for(user, size = 150)
+  def picture_for(user, size = 150, opts = {})
     src = user.picture :size => size
 
-    return image_tag src, :height => size, :width => size
+    return image_tag src, opts
   end
 
   def sort_link(param, value, text, default = false)

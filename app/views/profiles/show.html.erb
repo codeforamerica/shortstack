@@ -1,29 +1,33 @@
-<div id="col1"></div>
-<div id="col2">
-  <div id="col2_internal">
-    <h1 class="h1_first"><%= @profile.name %></h1>
-      <ul id="milestones">
-        <% @contributions.each do |contribution|%>
-        <li style="list-style: none outside none;" class="milestone_addition">
-        <div class="milestone_favicon">
-        	<%= contribution_image_type(contribution.action)%>
-        	
-        </div>	
-        	<div class="milestone_text"><strong><%= link_to contribution.contributable.name, contribution.contributable%></strong> <%= contribution_word_type(contribution.action)%> CfABase</div>
-        	<div class="meta_milestone">Posted: <%= contribution.created_at("%m/%d/%y at %I:%M:%S %p") %> by <%= link_to contribution.user.profile.name, contribution.user.profile%></div>
-        </li>
-        <% end %>
-      </ul>
+<%= content_for :column1 do %>
+  <% if !@contributions.blank? %>
+  <h2>Latest Contributions:</h2>
+  <div class="col1_content">
+    <div class="milestones">
+      <% @contributions.each do |contribution|%>
+      <div class="milestone_addition">
+        <div class="milestone_favicon"><%= contribution_image_type(contribution.action)%></div>
+        <div class="milestone_text">
+          <strong><%= link_to contribution.contributable.name, contribution.contributable%></strong>
+          <%= contribution_word_type(contribution.action)%> CfABase
+        </div>
+        <div class="meta_milestone">
+          Posted <%= time_ago_in_words(contribution.created_at) %>
+        </div>
+      </div>
+      <% end %>
+    </div>
   </div>
-</div>
-<div id="col3">
+  <% end %>
+<% end %>
+<%= content_for :column2 do %>
+  <span class="profile_joined">joined <%= time_ago_in_words(@profile.user.created_at) %></span>
+  <h1 class="h1_first"><%= @profile.name %></h1>
+  <%= picture_for @profile.user, 150, :class => 'fl' %>
+<% end %>
+<%= content_for :column3 do %>
   <h3>Actions</h3> 
 	<div class="col3_content contribute"> 
     <%if current_user%><%= link_to 'Edit Your Profile', edit_profile_path(current_user.profile) %><br><%end%>
     <%= link_to 'All Users', profiles_path %><br>
 	</div>
-  
-</div>
-
-
-
+<% end %>
