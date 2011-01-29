@@ -105,6 +105,11 @@ input,select,textarea
 	color: #1d1d1d;
 }
 
+div.milestone_addition
+{
+  clear: left;
+}
+
 .meta_milestone
 {
 	font-style: italic;
@@ -2231,4 +2236,29 @@ ul#presence_icons li {
 }
 .profile_box .profile_description{
   font-size: x-small;
+}
+
+.profile_header {
+}
+.profile_header .profile_joined{
+  font-size: x-small;
+  display: block;
+  float:right;
+}
+.profile_header .profile_image{
+  float:left;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+.profile_more {
+  clear:left;
+}
+
+.fl{
+  display: block;
+  float: left;
+}
+.fr{
+  display: block;
+  float: right;
 }

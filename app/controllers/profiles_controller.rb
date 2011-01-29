@@ -18,7 +18,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/1.xml
   def show
     @profile = Profile.find(params[:id])
-    @contributions = @profile.user.contributions.all
+    @contributions = @profile.contributions.limit(10).order('updated_at DESC')
 
     respond_to do |format|
       format.html # show.html.erb
