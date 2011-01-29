@@ -1,5 +1,6 @@
 <%= content_for :column1 do%>
   <%= render :partial => 'layouts/detail_boxes', :locals => {:item => @organization}%>          
+  <%= render :partial => 'addresses/map', :locals => {:item => @organization} unless @organization.whisks.joins(:whisk_type).where("whisk_types.name = 'LongLat'").blank?%>            
   <%= render :partial => 'relationships'%>            
 <% end %>  
 
