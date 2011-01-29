@@ -6,8 +6,7 @@ class Profile < ActiveRecord::Base
   #default_scope order("LOWER(name) ASC")  
 
   scope :sort_by, lambda { |operand|
-    query = select('profiles.*, profile_contributions.count AS contributions_count')
-              .joins(:user)
+    query = select('profiles.*, profile_contributions.count AS contributions_count').joins(:user)
 
     operand = 'name' if operand.nil?
 
