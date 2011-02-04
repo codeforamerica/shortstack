@@ -1,11 +1,12 @@
 <%= content_for :column2 do%>
 <% if !@products.blank?%>
     <h1 class="h1_first">Products</h1>
+    <%= will_paginate @products %>
     <table class= "col2_table_listing">
       <tr>
         <td>
           <ul>
-      <% @products[0..(@products.size/3)].each do |product| %>
+      <% @products[0..(@products.size/3 - 1)].each do |product| %>
             <li><%= alphabet_header(@products, product)%></li>  
             <li><%= link_to product.name , product %></li>
       <% end %>
@@ -13,7 +14,7 @@
         </td>
         <td>
           <ul>
-      <% @products[(@products.size/3)+1..(2*@products.size/3)].each do |product| %>
+      <% @products[(@products.size/3)..(2*@products.size/3 - 1)].each do |product| %>
             <li><%= alphabet_header(@products, product)%></li>  
             <li><%= link_to product.name , product %></li>
       <% end %>
@@ -21,7 +22,7 @@
         </td>
         <td>
           <ul>
-      <% @products[(@products.size/3)*2+1..(@products.size)].each do |product| %>
+      <% @products[(@products.size/3)*2..-1].each do |product| %>
             <li><%= alphabet_header(@products, product)%></li>  
             <li><%= link_to product.name , product %></li>
       <% end %>
@@ -29,6 +30,7 @@
         </td>                  
       </tr>
     </table>
+    <%= will_paginate @products %>
     <%end%>
 <% end %>
 
