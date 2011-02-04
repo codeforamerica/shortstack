@@ -1,6 +1,10 @@
 class AddAddress
-  
-  def process
+
+  def initialize
+    $current_user = User.first
+  end  
+
+  def process  
     Organization.all.each do |organization|
       if organization.addresses.blank?
         setting = organization.whisks.where(:whisk_type_id => 4)
