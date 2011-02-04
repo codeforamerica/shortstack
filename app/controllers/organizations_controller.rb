@@ -6,7 +6,8 @@ class OrganizationsController < ApplicationController
     @org_types = OrgType.select('id, name').all
 
     org_type = params[:org_type_id] || 4 # default to city
-    @organizations = Organization.alpha.where(:org_type_id => org_type).limit(99).all
+    @organizations = Organization.alpha.where(:org_type_id => org_type).paginate(
+      :per_page => 99, :page => params[:page])
     
     respond_to do |format|
       format.html # index.html.erb
