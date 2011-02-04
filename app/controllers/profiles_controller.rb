@@ -7,6 +7,13 @@ class ProfilesController < ApplicationController
     # params[:sort_by] => name || this_week || this_month || this_year || all_time
     # @profiles = Profile.joins(:contributions).all
     @profiles = Profile.sort_by(params[:sort_by]).all
+    @sort_list = [
+      {:id => 'name', :name => 'Name'},
+      {:id => 'this_week', :name => 'Contributions This Week'},
+      {:id => 'this_month', :name => 'Contributions This Month'},
+      {:id => 'this_year', :name => 'Contributions This Year'},
+      {:id => 'all_time', :name => 'Contributions All Time'},
+    ]
 
     respond_to do |format|
       format.html # index.html.erb
