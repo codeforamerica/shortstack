@@ -3,11 +3,10 @@ class OrganizationsController < ApplicationController
   # GET /organizations
   # GET /organizations.xml
   def index
-    @organizations = if params[:org_type_id]
-      Organization.alpha.where(:org_type_id => params[:org_type_id]).limit(100)
-    else
-      Organization.alpha.limit(100)
-    end
+    @org_types = OrgType.select('id, name').all
+
+    org_type = params[:org_type_id] || 4 # default to city
+    @organizations = Organization.alpha.where(:org_type_id => org_type).limit(99).all
     
     respond_to do |format|
       format.html # index.html.erb

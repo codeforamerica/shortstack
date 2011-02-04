@@ -24,16 +24,8 @@ module ApplicationHelper
     end
   end
   
-  def org_type_list
-    Builder::XmlMarkup.new.ul(:id => "submenu") do |item|
-      OrgType.all.each do |org_type|
-        item.li { |li| li.a(org_type.name.capitalize, :href => "?org_type_id=#{org_type.id}") }
-      end
-    end
-  end
-  
   def alphabet_header(items, item)
-    item.name[0..0] unless item.name[0..0].downcase == items[items.index(item)-1].name[0..0].downcase
+    item.name[0].upcase unless item.name[0].downcase == items[items.index(item)-1].name[0].downcase
   end
   
   def tag_links(tags)
@@ -48,6 +40,13 @@ module ApplicationHelper
     src = user.picture :size => size
 
     return image_tag src, opts
+  end
+
+  def sort_list(collection, param, default)
+    list = collection.collect do |elem|
+      content_tag(:li, sort_link(param, elem[:id], elem[:name].capitalize, (elem[:name] == default)))
+    end
+    content_tag :ul, list.join, {:id => 'submenu'}, false
   end
 
   def sort_link(param, value, text, default = false)
