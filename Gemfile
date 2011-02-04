@@ -13,7 +13,6 @@ gem 'sunspot_rails', '1.2.rc4'
 gem 'acts-as-taggable-on'
 gem 'google-search'
 gem 'delayed_job'
-gem 'will_paginate', "~> 3.0.pre2"
 
 
 # Use unicorn as the web server
