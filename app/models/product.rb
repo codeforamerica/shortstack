@@ -16,7 +16,7 @@ class Product < ActiveRecord::Base
   accepts_nested_attributes_for :parents
   accepts_nested_attributes_for :children  
 
-  scope :alpha, order("name ASC")  
+  scope :alpha, order("LOWER(name) ASC")  
   scope :recent, order("created_at DESC")    
   
   after_create :create_contribution
