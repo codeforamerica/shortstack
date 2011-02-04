@@ -2,7 +2,13 @@
   <% if !@profiles.blank?%>
     <h1 class="h1_first">Contributors</h1>
     Sort by: 
-    <%= sort_list @sort_list, 'sort_by', 'Name' %>
+    <ul id="submenu">
+      <li><%= sort_link 'sort_by', 'name', 'Name', true %></li>
+      <li><%= sort_link 'sort_by', 'this_week', 'Contributions This Week' %></li>
+      <li><%= sort_link 'sort_by', 'this_month', 'Contributions This Month' %></li>
+      <li><%= sort_link 'sort_by', 'this_year', 'Contributions This Year' %></li>
+      <li><%= sort_link 'sort_by', 'all_time', 'Contributions All Time' %></li>
+    </ul> 
     <% @profiles.each do |profile| -%>
     <div class="profile_box">
       <div class="profile_image">
