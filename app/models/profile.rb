@@ -13,7 +13,7 @@ class Profile < ActiveRecord::Base
     if operand == 'name'
       @query = query.order('LOWER(profiles.name)')
     else
-      @query = query.order('profile_contributions.count DESC, LOWER(profiles.name) ASC')
+      @query = query.order('profile_contributions.count IS NOT NULL DESC, profile_contributions.count DESC, LOWER(profiles.name) ASC')
     end
 
     sort_by_contributions_since(operand)
