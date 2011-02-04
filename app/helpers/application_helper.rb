@@ -25,7 +25,7 @@ module ApplicationHelper
   end
   
   def alphabet_header(items, item)
-    item.name[0].upcase unless item.name[0].downcase == items[items.index(item)-1].name[0].downcase
+    item.name[0..0].upcase unless item.name[0..0].downcase == items[items.index(item)-1].name[0..0].downcase
   end
   
   def tag_links(tags)
