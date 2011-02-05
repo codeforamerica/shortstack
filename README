@@ -8,9 +8,23 @@ Installation
     $ [sudo] bundle install
     $ rake db:seed
 
+
+Setup Sunspot
+-------------
+We use Sunspot for search.
+
+To start a development solr engine:
+    $ rake sunspot:solr:start 
+
+To stop that:
+    $ rake sunspot:solr:stop
+
+You may have to build an index if you haven't already:
+    $ rake sunspot:reindex
+
 Documentation
 -------------
- We use the GitHub wiki for documentation.
+We use the GitHub wiki for documentation.
 
 Submitting an Issue
 -------------------
