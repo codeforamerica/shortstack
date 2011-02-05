@@ -18,12 +18,12 @@
     	<div id="session"> 
     	  <%= render 'layouts/sign_in'%>
       </div>
-	<% flash.each do |name, msg| %>
-	  <%= content_tag :div, msg, :id => "flash_#{name}" %>
-	<% end %>
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      <% end %>
     </div>
     
-    <%= render 'layouts/search'%>
+    <%= render 'layouts/search' unless params[:controller] == 'search' %>
 
     <div id="strip"> 
     	<div id="strip_right">Browse:

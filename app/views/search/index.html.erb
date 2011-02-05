@@ -1,5 +1,12 @@
 <%= content_for :column2 do %>
   <h1>Search <%= "(#{params[:search]})" unless params[:search].empty? %></h1>
+
+  <div id="search_form_div">
+    <%= form_tag search_path, :method => 'get', :id => 'quick_search_form' do %>
+      <%= label_tag 'quick_search_input', 'Search' %>
+      <%= text_field_tag :search, params[:search], :id => 'quick_search_input' %>
+    <% end %>
+  </div>
  
   <div id="search_results">
     <%= render 'results' %>
