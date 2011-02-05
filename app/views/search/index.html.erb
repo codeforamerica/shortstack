@@ -2,11 +2,19 @@
   <h1>Search <%= "(#{params[:search]})" unless params[:search].empty? %></h1>
  
   <div id="search_results">
-    <% @results.each_hit_with_result do |hit, result| %>
-      <div class="search_result">
-        <span class="search_result_type"><%= result.class %>:</span>
-        <span class="search_result_link"><%= link_to result.name, result %></span>
-      </div>
-    <% end %>
+    <% if @results -%>
+      <% if @results.hits.size -%>
+        <% @results.each_hit_with_result do |hit, result| %>
+          <div class="search_result">
+            <span class="search_result_type"><%= result.class %>:</span>
+            <span class="search_result_link"><%= link_to result.name, result %></span>
+          </div>
+        <% end %>
+      <% else %>    
+        <p>There were no results for (<%= params[:search] %>).</p>
+      <% end -%>
+    <% else %>
+      <p>Please enter a search term</p>
+    <% end -%>
   </div>
 <% end %>
