@@ -23,6 +23,12 @@ class Person < ActiveRecord::Base
   after_update :update_contribution  
   
   acts_as_taggable
+
+  searchable do
+    text :name, :default_boost => 2
+    integer :id
+    time :updated_at
+  end
   
   def create_contribution
     self.contributions << Contribution.new(:user =>$current_user, :action => "Create")

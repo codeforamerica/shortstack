@@ -1,5 +1,7 @@
 Orgbase::Application.routes.draw do
   
+  get "search/index"
+
   #details
   resources :contacts
   resources :relationships
@@ -35,6 +37,9 @@ Orgbase::Application.routes.draw do
   resources :settings
   resources :authentications
   devise_for :users, :controllers => {:registrations => 'registrations'}
+
+  #search
+  match 'search', :to => 'search#index'
 
   #home
   root :to => "home#index"

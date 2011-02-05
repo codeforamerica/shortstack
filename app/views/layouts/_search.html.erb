@@ -1,7 +1,7 @@
 <div id="search"> 
-<form action="/search" method="get"> 
-  <input autocomplete="off" id="search_box" name="query" type="text" /> 
-  <input class="button" id="search_button" type="submit" value="Search" />
-  <a href="#" id="advanced_search" rel="nofollow" title="Advanced Search">Advanced Search</a> 
-</form> 
+  <%= form_tag search_path, :method => 'get', :id => 'search_form' do %>
+    <%= text_field_tag :search, params[:search], :id => 'search_box', :autocomplete => 'off' %>
+    <%= submit_tag 'Search', :id => 'search_button', :class => 'button' %>
+    <%= link_to 'Advanced Search', search_path, :id => 'advanced_search', :rel => 'nofollow', :title => 'Advanced Search' %>
+  <% end %>
 </div>

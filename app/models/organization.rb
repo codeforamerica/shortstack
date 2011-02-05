@@ -26,6 +26,11 @@ class Organization < ActiveRecord::Base
   
   acts_as_taggable
 
+  searchable do
+    text :name, :default_boost => 2
+    integer :id
+    time :updated_at
+  end
    
   
   def create_contribution

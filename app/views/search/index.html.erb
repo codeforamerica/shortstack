@@ -1,0 +1,12 @@
+<%= content_for :column2 do %>
+  <h1>Search <%= "(#{params[:search]})" unless params[:search].empty? %></h1>
+ 
+  <div id="search_results">
+    <% @results.each_hit_with_result do |hit, result| %>
+      <div class="search_result">
+        <span class="search_result_type"><%= result.class %>:</span>
+        <span class="search_result_link"><%= link_to result.name, result %></span>
+      </div>
+    <% end %>
+  </div>
+<% end %>
