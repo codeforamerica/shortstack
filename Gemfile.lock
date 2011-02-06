@@ -30,7 +30,7 @@ GEM
       activesupport (= 3.0.3)
     activesupport (3.0.3)
     acts-as-taggable-on (2.0.6)
-    addressable (2.2.3)
+    addressable (2.2.4)
     arel (2.0.7)
     awesome_print (0.3.1)
     bcrypt-ruby (2.1.4)
