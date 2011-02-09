@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.3'
+gem 'rails', '~> 3.0.4'
 gem 'sqlite3'
 gem 'devise'
 gem 'nifty-generators'
