@@ -27,12 +27,20 @@ class WhiskBatter
           #if a result is found, add the relationship item 'uses' product unless that relationship already exists
           @item.parents.create(:childable => product, :relation_type => 'uses') unless !@item.parents.where(:childable_id => product.id).blank?
         end
-
-        c = crunchbase(product)
-        if !c.nil? and !c.has_key?('error')
-          product.sync_crunchbase!(c)
-        end
       end    
+    end
+  end
+
+  def other_whisks
+    whisktype = WhiskType.where(:name => "crunchbase").first
+    whisks = @item.whisks.where(:whisk_type_id => whisktype).each do |whisk|
+      if !whisk.setting.nil?
+        c = crunchbase(whisk.setting)
+        if !c.nil? and !c.has_key?('error')
+          sync_crunchbase(c)
+          @item.save
+        end
+      end
     end
   end
 
@@ -47,11 +55,54 @@ class WhiskBatter
   end
 
 
-  def crunchbase(product)
-    product_url = product.links.where(:link_type_id => 6).first
-
-    JSON.parse(Net::HTTP.get(URI.parse(product_url))) if product_url
+  def crunchbase(item_url)
+    JSON.parse(Net::HTTP.get(URI.parse(item_url)))
   end
   
+  def sync_crunchbase(c)
+    # contacts
+    contact = {
+      :phone => c['phone_number'],
+      :email => c['email_address'],
+      :twitter => c['twitter_username'],
+    }
+    @item.contacts.build(contact) if not_nil(contact) && @item.contacts.where(contact).count == 0 
+
+    # addresses
+    for o in c['offices']
+      address = {
+        :address => c['address1'],
+        :city => c['city'],
+        :state => c['state'],
+        :zipcode => c['zip_code'],
+        :country => c['country_code'],
+        :lat => c['latitude'],
+        :long => c['longitude'],
+      }
+      
+      @item.addresses.build(address) if not_nil(address) && @item.addresses.where(:address => address['address']).count == 0
+    end
+    
+    # links
+    l = [
+      {:link_url => c['homepage_url'], :link_type_id => 3, :name => 'Homepage'},
+      {:link_url => c['blog_url'], :link_type_id => 1, :name => 'Blog'},
+    ]
+    for link in l
+      @item.links.build(link) if not_nil(link) && @item.links.where(:link_type_id => link[:link_type_id]).count == 0
+    end
+    # notes
+    if c['overview']
+      note = @item.notes.where(:note_type_id => 5).first || @item.notes.build(:note_type_id => 5)
+      note.name = "Crunchbase"
+      note.note = c['overview']
+    end
+  end
+
+  def not_nil(hash)
+    hash.select { |k, v|
+      !v.nil?
+    }.size > 0
+  end
   
 end

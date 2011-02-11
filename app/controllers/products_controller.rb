@@ -84,6 +84,7 @@ class ProductsController < ApplicationController
   def whiskme
     @product = Product.find(params[:id])
     @product.send_later(:whisk_cities)
+    @product.send_later(:whisk)
     redirect_to(@product, :notice => 'Whisking some batter. Lots of pancakes. So, come back later to eat.')
   end
 end

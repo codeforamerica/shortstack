@@ -37,6 +37,11 @@ class Product < ActiveRecord::Base
   def update_contribution
     self.contributions << Contribution.new(:user =>$current_user, :action => "Update")
   end
+
+  def whisk
+    wb = WhiskBatter.new(self)
+    wb.other_whisks
+  end
   
   def whisk_cities
     #grab all cities
@@ -44,7 +49,7 @@ class Product < ActiveRecord::Base
     orgs = Organization.where(:org_type_id => orgtype.id)
     countdown = orgs.size
     orgs.each do |org|
-    puts "#{org.name}, #{org.id}"
+      puts "#{org.name}, #{org.id}"
       s = WhiskBatter.new(org)
       s.check_for_product(self)
       countdown = countdown - 1
@@ -52,55 +57,4 @@ class Product < ActiveRecord::Base
     end
   end
 
-  def sync_crunchbase(c)
-    # contacts
-    contact = {
-      :phone => c['phone_number'],
-      :email => c['email_address'],
-      :twitter => c['twitter_username'],
-    }
-    contacts.build(contact) if not_nil(contact) && contacts.where(contact).count == 0 
-
-    # addresses
-    for o in c['offices']
-      address = {
-        :address => c['address1'],
-        :city => c['city'],
-        :state => c['state'],
-        :zipcode => c['zip_code'],
-        :country => c['country_code'],
-        :lat => c['latitude'],
-        :long => c['longitude'],
-      }
-      
-      addresses.build(address) if not_nil(address) && addresses.where(:address => address['address']).count == 0
-    end
-    
-    # links
-    l = [
-      {:link_url => c['homepage_url'], :link_type_id => 3, :name => 'Homepage'},
-      {:link_url => c['blog_url'], :link_type_id => 1, :name => 'Blog'},
-    ]
-    for link in l
-      links.build(link) if not_nil(link) && links.where(:link_type_id => link[:link_type_id]).count == 0
-    end
-    # notes
-    if c['overview']
-      note = notes.where(:note_type_id => 5).first || notes.build(:note_type_id => 5)
-      note.name = "Crunchbase"
-      note.note = c['overview']
-    end
-
-    return self
-  end
-
-  def sync_crunchbase!(c)
-    sync_crunchbase(c).save
-  end
-
-  def not_nil(hash)
-    hash.select { |k, v|
-      !v.nil?
-    }.size > 0
-  end
 end
