@@ -28,9 +28,9 @@ class WhiskBatter
           @item.parents.create(:childable => product, :relation_type => 'uses') unless !@item.parents.where(:childable_id => product.id).blank?
         end
 
-        c = crunchbase(whisk.setting)
+        c = crunchbase(product)
         if !c.nil? and !c.has_key?('error')
-          # do stuff with whisk
+          product.sync_crunchbase(c)
         end
       end    
     end
@@ -47,14 +47,8 @@ class WhiskBatter
   end
 
 
-  def crunchbase(name)
-    search = JSON.parse(Net::HTTP.get(URI.parse("http://api.crunchbase.com/v/1/search.js?query=#{name}")))
-
-    if search.has_key?('results')
-      product_url = ['results'].filter { |r|
-        r['namespace'] == 'product'
-      }[0]['permalink']
-    end
+  def crunchbase(product)
+    product_url = product.links.where(:link_type_id => 6).first
 
     JSON.parse(Net::HTTP.get(URI.parse("http://api.crunchbase.com/v/1/product/#{product_url}.js"))) if product_url
   end
