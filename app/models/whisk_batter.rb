@@ -1,4 +1,6 @@
 #This class contains various whisk techniques, like searching an organization's page for code
+require 'uri'
+require 'net/http'
 
 class WhiskBatter
 
@@ -25,6 +27,11 @@ class WhiskBatter
           #if a result is found, add the relationship item 'uses' product unless that relationship already exists
           @item.parents.create(:childable => product, :relation_type => 'uses') unless !@item.parents.where(:childable_id => product.id).blank?
         end
+
+        c = crunchbase(whisk.setting)
+        if !c.nil? and !c.has_key?('error')
+          # do stuff with whisk
+        end
       end    
     end
   end
@@ -38,9 +45,19 @@ class WhiskBatter
     s.query = "'#{query}'" + "site:#{sitelink}"
     s.get_response.estimated_count
   end
-  
-  
-  
+
+
+  def crunchbase(name)
+    search = JSON.parse(Net::HTTP.get(URI.parse("http://api.crunchbase.com/v/1/search.js?query=#{name}")))
+
+    if search.has_key?('results')
+      product_url = ['results'].filter { |r|
+        r['namespace'] == 'product'
+      }[0]['permalink']
+    end
+
+    JSON.parse(Net::HTTP.get(URI.parse("http://api.crunchbase.com/v/1/product/#{product_url}.js"))) if product_url
+  end
   
   
 end
