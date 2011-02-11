@@ -10,6 +10,7 @@ class RegistrationsController < Devise::RegistrationsController
     super
     if session[:omniauth]
       @user.apply_omniauth(session[:omniauth])
+      @user.screen_name = params[:user][:screen_name] if params[:user]
       @user.valid?
     end
   end

@@ -4,7 +4,6 @@ class User < ActiveRecord::Base
   has_many :authentications
   has_many :contributions
   has_one :profile
-  after_create :make_profile
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
@@ -12,7 +11,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :profile
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :profile, :screen_name
   accepts_nested_attributes_for :profile
   
   def apply_omniauth(omniauth)
@@ -22,10 +21,6 @@ class User < ActiveRecord::Base
   
   def password_required?
     (authentications.empty? || !password.blank?) && super
-  end
-  
-  def make_profile
-    self.create_profile(:name => 'changeme')
   end
 
   def picture(opts = {})
@@ -38,5 +33,17 @@ class User < ActiveRecord::Base
     size = opts[:size]
 
     return "https://secure.gravatar.com/avatar/#{hash}.jpg?d=mm&s=#{size.to_s}"
+  end
+
+  def screen_name
+    profile.name if profile
+  end
+
+  def screen_name=(name)
+    if profile
+      profile.name = name
+    else
+      profile = build_profile(:name => name)
+    end
   end
 end
