@@ -44,8 +44,5 @@ module Orgbase
       g.fixture_replacement :factory_girl
       g.helper false
     end
-
-    config.logger = Logger.new(STDOUT)
-    config.log_level = :debug
   end
 end
