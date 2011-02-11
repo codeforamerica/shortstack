@@ -30,7 +30,7 @@ class WhiskBatter
 
         c = crunchbase(product)
         if !c.nil? and !c.has_key?('error')
-          product.sync_crunchbase(c)
+          product.sync_crunchbase!(c)
         end
       end    
     end
@@ -50,7 +50,7 @@ class WhiskBatter
   def crunchbase(product)
     product_url = product.links.where(:link_type_id => 6).first
 
-    JSON.parse(Net::HTTP.get(URI.parse("http://api.crunchbase.com/v/1/product/#{product_url}.js"))) if product_url
+    JSON.parse(Net::HTTP.get(URI.parse(product_url))) if product_url
   end
   
   
