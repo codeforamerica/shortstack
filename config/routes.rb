@@ -12,6 +12,7 @@ Orgbase::Application.routes.draw do
   resources :managetags, :collection => {:tags => :any, :categories => :any, :rename => :any, :remove => :any, :remove_tagging => :any}
   match "/tags/:id/:name" => "tags#index"
   match 'products/whiskme/:id', :to => 'products#whiskme'  
+  match 'products/crunchsync/:id', :to => 'products#crunchsync'  
   
   #objects
   resources :people, :organizations, :products do

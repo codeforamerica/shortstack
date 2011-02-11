@@ -38,9 +38,13 @@ class Product < ActiveRecord::Base
     self.contributions << Contribution.new(:user =>$current_user, :action => "Update")
   end
 
-  def whisk
-    wb = WhiskBatter.new(self)
-    wb.other_whisks
+  def crunch_sync
+    crunch_lt = LinkType.where(:name => 'crunchbase').first
+    links.where(:link_type_id => crunch_lt).each do |link|
+      logger.info "crunch_syncing: #{link.name}"
+      wb = WhiskBatter.new(link)
+      wb.crunch_sync(self)
+    end
   end
   
   def whisk_cities

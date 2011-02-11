@@ -31,16 +31,11 @@ class WhiskBatter
     end
   end
 
-  def other_whisks
-    whisktype = WhiskType.where(:name => "crunchbase").first
-    whisks = @item.whisks.where(:whisk_type_id => whisktype).each do |whisk|
-      if !whisk.setting.nil?
-        c = crunchbase(whisk.setting)
-        if !c.nil? and !c.has_key?('error')
-          sync_crunchbase(c)
-          @item.save
-        end
-      end
+  def crunch_sync(product)
+    c = crunchbase(@item.link_url)
+    if !c.nil? and !c.has_key?('error')
+      sync_crunchbase(product, c)
+      product.save
     end
   end
 
@@ -59,14 +54,14 @@ class WhiskBatter
     JSON.parse(Net::HTTP.get(URI.parse(item_url)))
   end
   
-  def sync_crunchbase(c)
+  def sync_crunchbase(product, c)
     # contacts
     contact = {
       :phone => c['phone_number'],
       :email => c['email_address'],
       :twitter => c['twitter_username'],
     }
-    @item.contacts.build(contact) if not_nil(contact) && @item.contacts.where(contact).count == 0 
+    product.contacts.build(contact) if not_nil(contact) && product.contacts.where(contact).count == 0 
 
     # addresses
     for o in c['offices']
@@ -80,7 +75,7 @@ class WhiskBatter
         :long => c['longitude'],
       }
       
-      @item.addresses.build(address) if not_nil(address) && @item.addresses.where(:address => address['address']).count == 0
+      product.addresses.build(address) if not_nil(address) && product.addresses.where(:address => address['address']).count == 0
     end
     
     # links
@@ -89,11 +84,11 @@ class WhiskBatter
       {:link_url => c['blog_url'], :link_type_id => 1, :name => 'Blog'},
     ]
     for link in l
-      @item.links.build(link) if not_nil(link) && @item.links.where(:link_type_id => link[:link_type_id]).count == 0
+      product.links.build(link) if not_nil(link) && product.links.where(:link_type_id => link[:link_type_id]).count == 0
     end
     # notes
     if c['overview']
-      note = @item.notes.where(:note_type_id => 5).first || @item.notes.build(:note_type_id => 5)
+      note = product.notes.where(:note_type_id => 5).first || product.notes.build(:note_type_id => 5)
       note.name = "Crunchbase"
       note.note = c['overview']
     end

@@ -15,6 +15,11 @@ class ProductsController < ApplicationController
   # GET /products/1.xml
   def show
     @product = Product.find(params[:id])
+    @has_whisks = !@product.whisks.blank?
+
+    crunch_lt = LinkType.where(:name => 'crunchbase').first
+    @has_crunchies = !@product.links.where(:link_type_id => crunch_lt.id).blank?
+
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @product }
@@ -84,7 +89,13 @@ class ProductsController < ApplicationController
   def whiskme
     @product = Product.find(params[:id])
     @product.send_later(:whisk_cities)
-    @product.send_later(:whisk)
     redirect_to(@product, :notice => 'Whisking some batter. Lots of pancakes. So, come back later to eat.')
+  end
+
+  def crunchsync
+    @product = Product.find(params[:id])
+    logger.info "delaying crunch_sync"
+    @product.send_later(:crunch_sync)
+    redirect_to(@product, :notice => 'Syncing with Crunchbase.')
   end
 end
