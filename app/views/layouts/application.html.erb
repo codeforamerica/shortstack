@@ -6,8 +6,8 @@
 		<!--removes image toolbar in ie6 when hovering over an image--> 
 		<meta content="OrgBase is the free database of technology organizations, caompanies, people, and foundations." name="description" /> 
     <%= csrf_meta_tag %>
-    <%= stylesheet_link_tag "application" %>
-    <%= javascript_include_tag :defaults %>
+    <%= javascript_include_tag :all, :cache => true %>
+    <%= stylesheet_link_tag :all, :cache => true %>
 
 
     <%= yield(:head) %>
