@@ -51,6 +51,8 @@ class WhiskBatter
 
 
   def crunchbase(item_url)
+    item_url.sub!(/^(?:http:\/\/)?(?:www\.)?crunchbase\.com\/(.+)$/, 'http://api.crunchbase.com/v/1/\1.js')
+    puts "crunchbase: #{item_url}"
     JSON.parse(Net::HTTP.get(URI.parse(item_url)))
   end
   
@@ -64,18 +66,20 @@ class WhiskBatter
     product.contacts.build(contact) if not_nil(contact) && product.contacts.where(contact).count == 0 
 
     # addresses
-    for o in c['offices']
-      address = {
-        :address => c['address1'],
-        :city => c['city'],
-        :state => c['state'],
-        :zipcode => c['zip_code'],
-        :country => c['country_code'],
-        :lat => c['latitude'],
-        :long => c['longitude'],
-      }
-      
-      product.addresses.build(address) if not_nil(address) && product.addresses.where(:address => address['address']).count == 0
+    if c['offices']
+      for o in c['offices']
+        address = {
+          :address => c['address1'],
+          :city => c['city'],
+          :state => c['state'],
+          :zipcode => c['zip_code'],
+          :country => c['country_code'],
+          :lat => c['latitude'],
+          :long => c['longitude'],
+        }
+        
+        product.addresses.build(address) if not_nil(address) && product.addresses.where(:address => address['address']).count == 0
+      end
     end
     
     # links
