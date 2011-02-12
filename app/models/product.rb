@@ -29,6 +29,11 @@ class Product < ActiveRecord::Base
     integer :id
     time :updated_at
   end
+
+  attr_accessible :crunchbase, :name
+
+  validates_presence_of :name
+  validates_presence_of :crunchbase, :on => :create
   
   def create_contribution
     self.contributions << Contribution.new(:user =>$current_user, :action => "Create")
@@ -39,7 +44,6 @@ class Product < ActiveRecord::Base
   end
 
   def crunch_sync
-    crunch_lt = LinkType.where(:name => 'crunchbase').first
     links.where(:link_type_id => crunch_lt).each do |link|
       puts "crunch_syncing: #{link.link_url}"
       wb = WhiskBatter.new(link)
@@ -60,5 +64,21 @@ class Product < ActiveRecord::Base
       puts countdown
     end
   end
+  
 
+  def crunchbase
+    @crunchbase.link_url if @crunchbase
+  end
+
+  def crunchbase=(url)
+    if crunchbase
+      crunchbase.link_url = url
+    else
+      @crunchbase = links.build(:link_type => crunch_lt, :name => 'Crunchbase', :link_url => url)
+    end
+  end
+
+  def crunch_lt
+    @crunch_lt = LinkType.where(:name => 'crunchbase').first
+  end
 end

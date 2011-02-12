@@ -14,6 +14,13 @@
   <div class="field">
     <p><%= f.label :name %>: <%= f.text_field :name %></p>
   </div>
+
+  <% if @product.new_record? -%>
+  <div class="field">
+    <p><%= f.label :crunchbase, 'Crunchbase URL' %>: <%= f.text_field :crunchbase %></p>
+  </div>
+  <% end -%>
+
   <div class="actions">
     <%= f.submit %>
   </div>

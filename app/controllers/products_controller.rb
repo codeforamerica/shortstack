@@ -17,8 +17,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @has_whisks = !@product.whisks.blank?
 
-    crunch_lt = LinkType.where(:name => 'crunchbase').first
-    @has_crunchies = !@product.links.where(:link_type_id => crunch_lt.id).blank?
+    @has_crunchies = !@product.links.where(:link_type_id => @product.crunch_lt).blank?
 
     respond_to do |format|
       format.html # show.html.erb
