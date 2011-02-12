@@ -41,7 +41,7 @@ class Product < ActiveRecord::Base
   def crunch_sync
     crunch_lt = LinkType.where(:name => 'crunchbase').first
     links.where(:link_type_id => crunch_lt).each do |link|
-      logger.info "crunch_syncing: #{link.name}"
+      puts "crunch_syncing: #{link.name}"
       wb = WhiskBatter.new(link)
       wb.crunch_sync(self)
     end
