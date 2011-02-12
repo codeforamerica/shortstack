@@ -48,6 +48,10 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
+        if params[:product][:crunchbase]
+          @product.crunch_sync
+          flash[:notice] = 'Product syncing with Crunchbase.'
+        end  
         format.html { redirect_to(@product, :notice => 'Product was successfully created.') }
         format.xml  { render :xml => @product, :status => :created, :location => @product }
       else
