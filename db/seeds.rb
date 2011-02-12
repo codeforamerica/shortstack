@@ -33,7 +33,7 @@ end
   NoteType.find_or_create_by_name(:name => note_type)
 end
 #Whisk Types
-[["Geoname", "http://geonames.usgs.gov/"], ["Census County Codes","	http://www.census.gov/datamap/fipslist/AllSt.txt"], ["LongLat", "none"], ["google search", "product"], ["crunchbase", "none"]].each do |whisk_type|
+[["Geoname", "http://geonames.usgs.gov/"], ["Census County Codes","	http://www.census.gov/datamap/fipslist/AllSt.txt"], ["LongLat", "none"], ["google search", "product"]].each do |whisk_type|
   WhiskType.find_or_create_by_name(:name => whisk_type[0], :setting => whisk_type[1])
 end
 
