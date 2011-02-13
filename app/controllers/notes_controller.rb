@@ -1,5 +1,5 @@
 class NotesController < ApplicationController
-  before_filter :authenticate_user!  
+  before_filter :authenticate_user!
   # GET /notes
   # GET /notes.xml
   def index
@@ -83,11 +83,10 @@ class NotesController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
+
   private
 
   def find_noteable
-    
     params.each do |name, value|
       if name =~ /(.+)_id$/
         return $1.classify.constantize.find(value)
@@ -95,5 +94,4 @@ class NotesController < ApplicationController
     end
     nil
   end
-  
 end

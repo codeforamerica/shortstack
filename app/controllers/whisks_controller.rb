@@ -1,5 +1,5 @@
 class WhisksController < ApplicationController
-  before_filter :authenticate_user!  
+  before_filter :authenticate_user!
   # GET /whisks
   # GET /whisks.xml
   def index
@@ -83,11 +83,10 @@ class WhisksController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
+
   private
 
   def find_whiskable
-    
     params.each do |name, value|
       if name =~ /(.+)_id$/
         return $1.classify.constantize.find(value)
@@ -95,5 +94,4 @@ class WhisksController < ApplicationController
     end
     nil
   end
-  
 end

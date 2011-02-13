@@ -13,7 +13,7 @@ describe PeopleController do
        @person = Person.find(:first)
        @response = response
      end
-     
+
      it "should create a person" do
        Person.all.size.should == 1
      end
@@ -22,14 +22,14 @@ describe PeopleController do
        @response.should redirect_to(@person)
      end
    end
-   
+
    describe '#update' do
      before do
        @person = Factory(:person)
        put :update, :id => @person.id, :person => { :name => "Example" }
        @response = response
      end
-   
+
      it "should update a person" do
        # pending "should specify update action"
        @person.reload.name.should == "Example"
@@ -39,7 +39,7 @@ describe PeopleController do
        @response.should redirect_to(@person)
      end
    end
-   
+
    describe '#destroy' do
      before do
        @person = Factory(:person)
@@ -47,7 +47,7 @@ describe PeopleController do
        delete :destroy, :id => @person.id
        @response = response
      end
-   
+
      it "should destroy a person" do
        # pending "should specify destroy action"
        Person.all.size.should == @person_count - 1

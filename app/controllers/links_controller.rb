@@ -1,5 +1,5 @@
 class LinksController < ApplicationController
-  before_filter :authenticate_user!  
+  before_filter :authenticate_user!
   # GET /links
   # GET /links.xml
   def index
@@ -59,7 +59,7 @@ class LinksController < ApplicationController
   # PUT /links/1.xml
   def update
     @link = Link.find(params[:id])
-    linkable = @link.linkable    
+    linkable = @link.linkable
 
     respond_to do |format|
       if @link.update_attributes(params[:link])
@@ -76,7 +76,7 @@ class LinksController < ApplicationController
   # DELETE /links/1.xml
   def destroy
     @link = Link.find(params[:id])
-    linkable = @link.linkable        
+    linkable = @link.linkable
     @link.destroy
 
     respond_to do |format|
@@ -84,11 +84,10 @@ class LinksController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
+
   private
 
   def find_linkable
-    
     params.each do |name, value|
       if name =~ /(.+)_id$/
         return $1.classify.constantize.find(value)

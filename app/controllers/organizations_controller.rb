@@ -1,5 +1,5 @@
 class OrganizationsController < ApplicationController
-  before_filter :authenticate_user!  
+  before_filter :authenticate_user!
   # GET /organizations
   # GET /organizations.xml
   def index
@@ -8,7 +8,7 @@ class OrganizationsController < ApplicationController
     org_type = params[:org_type_id] || 4 # default to city
     @organizations = Organization.alpha.where(:org_type_id => org_type).paginate(
       :per_page => 99, :page => params[:page])
-    
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @organizations }

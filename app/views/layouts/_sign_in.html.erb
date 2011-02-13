@@ -1,7 +1,7 @@
   <% if user_signed_in? %>
     Signed in as <%= current_user.email %>. Not you? <%= link_to "Sign Out", destroy_user_session_path%><br />
   <%#link_to "Edit Profile", edit_profile_path(current_user.profile)%>
-  
+
   <% else %>
   <%= link_to "Sign Up", new_user_registration_path%> or <%= link_to "Sign In", new_user_session_path%>
     <div id="flash_alert">You need to sign in or sign up before continuing.</div>

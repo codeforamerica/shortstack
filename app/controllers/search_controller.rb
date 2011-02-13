@@ -1,6 +1,4 @@
 class SearchController < ApplicationController
-  
-
   def index
     if params[:search].empty?
       @results = nil

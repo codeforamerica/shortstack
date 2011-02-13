@@ -2,9 +2,9 @@ class AddAddress
 
   def initialize
     $current_user = User.first
-  end  
+  end
 
-  def process  
+  def process
     Organization.all.each do |organization|
       if organization.addresses.blank?
         setting = organization.whisks.where(:whisk_type_id => 4)
@@ -20,14 +20,14 @@ class AddAddress
                   organization.addresses.new(:state => f["short_name"], :lat => longlat[1], :long => longlat[0]).save
                 end
             end
-          rescue 
+          rescue
            puts "Failed to work for #{organization.name}"
           end
         end
       end
     end
   end
-  
+
   def change_name
     orgs = Organization.where(:org_type_id => 4) || Organization.where(:org_type_id => 8)
     orgs.each do |organization|
@@ -37,11 +37,11 @@ class AddAddress
             if !organization.name.include?(state)
               organization.update_attributes(:name => organization.name + ", #{state}")
             end
-          rescue 
+          rescue
            puts "Failed to work for #{organization.name}"
           end
       end
-    end 
-  end 
+    end
+  end
 
 end

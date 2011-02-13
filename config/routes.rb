@@ -1,19 +1,19 @@
 Orgbase::Application.routes.draw do
-  
+
   get "search/index"
 
   #details
   resources :contacts
   resources :relationships
-  resources :addresses  
+  resources :addresses
   resources :links
   resources :notes
-  resources :whisks  
+  resources :whisks
   resources :managetags, :collection => {:tags => :any, :categories => :any, :rename => :any, :remove => :any, :remove_tagging => :any}
   match "/tags/:id/:name" => "tags#index"
-  match 'products/whiskme/:id', :to => 'products#whiskme'  
-  match 'products/crunchsync/:id', :to => 'products#crunchsync'  
-  
+  match 'products/whiskme/:id', :to => 'products#whiskme'
+  match 'products/crunchsync/:id', :to => 'products#crunchsync'
+
   #objects
   resources :people, :organizations, :products do
     resources :notes
@@ -22,17 +22,17 @@ Orgbase::Application.routes.draw do
     resources :addresses
     resources :contacts
     resources :whisks
-  end 
+  end
 
   #types
   resources :org_types
   resources :link_types
   resources :note_types
-  resources :relation_types  
+  resources :relation_types
   resources :whisk_types
 
   #users
-  resources :contributions  
+  resources :contributions
   resources :profiles
   match '/auth/:provider/callback' => 'authentications#create'
   resources :settings
@@ -44,8 +44,7 @@ Orgbase::Application.routes.draw do
 
   #home
   root :to => "home#index"
-  
+
   #profilename
-  
 
 end

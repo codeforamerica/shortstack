@@ -2,12 +2,12 @@
 <fieldset>
   <legend>Add a Note</legend>
   <a href="#" onClick="$('#note-form').hide();" id="hide">Hide Form</a>
-  <p><%= f.label :name, "Title:" %><%=f.text_field :name %> </p> 
+  <p><%= f.label :name, "Title:" %><%=f.text_field :name %> </p>
   <p><%= f.label :note_type %><%= select("note", "note_type_id", NoteType.all.collect {|p| [ p.name, p.id ] })%>
-  </p>  
+  </p>
   <p><%=f.text_area :note %></p>
   <p>
     <%= f.submit 'Create' %>
   </p>
-</fieldset>  
+</fieldset>
 <% end %>

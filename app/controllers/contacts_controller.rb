@@ -1,5 +1,5 @@
 class ContactsController < ApplicationController
-    before_filter :authenticate_user!  
+    before_filter :authenticate_user!
   # GET /contacts
   # GET /contacts.xml
   def index
@@ -41,7 +41,7 @@ class ContactsController < ApplicationController
   # POST /contacts
   # POST /contacts.xml
   def create
-    
+
     @contactable = find_contactable
     @contact = @contactable.contacts.build(params[:contact])
 
@@ -78,17 +78,17 @@ class ContactsController < ApplicationController
     @contact = Contact.find(params[:id])
     contactable = @contact.contactable
     @contact.destroy
-    
+
     respond_to do |format|
       format.html { redirect_to(contactable, :notice => 'Contact was successfully removed.') }
       format.xml  { head :ok }
     end
   end
-  
+
   private
 
   def find_contactable
-    
+
     params.each do |name, value|
       if name =~ /(.+)_id$/
         return $1.classify.constantize.find(value)

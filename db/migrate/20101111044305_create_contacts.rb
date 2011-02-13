@@ -6,7 +6,7 @@ class CreateContacts < ActiveRecord::Migration
       t.string :twitter
       t.string :facebook
       t.string :linkedin
-      t.string :github      
+      t.string :github
       t.integer :contactable_id
       t.string :contactable_type
 

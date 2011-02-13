@@ -3,7 +3,7 @@ class Profile < ActiveRecord::Base
   has_many :contributions, :through => :user
 
   validates_presence_of :name, :on => :create, :message => "can't be blank"
-  #default_scope order("LOWER(name) ASC")  
+  #default_scope order("LOWER(name) ASC")
 
   scope :sort_by, lambda { |operand|
     query = select('profiles.*, profile_contributions.count AS contributions_count').joins(:user)
@@ -32,7 +32,7 @@ class Profile < ActiveRecord::Base
     if time
       @query.joins("LEFT JOIN (SELECT COUNT(*) AS count, user_id FROM contributions
         WHERE contributions.updated_at > '#{time.strftime('%Y-%m-%d')}'
-        GROUP BY user_id) AS profile_contributions ON users.id = profile_contributions.user_id") 
+        GROUP BY user_id) AS profile_contributions ON users.id = profile_contributions.user_id")
     else
       @query.joins("LEFT JOIN (SELECT COUNT(*) AS count, user_id FROM contributions GROUP BY user_id) AS profile_contributions ON users.id = profile_contributions.user_id")
     end

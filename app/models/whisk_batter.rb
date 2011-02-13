@@ -9,12 +9,12 @@ class WhiskBatter
     $current_user = User.first
     @item = item
   end
-  
+
   def check_for_product(product)
     #grab our types
     linktype = LinkType.where(:name => "Website").first
     whisktype = WhiskType.where(:name => "google search").first
-    usetype = RelationType.where(:name => "uses").first    
+    usetype = RelationType.where(:name => "uses").first
     #get the url for the item
     link = @item.links.where(:link_type_id => linktype).first
     #grab the whisks
@@ -27,7 +27,7 @@ class WhiskBatter
           #if a result is found, add the relationship item 'uses' product unless that relationship already exists
           @item.parents.create(:childable => product, :relation_type => 'uses') unless !@item.parents.where(:childable_id => product.id).blank?
         end
-      end    
+      end
     end
   end
 
@@ -55,7 +55,7 @@ class WhiskBatter
     puts "crunchbase: #{item_url}"
     JSON.parse(Net::HTTP.get(URI.parse(item_url)))
   end
-  
+
   def sync_crunchbase(product, c)
     # contacts
     contact = {
@@ -63,7 +63,7 @@ class WhiskBatter
       :email => c['email_address'],
       :twitter => c['twitter_username'],
     }
-    product.contacts.build(contact) if not_nil(contact) && product.contacts.where(contact).count == 0 
+    product.contacts.build(contact) if not_nil(contact) && product.contacts.where(contact).count == 0
 
     # addresses
     if c['offices']
@@ -77,11 +77,11 @@ class WhiskBatter
           :lat => c['latitude'],
           :long => c['longitude'],
         }
-        
+
         product.addresses.build(address) if not_nil(address) && product.addresses.where(:address => address['address']).count == 0
       end
     end
-    
+
     # links
     l = [
       {:link_url => c['homepage_url'], :link_type_id => 3, :name => 'Homepage'},
@@ -103,5 +103,5 @@ class WhiskBatter
       !v.nil?
     }.size > 0
   end
-  
+
 end

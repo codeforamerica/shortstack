@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_filter :authenticate_user!  
+  before_filter :authenticate_user!
   # GET /products
   # GET /products.xml
   def index
@@ -51,7 +51,7 @@ class ProductsController < ApplicationController
         if params[:product][:crunchbase]
           @product.crunch_sync
           flash[:notice] = 'Product syncing with Crunchbase.'
-        end  
+        end
         format.html { redirect_to(@product, :notice => 'Product was successfully created.') }
         format.xml  { render :xml => @product, :status => :created, :location => @product }
       else
@@ -88,7 +88,7 @@ class ProductsController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
+
   def whiskme
     @product = Product.find(params[:id])
     @product.send_later(:whisk_cities)

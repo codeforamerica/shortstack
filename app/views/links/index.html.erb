@@ -1,24 +1,19 @@
-<% content_for :column2 do%>
+<% content_for :column2 do %>
     <h1 class="h1_first">Recent Links</h1>
       <table>
         <tr>
           <th>Link</th>
-          <th>Type</th>          
+          <th>Type</th>
           <th>Linked To</th>
           <th></th>
         </tr>
 <% @links.each do |link| %>
         <tr>
           <td><%= link_to link.name, link.url %></td>
-          <td><%= link.link_type.name%></td>                    
+          <td><%= link.link_type.name%></td>
           <td><%= link_to link.linkable.name, link.linkable %></td>
           <td><%= link_to 'Edit', edit_link_path(link) %> | <%= link_to 'Destroy', link, :confirm => 'Are you sure?', :method => :delete %></td>
         </tr>
       <% end %>
       </table>
 <% end %>
-
-
-
-
-

@@ -1,33 +1,33 @@
-<%= content_for :column1 do%>
-  <%= render :partial => 'layouts/detail_boxes', :locals => {:item => @product}%>          
-  <%= render :partial => 'relationships'%>            
-<% end %>  
+<%= content_for :column1 do %>
+  <%= render :partial => 'layouts/detail_boxes', :locals => {:item => @product}%>
+  <%= render :partial => 'relationships'%>
+<% end %>
 
-<%= content_for :column2 do%>
+<%= content_for :column2 do %>
     <h1 class="h1_first"><%=link_to @product.name, edit_product_path(@product) %></h1>
       <%= simple_format(tag_links(@product.taggings))%>
       <%= render :partial => 'tags/tags', :locals => {:item => @product}%>
       <%= render :partial => 'relationship_forms'%>
       <%= render :partial => 'layouts/common_forms', :locals => {:item => @product}%>
-      <%= render :partial => 'notes/note', :locals => {:notes => @product.notes}%>      
+      <%= render :partial => 'notes/note', :locals => {:notes => @product.notes}%>
       <%= render :partial => 'notes/notes', :locals => {:item => @product}%>
 <% end %>
 
-<%= content_for :column3 do%>
+<%= content_for :column3 do %>
   <%= render :partial => 'layouts/details'%>
-	<h3>Add a Relationship</h3> 
-	<div class="col3_content contribute"> 
+	<h3>Add a Relationship</h3>
+	<div class="col3_content contribute">
     <a href="#" id="hide_link" onClick="$('#organization-parent-relationship-form').show();">Add an Organization</a><br>
-    <a href="#" id="hide_link" onClick="$('#organization-child-relationship-form').show();">Add an Organization User</a><br>    
+    <a href="#" id="hide_link" onClick="$('#organization-child-relationship-form').show();">Add an Organization User</a><br>
     <a href="#" id="hide_link" onClick="$('#product-child-relationship-form').show();">Add a Dependency</a><br>
-    <a href="#" id="hide_link" onClick="$('#person-parent-relationship-form').show();">Add a Person</a><br>    
+    <a href="#" id="hide_link" onClick="$('#person-parent-relationship-form').show();">Add a Person</a><br>
 	</div>	
   <% if @has_whisks || @has_crunchies -%>
 	<h3>Batter Options</h3>
 	<div class="col3_content contribute"> 	
-  	<% if @has_whisks %> 
+  	<% if @has_whisks %>
       <a href="/products/whiskme/<%=@product.id%>">Whisk Me!</a><br>
-    <%end%>
+    <% end %>
     <% if @has_crunchies -%>
       <a href="/products/crunchsync/<%=@product.id%>">Sync with Crunchbase</a>
     <% end -%>
@@ -35,6 +35,3 @@
   <% end -%>
 	
 <% end %>
-
-
-

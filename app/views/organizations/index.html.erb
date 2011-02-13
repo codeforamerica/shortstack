@@ -1,4 +1,4 @@
-<%= content_for :column2 do%>
+<%= content_for :column2 do %>
 <% if !@organizations.blank?%>
     <h1 class="h1_first">Organizations</h1>
     <%= sort_list @org_types, 'org_type_id', 'City' %>
@@ -8,7 +8,7 @@
         <td>
           <ul>
       <% @organizations[0..(@organizations.size/3 - 1)].each do |organization| %>
-            <li><%= alphabet_header(@organizations, organization)%></li>  
+            <li><%= alphabet_header(@organizations, organization)%></li>
             <li><%= link_to organization.name , organization %></li>
       <% end %>
           </ul>
@@ -16,7 +16,7 @@
         <td>
           <ul>
       <% @organizations[(@organizations.size/3)..(2*@organizations.size/3 - 1)].each do |organization| %>
-            <li><%= alphabet_header(@organizations, organization)%></li>  
+            <li><%= alphabet_header(@organizations, organization)%></li>
             <li><%= link_to organization.name , organization %></li>
       <% end %>
           </ul>
@@ -24,13 +24,13 @@
         <td>
           <ul>
       <% @organizations[(@organizations.size/3)*2..-1].each do |organization| %>
-            <li><%= alphabet_header(@organizations, organization)%></li>  
+            <li><%= alphabet_header(@organizations, organization)%></li>
             <li><%= link_to organization.name , organization %></li>
       <% end %>
           </ul>
-        </td>                  
+        </td>
       </tr>
     </table>
     <%= will_paginate @organizations %>
-<%end%>
+<% end %>
 <% end %>

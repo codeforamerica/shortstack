@@ -2,10 +2,10 @@
 <fieldset>
   <legend>Add a Whisk</legend>
   <a href="#" onClick="$('#whisk-form').hide();" id="hide">Hide Form</a>
-  <p><%= f.label :setting, "Setting:" %><%=f.text_field :setting %> </p> 
-  <p><%= f.label :whisk_type %><%= select("whisk", "whisk_type_id", WhiskType.all.collect {|p| [ p.name, p.id ] })%></p>  
+  <p><%= f.label :setting, "Setting:" %><%=f.text_field :setting %> </p>
+  <p><%= f.label :whisk_type %><%= select("whisk", "whisk_type_id", WhiskType.all.collect {|p| [ p.name, p.id ] })%></p>
   <p>
     <%= f.submit 'Create' %>
   </p>
-</fieldset>  
+</fieldset>
 <% end %>

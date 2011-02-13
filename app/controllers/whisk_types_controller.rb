@@ -1,5 +1,5 @@
 class WhiskTypesController < ApplicationController
-  before_filter :authenticate_user!  
+  before_filter :authenticate_user!
   # GET /whisk_types
   # GET /whisk_types.xml
   def index

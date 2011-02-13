@@ -1,6 +1,6 @@
 <%= render :partial => 'relationships/child_relations', :locals => {:item => @product.parents.role('funds'), :item_name=>"Funders"}%>
-<%= render :partial => 'relationships/child_relations', :locals => {:item => @product.parents.role('owns'), :item_name=>"Owned By"}%>  
-<%= render :partial => 'relationships/child_relations', :locals => {:item => @product.parents.role('services'), :item_name=>"Serviced By"}%>    
+<%= render :partial => 'relationships/child_relations', :locals => {:item => @product.parents.role('owns'), :item_name=>"Owned By"}%>
+<%= render :partial => 'relationships/child_relations', :locals => {:item => @product.parents.role('services'), :item_name=>"Serviced By"}%>
 <%= render :partial => 'relationships/child_relations', :locals => {:item => @product.parents.role('depends'), :item_name=>"Dependent On"}%>
 <%= render :partial => 'relationships/child_relations', :locals => {:item => @product.parents.role('codes'), :item_name=>"Coders"}%>
 <%= render :partial => 'relationships/parent_relations', :locals => {:item => @product.parents.role('codes'), :item_name=>"Coders"}%>

@@ -3,24 +3,23 @@
         <div id="shortstackmap" style="width: 200px; height: 200px">
         </div>
 </div>
-<%= content_for :head do %>  
+<%= content_for :head do %>
   <style>
-      #shortstackmap a { 
-	color: #444; 
-	text-decoration: none; 
-} 
+      #shortstackmap a {
+	color: #444;
+	text-decoration: none;
+}
 #shortstackmap{
-	border:1px solid #10394b; 
+	border:1px solid #10394b;
 	font-size:50%;
 	color: #10394b;
 }
   </style>
-  <script type="text/javascript" src="http://tile.cloudmade.com/wml/latest/web-maps-lite.js"></script>      
+  <script type="text/javascript" src="http://tile.cloudmade.com/wml/latest/web-maps-lite.js"></script>
         <script type="text/javascript">
             jQuery(document).ready(function() {
               <% @longlat = @organization.whisks.joins(:whisk_type).where("whisk_types.name = 'LongLat'").first.setting.split(', ') %>
-              
-              
+
                 //Get the DOM ready and load in some data
                 fabulous = {
                   "location" : [
@@ -54,10 +53,10 @@
 				//Creating and centering the map
                 var map = new CM.Map('shortstackmap', cloudmade);
                 map.setCenter(new CM.LatLng(CENTER_LATITUDE, CENTER_LONGITUDE), INITIAL_ZOOM_LEVEL);
-               
+
 				//Using default map controls for now
 				map.addControl(new CM.SmallMapControl());
-                
+
 				//Defining the marker icon
                 var markerIcon = new CM.Icon();
                 markerIcon.image = "samplemarker.png";
@@ -128,4 +127,4 @@
                 //map.addControl(new CustomMapControl());
             }
         </script>
-      <%end %>  
+      <%end %>

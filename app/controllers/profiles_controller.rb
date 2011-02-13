@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   before_filter :authenticate_user!
-  
+
   # GET /profiles
   # GET /profiles.xml
   def index
@@ -67,5 +67,5 @@ class ProfilesController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
+
 end

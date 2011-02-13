@@ -1,12 +1,9 @@
-<%= content_for :column1 do%>
-  <%= render :partial => 'layouts/detail_boxes', :locals => {:item => @organization}%>          
+<%= content_for :column1 do %>
+  <%= render :partial => 'layouts/detail_boxes', :locals => {:item => @organization}%>
   <%= render :partial => 'relationships'%>
 <% end %>
 
-<%= content_for :column2 do%>
+<%= content_for :column2 do %>
     <h1 class="h1_first">Edit <%= link_to @organization.name, @organization%></h1>
     <%= render 'form' %>
 <% end %>
-
-
-

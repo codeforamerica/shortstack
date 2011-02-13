@@ -1,15 +1,12 @@
-<% if !@products.blank?%>
+<% if !@products.blank? %>
   <h1>Products tagged with <%=@tag%></h1>
   <%= render :partial => "block_list", :locals => {:items => @products}%>
-<% end%>
-<% if !@organizations.blank?%>
+<% end %>
+<% if !@organizations.blank? %>
   <h1>Organizations tagged with <%=@tag%></h1>
   <%= render :partial => "block_list", :locals => {:items => @organizations}%>
-<% end%>
-<% if !@people.blank?%>
+<% end %>
+<% if !@people.blank? %>
   <h1>People tagged with <%=@tag%></h1>
   <%= render :partial => "block_list", :locals => {:items => @people}%>
-<% end%>
-
-
-
+<% end %>

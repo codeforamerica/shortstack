@@ -14,8 +14,8 @@ class CreateDelayedJobs < ActiveRecord::Migration
 	
     add_index :delayed_jobs, [:priority, :run_at], :name => 'delayed_jobs_priority'
   end
-  
+
   def self.down
-    drop_table :delayed_jobs  
+    drop_table :delayed_jobs
   end
 end

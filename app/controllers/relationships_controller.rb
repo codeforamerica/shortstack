@@ -1,6 +1,5 @@
 class RelationshipsController < ApplicationController
-
-  before_filter :authenticate_user!    
+  before_filter :authenticate_user!
   # GET /relationships
   # GET /relationships.xml
   def index
@@ -27,8 +26,7 @@ class RelationshipsController < ApplicationController
   def edit
     @relationship = current_user.profile
   end
-  
-  
+
   # POST /relationship
   # POST /relationship.xml
   def create
@@ -82,7 +80,4 @@ class RelationshipsController < ApplicationController
       format.xml  { head :ok }
     end
   end
-   
-  
-  
 end

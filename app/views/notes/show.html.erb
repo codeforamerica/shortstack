@@ -1,9 +1,6 @@
-<% content_for :column2 do%>
+<% content_for :column2 do %>
     <h1 class="h1_first"><%= @note.name %></h1>
       <p>
         <%= link_to @note.noteable.name, @note.noteable %>: <%= @note.note %>
       </p>
-<%end%>
-
-
-
+<% end %>

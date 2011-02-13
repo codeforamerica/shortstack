@@ -1,7 +1,7 @@
 class Address < ActiveRecord::Base
   belongs_to :addressable, :polymorphic => true
   has_many :contributions, :as => :contributable, :class_name => "Contribution", :dependent => :destroy
-  after_update :update_contribution  
+  after_update :update_contribution
   after_create :create_contribution
 
   def create_contribution
@@ -11,13 +11,12 @@ class Address < ActiveRecord::Base
   def update_contribution
     self.contributions << Contribution.new(:user =>$current_user, :action => "Update")
   end
-  
+
   def name
     "Address"
   end
-  
+
   def map_json
   end
-  
 
 end

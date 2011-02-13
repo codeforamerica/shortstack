@@ -1,28 +1,25 @@
-<%= content_for :column1 do%>
-  <%= render :partial => 'layouts/detail_boxes', :locals => {:item => @organization}%>          
-  <%= render :partial => 'addresses/map', :locals => {:item => @organization} unless @organization.whisks.joins(:whisk_type).where("whisk_types.name = 'LongLat'").blank?%>            
-  <%= render :partial => 'relationships'%>            
-<% end %>  
+<%= content_for :column1 do %>
+  <%= render :partial => 'layouts/detail_boxes', :locals => {:item => @organization}%>
+  <%= render :partial => 'addresses/map', :locals => {:item => @organization} unless @organization.whisks.joins(:whisk_type).where("whisk_types.name = 'LongLat'").blank?%>
+  <%= render :partial => 'relationships'%>
+<% end %>
 
-<%= content_for :column2 do%>
+<%= content_for :column2 do %>
     <h1 class="h1_first"><%=link_to @organization.name, edit_organization_path(@organization) %></h1>
       <%= simple_format(tag_links(@organization.taggings))%>
       <%= render :partial => 'tags/tags', :locals => {:item => @organization}%>
       <%= render :partial => 'relationship_forms'%>
       <%= render :partial => 'layouts/common_forms', :locals => {:item => @organization}%>
-      <%= render :partial => 'notes/note', :locals => {:notes => @organization.notes.about}%>      
+      <%= render :partial => 'notes/note', :locals => {:notes => @organization.notes.about}%>
       <%= render :partial => 'notes/notes', :locals => {:item => @organization}%>
 <% end %>
 
-<%= content_for :column3 do%>
+<%= content_for :column3 do %>
   <%= render :partial => 'layouts/details'%>
-	<h3>Add a Relationship</h3> 
-	<div class="col3_content contribute"> 
+	<h3>Add a Relationship</h3>
+	<div class="col3_content contribute">
     <a href="#" id="hide_link" onClick="$('#organization-parent-relationship-form').show();">Add an Organization</a><br>
     <a href="#" id="hide_link" onClick="$('#person-parent-relationship-form').show();">Add a Donor or Board Member</a><br>
-    <a href="#" id="hide_link" onClick="$('#product-child-relationship-form').show();">Add a Product</a><br>    
+    <a href="#" id="hide_link" onClick="$('#product-child-relationship-form').show();">Add a Product</a><br>
 	</div>	
 <% end %>
-
-
-

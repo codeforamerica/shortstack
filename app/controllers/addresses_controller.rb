@@ -1,5 +1,5 @@
 class AddressesController < ApplicationController
-    before_filter :authenticate_user!  
+    before_filter :authenticate_user!
   # GET /address
   # GET /address.xml
   def index
@@ -83,11 +83,11 @@ class AddressesController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
+
   private
 
   def find_addressable
-    
+
     params.each do |name, value|
       if name =~ /(.+)_id$/
         return $1.classify.constantize.find(value)
@@ -95,5 +95,5 @@ class AddressesController < ApplicationController
     end
     nil
   end
-  
+
 end

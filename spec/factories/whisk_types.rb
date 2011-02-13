@@ -2,5 +2,5 @@
 
 Factory.define :whisk_type do |f|
   f.name "MyString"
-  f.setting "MyString"  
+  f.setting "MyString"
 end

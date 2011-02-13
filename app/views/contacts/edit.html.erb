@@ -1,4 +1,4 @@
-<% content_for :column2 do%>
+<% content_for :column2 do %>
     <h1 class="h1_first">Edit contact</h1>
     <%= form_for @contact do |f| -%>
     <fieldset>
@@ -9,11 +9,9 @@
       <p><%= f.label :twitter %>: <%= f.text_field :twitter %></p>
       <p><%= f.label :facebook %>: <%= f.text_field :facebook %></p>
       <p><%= f.label :linkedin %>: <%= f.text_field :linkedin %></p>
-      <p><%= f.label :github %>: <%= f.text_field :github %></p>      
+      <p><%= f.label :github %>: <%= f.text_field :github %></p>
         <%= f.submit 'Update' %>
       </p>
-    </fieldset>  
+    </fieldset>
     <% end %>
 <% end %>
-
-

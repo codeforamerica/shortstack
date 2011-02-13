@@ -5,5 +5,5 @@ Rails.application.config.middleware.use OmniAuth::Builder do
         provider service.to_sym, setting.setting, Setting.send("#{service}_secret").first.setting
       end
     end
-  end 
+  end
 end

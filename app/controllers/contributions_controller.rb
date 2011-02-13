@@ -1,5 +1,5 @@
 class ContributionsController < ApplicationController
-  before_filter :authenticate_user!  
+  before_filter :authenticate_user!
   # GET /contributions
   # GET /contributions.xml
   def index

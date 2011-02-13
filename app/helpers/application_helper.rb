@@ -1,7 +1,7 @@
 require 'builder'
 
 module ApplicationHelper
-  
+
   def contribution_image_type(action)
     case action
     when "Create"
@@ -12,7 +12,7 @@ module ApplicationHelper
       image_tag "addition.png"
     end
   end
-  
+
   def contribution_word_type(action)
     case action
     when "Create"
@@ -23,14 +23,14 @@ module ApplicationHelper
       "added to"
     end
   end
-  
+
   def alphabet_header(items, item)
     item.name[0..0].upcase unless item.name[0..0].downcase == items[items.index(item)-1].name[0..0].downcase
   end
-  
+
   def tag_links(tags)
     tag_links = []
-    tags.each do |tag| 
+    tags.each do |tag|
       tag_links << "<a href='/tags/#{tag.tag.id}/#{tag.tag.name}'>#{tag.tag.name}</a>"
     end
     "Tags: " + tag_links.to_sentence

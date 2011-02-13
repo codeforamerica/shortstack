@@ -1,21 +1,17 @@
-<% content_for :column2 do%>
-    <h1 class="h1_first">contacts</h1>
-      <table>
-        <tr>
-                    <th>Name</th>
-                    <th>Contact Details</th>
-                    <th></th>
-        </tr>
-<% @contacts.each do |contact| %>
-        <tr>
-                    <td><%=link_to contact.contactable.name, contact.contactable %></td>
-                    <td>Phone:<%= contact.phone %><br> Email:<%= contact.email %> <br> Twitter: <%= contact.twitter %> <br> Facebook: <%= contact.facebook %> <br> LinkedIn: <%= contact.linkedin %></td>
-                    <td><%= link_to 'Edit', edit_contact_path(contact) %> | <%= link_to 'Destroy', contact, :confirm => 'Are you sure?', :method => :delete %></td>
-        </tr>
+<% content_for :column2 do %>
+  <h1 class="h1_first">contacts</h1>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Contact Details</th>
+      <th></th>
+      </tr>
+      <% @contacts.each do |contact| %>
+      <tr>
+      <td><%=link_to contact.contactable.name, contact.contactable %></td>
+      <td>Phone:<%= contact.phone %><br> Email:<%= contact.email %> <br> Twitter: <%= contact.twitter %> <br> Facebook: <%= contact.facebook %> <br> LinkedIn: <%= contact.linkedin %></td>
+      <td><%= link_to 'Edit', edit_contact_path(contact) %> | <%= link_to 'Destroy', contact, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
       <% end %>
-      </table>
+  </table>
 <% end %>
-
-
-
-

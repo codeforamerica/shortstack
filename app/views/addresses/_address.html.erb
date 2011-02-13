@@ -4,7 +4,7 @@
 <ul id="milestones">
 <% item.addresses.order("created_at DESC").each do |address|%>
 <li style="list-style: none outside none;" class="milestone_addition">
-	<%=address.address%><br><%=address.city%>, <%=address.state%> <%=address.zipcode%> <%=address.country%> 
+	<%=address.address%><br><%=address.city%>, <%=address.state%> <%=address.zipcode%> <%=address.country%>
 	<br><span id="edit_link">(<%=link_to "Edit", edit_address_path(address)%>) | (<%= link_to 'Remove', address, :confirm => 'Are you sure?', :method => :delete %>) </span><br>
 </li>
 <% end %>

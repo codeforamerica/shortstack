@@ -1,7 +1,7 @@
-<%= content_for :column2 do%>
+<%= content_for :column2 do %>
   <% if !@profiles.blank?%>
     <h1 class="h1_first">Contributors</h1>
-    Sort by: 
+    Sort by:
     <%= sort_list @sort_list, 'sort_by', 'Name' %>
     <% @profiles.each do |profile| -%>
     <div class="profile_box">
