@@ -1,5 +1,5 @@
 <% if @results -%>
-  <% if @results.hits.size -%>
+  <% if @results.hits.size > 0 -%>
     <% @results.results.each do |result| %>
       <div class="search_result">
         <span class="search_result_type"><%= result.class %>:</span>
