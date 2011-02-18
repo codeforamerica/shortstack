@@ -30,6 +30,27 @@ class Organization < ActiveRecord::Base
     text :name, :default_boost => 2
     integer :id
     time :updated_at
+
+    text :notes do
+      notes.map { |note| note.note }
+    end
+    text :note_names do
+      notes.map { |note| note.name }
+    end
+
+    text :links do
+      links.map { |link| link.link_url }
+    end
+    text :link_names do
+      links.map { |link| link.name }
+    end
+
+    text :zip_codes do
+      addresses.map { |address| address.zipcode }
+    end
+    text :addresses do
+      addresses.map { |address| "#{address.address} #{address.city}, #{address.state}" }
+    end
   end
 
   def create_contribution

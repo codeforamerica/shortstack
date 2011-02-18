@@ -28,6 +28,20 @@ class Product < ActiveRecord::Base
     text :name, :default_boost => 2
     integer :id
     time :updated_at
+
+    text :note_names do
+      notes.map { |note| note.name }
+    end
+    text :notes do
+      notes.map { |note| note.note }
+    end
+
+    text :links do
+      links.map { |link| link.link_url }
+    end
+    text :link_names do
+      links.map { |link| link.name }
+    end
   end
 
   attr_accessible :crunchbase, :name
