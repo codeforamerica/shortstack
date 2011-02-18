@@ -60,7 +60,7 @@
           $.get(this.action, $(this).serialize(), null, 'script');
         }
       },
-    timeout: 1000
+    timeout: 500
     }
 
   $.fn.searchform = sf;
