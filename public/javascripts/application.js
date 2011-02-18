@@ -22,6 +22,6 @@ jQuery(function($)
   }
 
   var quick_search_form = $('#quick_search_form');
-  if ( search_form.length > 0 )
+  if ( quick_search_form.length > 0 )
     quick_search_form.searchform(search_form_options);
 });
