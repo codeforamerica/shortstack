@@ -1,10 +1,11 @@
 class SearchController < ApplicationController
   def index
-    if params[:search].empty?
+    if params[:search].nil? || params[:search].empty?
       @results = nil
     else
       @results = Sunspot.search(Organization, Product, Person) do
         keywords params[:search]
+        paginate :per_page => (params[:limit] || 30)
       end
     end
   end

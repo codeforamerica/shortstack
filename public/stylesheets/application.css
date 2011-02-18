@@ -236,6 +236,27 @@ span.tip {
 	width: 15em;
 }
 
+#search_container
+{
+  display: inline;
+  float: left;
+}
+
+#dropdown_search_results
+{
+  background-color: #ffffff;
+  border: 1px #409DD6 solid;
+  z-index: 1000;
+  padding-bottom: 0.5em;
+}
+
+#dropdown_search_results .search_result, #dropdown_search_results p
+{
+  text-align: left;
+  margin: 0.5em 0.3em 0 0.3em;
+  width: 19.5em;
+}
+
 /*seems like as good a place as any at this point...*/
 .button
 {
@@ -1118,7 +1139,6 @@ div#search_suggest ul {
 {
 	text-align: right;
 }
-
 
 .bloggerboard .post
 {

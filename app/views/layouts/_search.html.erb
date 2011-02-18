@@ -1,6 +1,13 @@
 <div id="search">
   <%= form_tag search_path, :method => 'get', :id => 'search_form' do %>
+  <div id="search_container">
     <%= text_field_tag :search, params[:search], :id => 'search_box', :autocomplete => 'off' %>
+    <div id="dropdown_search_results" class="search_results">
+      <p>Please enter a search term.</p>
+    </div>
+  </div>
+    <%= hidden_field_tag 'target', '#dropdown_search_results' %>
+    <%= hidden_field_tag 'limit', 10 %>
     <%= submit_tag 'Search', :id => 'search_button', :class => 'button' %>
     <%= link_to 'Advanced Search', search_path, :id => 'advanced_search', :rel => 'nofollow', :title => 'Advanced Search' %>
   <% end %>
