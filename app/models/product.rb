@@ -42,6 +42,13 @@ class Product < ActiveRecord::Base
     text :link_names do
       links.map { |link| link.name }
     end
+
+    text :zip_codes do
+      addresses.map { |address| address.zipcode }
+    end
+    text :addresses do
+      addresses.map { |address| "#{address.address} #{address.city}, #{address.state}" }
+    end
   end
 
   attr_accessible :crunchbase, :name
