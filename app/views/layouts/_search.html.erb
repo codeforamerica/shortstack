@@ -6,7 +6,6 @@
       <p>Please enter a search term.</p>
     </div>
   </div>
-    <%= hidden_field_tag 'target', '#dropdown_search_results' %>
     <%= hidden_field_tag 'limit', 10 %>
     <%= submit_tag 'Search', :id => 'search_button', :class => 'button' %>
     <%= link_to 'Advanced Search', search_path, :id => 'advanced_search', :rel => 'nofollow', :title => 'Advanced Search' %>
