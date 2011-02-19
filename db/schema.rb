@@ -168,7 +168,7 @@ ActiveRecord::Schema.define(:version => 20110218234148) do
   end
 
   create_table "statistics", :force => true do |t|
-    t.integer  "value"
+    t.string   "value"
     t.integer  "statisticable_id"
     t.string   "statisticable_type"
     t.integer  "statistic_type_id"

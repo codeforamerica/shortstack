@@ -13,4 +13,8 @@ class Statistic < ActiveRecord::Base
   def update_contribution
     self.contributions << Contribution.new(:user =>$current_user, :action => "Update")
   end
+
+  def name
+    statistic_type.name
+  end
 end
