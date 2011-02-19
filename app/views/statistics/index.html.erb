@@ -1,0 +1,15 @@
+<% title "Statistics" %>
+
+<table>
+  <tr>
+    <th>Value</th>
+  </tr>
+  <% for statistic in @statistics %>
+    <tr>
+      <td><%= statistic.value %></td>
+      <td><%= link_to "Edit", statistics_path %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Statistic", statistics_path %></p>

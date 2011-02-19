@@ -1,0 +1,12 @@
+<% if !item.statistics.blank?%>
+<h2>Statistics:</h2>
+<div class="col1_content">
+<ul id="milestones">
+<% item.statistics.order("created_at DESC").each do |statistic|%>
+<li style="list-style: none outside none;" class="milestone_addition">
+<%= "#{statistic.statistic_type.name}: #{statistic.value}" %> <span id="edit_link">(<%=link_to "Edit #{statistic.statistic_type.name}", edit_statistic_path(statistic)%>) | (<%= link_to 'Remove', statistic, :confirm => 'Are you sure?', :method => :delete %>) </span><br>
+</li>
+<% end %>
+</ul>
+</div>
+<% end %>

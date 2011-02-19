@@ -1,0 +1,11 @@
+<% content_for :column2 do %>
+    <h1 class="h1_first">Edit statistic</h1>
+    <%= form_for [@statistic.statisticable, @statistic], :html => {:id =>"statistic-form" } do |f| -%>
+      <p><%= f.label :value, "Value" %><%=f.text_field :value %> </p>
+      <p><%= f.label :statistic_type %><%= select("statistic", "statistic_type_id", StatisticType.all.collect {|p| [ p.name, p.id ] })%>
+      </p>
+      <p>
+        <%= f.submit 'Update' %>
+      </p>
+    <% end %>
+<% end %>

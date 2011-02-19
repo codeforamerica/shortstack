@@ -9,7 +9,7 @@
         </tr>
 <% @links.each do |link| %>
         <tr>
-          <td><%= link_to link.name, link.url %></td>
+          <td><%= link_to link.name, link.link_url %></td>
           <td><%= link.link_type.name%></td>
           <td><%= link_to link.linkable.name, link.linkable %></td>
           <td><%= link_to 'Edit', edit_link_path(link) %> | <%= link_to 'Destroy', link, :confirm => 'Are you sure?', :method => :delete %></td>

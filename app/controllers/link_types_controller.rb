@@ -61,7 +61,7 @@ class LinkTypesController < ApplicationController
 
     respond_to do |format|
       if @link_type.update_attributes(params[:link_type])
-        format.html { redirect_to(@link_type, :notice => 'Link type was successfully updated.') }
+        format.html { redirect_to(link_types_path, :notice => 'Link type was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

@@ -8,6 +8,7 @@ class Product < ActiveRecord::Base
   has_many :links, :as => :linkable, :class_name => "Link", :dependent => :destroy
   has_many :contacts, :as => :contactable, :class_name => "Contact", :dependent => :destroy
   has_many :addresses, :as => :addressable, :class_name => "Address", :dependent => :destroy
+  has_many :statistics, :as => :statisticable, :class_name => "Statistic", :dependent => :destroy
 
   accepts_nested_attributes_for :contacts
   accepts_nested_attributes_for :links
@@ -15,6 +16,7 @@ class Product < ActiveRecord::Base
   accepts_nested_attributes_for :notes
   accepts_nested_attributes_for :parents
   accepts_nested_attributes_for :children
+  accepts_nested_attributes_for :statistics
 
   scope :alpha, order("LOWER(name) ASC")
   scope :recent, order("created_at DESC")

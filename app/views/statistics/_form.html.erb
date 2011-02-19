@@ -1,0 +1,12 @@
+<% form_for [item, Statistic.new], :html => {:id =>"statistic-form", :style => "display:none;" } do |f| -%>
+<fieldset>
+  <legend>Add a Statistic</legend>
+  <a href="#" onClick="$('#statistic-form').hide();" id="hide">Hide Form</a>
+  <p><%= f.label :value, "Value:" %><%=f.text_field :value %> </p>
+  <p><%= f.label :statistic_type %><%= select("statistic", "statistic_type_id", StatisticType.all.collect {|p| [ p.name, p.id ] })%>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+</fieldset>
+<% end %>

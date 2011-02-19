@@ -1,5 +1,9 @@
 Orgbase::Application.routes.draw do
 
+  resources :statistics
+
+  resources :statistic_types
+
   get "search/index"
 
   #details
@@ -7,6 +11,7 @@ Orgbase::Application.routes.draw do
   resources :relationships
   resources :addresses
   resources :links
+  resources :statistics
   resources :notes
   resources :whisks
   resources :managetags, :collection => {:tags => :any, :categories => :any, :rename => :any, :remove => :any, :remove_tagging => :any}
@@ -18,6 +23,7 @@ Orgbase::Application.routes.draw do
   resources :people, :organizations, :products do
     resources :notes
     resources :links
+    resources :statistics
     resources :relationships
     resources :addresses
     resources :contacts
@@ -27,6 +33,7 @@ Orgbase::Application.routes.draw do
   #types
   resources :org_types
   resources :link_types
+  resources :statistic_types
   resources :note_types
   resources :relation_types
   resources :whisk_types

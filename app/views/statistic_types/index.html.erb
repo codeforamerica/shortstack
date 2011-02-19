@@ -1,0 +1,15 @@
+<% content_for :column2 do %>
+    <h1 class="h1_first">Statistic Types</h1>
+      <table>
+        <tr>
+          <th></th>
+          <th></th>
+        </tr>
+<% @statistic_types.each do |statistic_type| %>
+        <tr>
+          <td><%= link_to statistic_type.name, edit_statistic_type_path(statistic_type) %></td>
+          <td><%= link_to 'Destroy', statistic_type, :confirm => 'Are you sure?', :method => :delete %></td>
+        </tr>
+      <% end %>
+      </table>
+<% end %>
