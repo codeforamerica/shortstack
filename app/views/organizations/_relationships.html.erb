@@ -1,5 +1,2 @@
-<%= render :partial => 'relationships/child_relations', :locals => {:item => @organization.parents.role('funds'), :item_name=>"Funders"}%>
-<%= render :partial => 'relationships/child_relations', :locals => {:item => @organization.parents.role('owns'), :item_name=>"Subsidiary of"}%>
-<%= render :partial => 'relationships/child_relations', :locals => {:item => @organization.parents.role('services'), :item_name=>"Services"}%>
-<%= render :partial => 'relationships/child_relations', :locals => {:item => @organization.children.role('works'), :item_name=>"Staff"}%>
 <%= render :partial => 'relationships/child_relations', :locals => {:item => @organization.parents.role('uses'), :item_name=>"Software"}%>
+

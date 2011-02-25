@@ -1,3 +1,34 @@
-<%= render :partial => 'relationships/add_child', :locals => {:parent => Organization, :child => @product}%>
-<%= render :partial => 'relationships/add_child', :locals => {:parent => Person, :child => @product}%>
-<%= render :partial => 'relationships/add_parent', :locals => {:parent => Product, :child => @product}%>
+
+  <%= form_for Relationship.new, :html => {:id =>"product-child-relationship-form", :style => "display: none;" } do |f| -%>
+<fieldset>
+  <legend>Add a Product Relationship</legend>
+  <a href="#" onClick="$('#product-child-relationship-form').hide();" id="hide">Hide Form</a>
+  <p>
+    <%=@product.name%> depends on <%= f.hidden_field :relation_type, :value => "depends" %>
+    <%= select("relationship", "childable_id", Product.select("name, id").order("LOWER(name)").collect {|p| [ p.name, p.id ] })%>
+    <%= f.hidden_field :parentable_type, :value => 'Product' %>
+    <%= f.hidden_field :childable_type, :value => 'Product' %>
+    <%= f.hidden_field :parentable_id, :value => @product.id %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+</fieldset>
+  <% end %>
+
+    <%= form_for Relationship.new, :html => {:id =>"organization-child-relationship-form", :style => "display: none;" } do |f| -%>
+  <fieldset>
+    <legend>Add a Product Relationship</legend>
+    <a href="#" onClick="$('#organization-child-relationship-form').hide();" id="hide">Hide Form</a>
+    <p>
+      <%=@product.name%> is used by <%= f.hidden_field :relation_type, :value => "uses" %>
+      <%= select("relationship", "parentable_id", Organization.select("name, id").order("LOWER(name)").collect {|p| [ p.name, p.id ] })%>
+      <%= f.hidden_field :parentable_type, :value => 'Organization' %>
+      <%= f.hidden_field :childable_type, :value => 'Product' %>
+      <%= f.hidden_field :childable_id, :value => @product.id %>
+    </p>
+    <p>
+      <%= f.submit 'Create' %>
+    </p>
+  </fieldset>
+    <% end %>

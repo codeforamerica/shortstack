@@ -1,3 +1,16 @@
-<%= render :partial => 'relationships/add_child', :locals => {:parent => Organization, :child => @organization}%>
-<%= render :partial => 'relationships/add_child', :locals => {:parent => Person, :child => @organization}%>
-<%= render :partial => 'relationships/add_parent', :locals => {:parent => Product, :child => @organization}%>
+  <%= form_for Relationship.new, :html => {:id =>"product-child-relationship-form", :style => "display: none;" } do |f| -%>
+<fieldset>
+  <legend>Add a Product Relationship</legend>
+  <a href="#" onClick="$('#product-child-relationship-form').hide();" id="hide">Hide Form</a>
+  <p>
+    <%=@organization.name%> uses <%= f.hidden_field :relation_type, :value => "uses" %>
+    <%= select("relationship", "childable_id", Product.select("name, id").order("LOWER(name)").collect {|p| [ p.name, p.id ] })%>
+    <%= f.hidden_field :parentable_type, :value => 'Organization' %>
+    <%= f.hidden_field :childable_type, :value => 'Product' %>
+    <%= f.hidden_field :parentable_id, :value => @organization.id %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+</fieldset>
+  <% end %>
