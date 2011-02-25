@@ -1,7 +1,6 @@
 require 'builder'
 
 module ApplicationHelper
-
   def contribution_image_type(action)
     case action
     when "Create"
@@ -54,6 +53,28 @@ module ApplicationHelper
       text
     else
       link_to text, "?#{param}=#{value}"
+    end
+  end
+
+  def tag_cloud(tags, classes)
+    tags = tags.all if tags.respond_to?(:all)
+
+    return [] if tags.empty?
+
+    if is_tag = (tags.first.class == Tag)
+      max_count = tags.sort_by { |t| t.taggings.count }.last.taggings.count.to_f
+    else
+      max_count = tags.sort_by(&:count).last.count.to_f
+    end
+
+    tags.each do |tag|
+      if is_tag
+        count = tag.taggings.count
+      else
+        count = tag.count
+      end
+      index = ((count / max_count) * (classes.size - 1)).round
+      yield tag, classes[index]
     end
   end
 end

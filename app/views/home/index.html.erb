@@ -4,8 +4,9 @@
 <% end %>
 
 <% content_for :column2 do %>	
-    <%= render 'latest_products'%>
-    <%= render 'latest_organizations'%>
-    <%= render 'latest_people'%>
-    <%= render 'latest_contributions'%>
+  <%= render :partial => 'layouts/tag_cloud', :locals => {:item => Tag.all} %>
+  <%= render 'latest_products'%>
+  <%= render 'latest_organizations'%>
+  <%= render 'latest_people'%>
+  <%= render 'latest_contributions'%>
 <% end %>

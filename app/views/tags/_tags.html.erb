@@ -9,19 +9,20 @@
   <%= f.label :tags %>: <%= f.text_field :tag_list, :class => 'tag_list' %>
 <% end %>
 
-  <div id="common_tags">
+  <div id="common_tags" class="tag_cloud">
     Common Tags:
     <p><% tag_cloud(item.class.tag_counts_on(:tags), %w(css1 css2 css3 css4)) do |tag, css_class| %>
-      <a href="#" data="<%=tag.name%>" id="tag_to_add" class="<%=css_class%>"><%=tag.name%></a>
+      <a href="" data="<%=tag.name%>" class="tag_to_add tag <%=css_class%>"><%=tag.name%></a>
     <% end %></p>
   </div>
 <script type="text/javascript">
 jQuery(function($) {
   var tag_list = $('.tag_list');
-  $("a#tag_to_add").click(function (e) {
+  $("a.tag_to_add").click(function (e) {
     htmlStr = $(this).attr('data');
-    currenttaglist = tag_list.val()
-    tag_list.val(currenttaglist + ', ' +htmlStr);        
+    currenttaglist = tag_list.val();
+    if ( currenttaglist.length > 0 )  currenttaglist += ', ';
+    tag_list.val(currenttaglist + htmlStr);        
     e.preventDefault();
   });
 });

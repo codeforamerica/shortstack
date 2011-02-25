@@ -1703,11 +1703,37 @@ ul#top_contributor_list a {
 	font-weight: bold;
 }
 
+#col1 .css1
+{
+	font-size: .7em;
+}
+
+#col1 .css2
+{
+	font-size: .8em;
+}
+
+#col1 .css3
+{
+	font-size: .9em;
+}
+
+#col1 .css4
+{
+	font-size: 1em;
+	font-weight: bold;
+}
+
 .tag
 {
 	margin-left: .4em;
 	margin-right: .4em;
 	line-height: 1.8em;
+}
+
+.tag_cloud
+{
+  text-align: center;
 }
 
 .errorExplanation
