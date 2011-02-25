@@ -1668,7 +1668,7 @@ ul#top_contributor_list a {
 	border: 1px solid #cfd577 !important;
 }
 
-#tag_input {
+#tag_input, .tag_list {
 	width: 33em;
 }
 
@@ -1682,22 +1682,22 @@ ul#top_contributor_list a {
 
 /* Tags */
 
-.tagsize1
+.tagsize1, .css1
 {
 	
 }
 
-.tagsize2
+.tagsize2, .css2
 {
 	font-size: 1.4em;
 }
 
-.tagsize3
+.tagsize3, .css3
 {
 	font-size: 1.6em;
 }
 
-.tagsize4
+.tagsize4, .css4
 {
 	font-size: 1.8em;
 	font-weight: bold;
