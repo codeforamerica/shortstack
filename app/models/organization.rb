@@ -17,7 +17,6 @@ class Organization < ActiveRecord::Base
   accepts_nested_attributes_for :notes
   accepts_nested_attributes_for :statistics
 
-  default_scope joins(:org_type)
   scope :alpha, order("name ASC")
   scope :recent, order("created_at DESC")
 
