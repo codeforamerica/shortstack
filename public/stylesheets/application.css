@@ -193,7 +193,7 @@ span.tip {
 
 #header
 {
-	background:url(../../../Downloads/Archive/images/bg.gif) repeat-x #FFF;
+	background:url(/images/bg.gif) repeat-x #FFF;
 	position: relative;
 	padding:1.2em;
 }
