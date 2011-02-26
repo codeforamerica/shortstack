@@ -1,5 +1,6 @@
 class StatisticTypesController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :authorize_user
   # GET /statistic_types
   # GET /statistic_types.xml
   def index

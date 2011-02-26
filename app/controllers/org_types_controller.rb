@@ -1,5 +1,6 @@
 class OrgTypesController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :authorize_user
   # GET /org_types
   # GET /org_types.xml
   def index
