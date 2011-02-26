@@ -14,6 +14,7 @@ gem 'acts-as-taggable-on'
 gem 'google-search'
 gem 'delayed_job'
 gem 'will_paginate', "~> 3.0.pre2"
+gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 
 
 # Use unicorn as the web server

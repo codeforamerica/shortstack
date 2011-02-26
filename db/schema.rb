@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110218234148) do
+ActiveRecord::Schema.define(:version => 20110225235431) do
 
   create_table "addresses", :force => true do |t|
     t.string    "address"
@@ -136,6 +136,19 @@ ActiveRecord::Schema.define(:version => 20110218234148) do
     t.timestamp "updated_at"
   end
 
+  create_table "rails_admin_histories", :force => true do |t|
+    t.string   "message"
+    t.string   "username"
+    t.integer  "item"
+    t.string   "table"
+    t.integer  "month",      :limit => 2
+    t.integer  "year",       :limit => 5
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_histories_on_item_and_table_and_month_and_year"
+
   create_table "relation_types", :force => true do |t|
     t.string    "name"
     t.string    "type_name"
@@ -162,18 +175,18 @@ ActiveRecord::Schema.define(:version => 20110218234148) do
   end
 
   create_table "statistic_types", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "name"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "statistics", :force => true do |t|
-    t.string   "value"
-    t.integer  "statisticable_id"
-    t.string   "statisticable_type"
-    t.integer  "statistic_type_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "value"
+    t.integer   "statisticable_id"
+    t.string    "statisticable_type"
+    t.integer   "statistic_type_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "taggings", :force => true do |t|
@@ -194,9 +207,9 @@ ActiveRecord::Schema.define(:version => 20110218234148) do
   end
 
   create_table "users", :force => true do |t|
-    t.string    "email",                               :default => "", :null => false
-    t.string    "encrypted_password",   :limit => 128, :default => "", :null => false
-    t.string    "password_salt",                       :default => "", :null => false
+    t.string    "email",                               :default => "",    :null => false
+    t.string    "encrypted_password",   :limit => 128, :default => "",    :null => false
+    t.string    "password_salt",                       :default => "",    :null => false
     t.string    "reset_password_token"
     t.string    "remember_token"
     t.timestamp "remember_created_at"
@@ -207,6 +220,7 @@ ActiveRecord::Schema.define(:version => 20110218234148) do
     t.string    "last_sign_in_ip"
     t.timestamp "created_at"
     t.timestamp "updated_at"
+    t.boolean   "admin",                               :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
