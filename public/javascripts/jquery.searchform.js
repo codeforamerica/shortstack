@@ -176,7 +176,14 @@
       },
       10: function()
       {
-        window.location = child.highlighted.find('a:first').attr('href');
+        if ( child.highlighted.length > 0 )
+        {
+          window.location = child.highlighted.find('a:first').attr('href');
+        }
+        else
+        {
+          this.form.submit();
+        }
       },
       13: function() { child.keys[10].apply(null, arguments); }
     }
