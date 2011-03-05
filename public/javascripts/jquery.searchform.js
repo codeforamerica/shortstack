@@ -84,6 +84,11 @@
         settings._dropdown = $(settings.dropdown_div);
         settings._dropdown.hide().addClass('dropdown_dropdown');
 
+        if ( settings.childSelector )
+        {
+          bindChild.call(this, settings);
+        }
+
         $this.data('dropdown', settings);
 
         $this.bind('focus.dropdown', function(event)
@@ -111,12 +116,12 @@
     'show': function()
     {
       var settings = this.data('dropdown');
-      settings.show();
+      settings._dropdown.show();
     },
     'hide': function()
     {
       var settings = this.data('dropdown');
-      settings.hide();
+      settings._dropdown.hide();
     },
   }
 
@@ -130,7 +135,70 @@
       $.error("Dropdown: I don't know what you mean by ( " + method + ")");
   }
 
+  var bindChild = function(settings)
+  {
+    var $this = $(this),
+        child = {};
+
+    $this.bind('keydown.dropdown.dropdown_child', function(event)
+    {
+      if ( settings._dropdown.find(settings.childSelector).length > 0 && child.keys.hasOwnProperty(event.keyCode) )
+      {
+        child.keys[event.keyCode]();
+        event.preventDefault();
+      }
+    });
+
+    child.keys = {
+      // up
+      38: function()
+      {
+        if ( child.highlighted.length == 1 && child.highlighted.prev(settings.childSelector).length == 1)
+        {
+          child.highlight(child.highlighted.prev(settings.childSelector));
+        }
+        else
+        {
+          child.unhighlight();
+        }
+      },
+      // down
+      40: function()
+      {
+        if ( child.highlighted.length == 1 && child.highlighted.next(settings.childSelector).length == 1)
+        {
+          child.highlight(child.highlighted.next(settings.childSelector));
+        }
+        else
+        {
+          child.highlight(settings._dropdown.find(settings.childSelector + ':first'));
+        }
+      },
+      10: function()
+      {
+        window.location = child.highlighted.find('a:first').attr('href');
+      },
+      13: function() { child.keys[10].apply(null, arguments); }
+    }
+
+    child.highlighted = $();
+    child.highlight = function(which)
+    {
+      which.addClass('dropdown_highlighted').siblings().removeClass('dropdown_highlighted');
+
+      child.highlighted = which;
+    }
+
+    child.unhighlight = function()
+    {
+      settings._dropdown.find(settings.childSelector).removeClass('dropdown_highlighted');
+    }
+    
+    settings._child = child;
+  }
+
   dropdown.options = {
+    childSelector: false
     }
 
   $.fn.dropdown = dropdown;

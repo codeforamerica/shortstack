@@ -77,4 +77,21 @@ module ApplicationHelper
       yield tag, classes[index]
     end
   end
+
+  def highlight_search_hit(hit)
+    hit.highlights.map do |hl|
+      hl.format do |word|
+        "<strong>#{word}</strong>"
+      end
+    end.join(' &hellip; ').html_safe
+  end
+
+  def format_result_name(result)
+    case result.class.to_s
+    when 'Organization'
+      result.org_type.name
+    else
+      result.class.to_s
+    end
+  end
 end

@@ -34,7 +34,7 @@ class Product < ActiveRecord::Base
     text :note_names do
       notes.map { |note| note.name }
     end
-    text :notes do
+    text :notes, :stored => true do
       notes.map { |note| note.note }
     end
 

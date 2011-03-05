@@ -253,8 +253,22 @@ span.tip {
 #dropdown_search_results .search_result, #dropdown_search_results p
 {
   text-align: left;
-  margin: 0.5em 0.3em 0 0.3em;
+  padding: 0.3em 0.3em 0.2em 0.3em;
+  margin: 0;
   width: 19.5em;
+}
+
+.dropdown_highlighted {
+	background-color: #409DD6;
+}
+
+.dropdown_highlighted:hover
+{
+	background-color: #165d91;
+}
+
+.dropdown_highlighted a {
+  color: #ffffff;
 }
 
 /*seems like as good a place as any at this point...*/

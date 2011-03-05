@@ -1,9 +1,10 @@
 <% if @results -%>
-  <% if @results.hits.size > 0 -%>
-    <% @results.results.each do |result| %>
+  <% if @results.hits.size -%>
+    <% @results.each_hit_with_result do |hit, result| %>
       <div class="search_result">
-        <span class="search_result_type"><%= result.org_type.name %>:</span>
+        <span class="search_result_type"><%= format_result_name(result) %>:</span>
         <span class="search_result_link"><%= link_to result.name, result %></span>
+        <span class="search_results_hit"><%= highlight_search_hit(hit) %></span>
       </div>
     <% end %>
   <% else %>
