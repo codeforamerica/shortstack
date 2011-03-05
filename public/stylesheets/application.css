@@ -240,6 +240,7 @@ span.tip {
 {
   display: inline;
   float: left;
+  padding-right: 0.5em;
 }
 
 #dropdown_search_results
@@ -303,7 +304,7 @@ span.tip {
 {
 	position: absolute;
 	top: 0.8em;
-	right: 37.5em;
+	right: 38em;
 	font-weight: bold;
 	text-align:right;
 }

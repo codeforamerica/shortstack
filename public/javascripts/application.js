@@ -13,7 +13,10 @@ jQuery(function($)
       return function()
       {
         form_fields = $(this).serialize();
-        form_fields += '&quicksearch=true';
+        if ( $(this).hasClass('quicksearch') )
+        {
+          form_fields += '&quicksearch=true';
+        }
         $.get(this.action, form_fields, null, 'script');
       }
     }

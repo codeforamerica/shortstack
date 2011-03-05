@@ -1,5 +1,5 @@
 <div id="search">
-  <%= form_tag search_path, :method => 'get', :id => 'search_form' do %>
+  <%= form_tag search_path, :method => 'get', :id => 'search_form', :class => 'quicksearch' do %>
   <div id="search_container">
     <%= text_field_tag :search, params[:search], :id => 'search_box', :autocomplete => 'off' %>
     <div id="dropdown_search_results" class="search_results">
