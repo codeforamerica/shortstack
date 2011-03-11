@@ -1,4 +1,4 @@
-<% form_for [item, Link.new], :html => {:id =>"link-form", :style => "display:none;" } do |f| -%>
+<%= form_for [item, Link.new], :html => {:id =>"link-form", :style => "display:none;" } do |f| -%>
 <fieldset>
   <legend>Add a Link</legend>
   <a href="#" onClick="$('#link-form').hide();" id="hide">Hide Form</a>
