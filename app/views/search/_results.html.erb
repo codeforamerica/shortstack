@@ -4,7 +4,7 @@
       <div class="search_result">
         <span class="search_result_type"><%= format_result_name(result) %>:</span>
         <span class="search_result_link"><%= link_to result.name, result %></span>
-        <% if params[:quicksearch].nil? -%>
+        <% if params[:quicksearch].nil? or params[:show_hits] -%>
         <span class="search_results_hit"><%= highlight_search_hit(hit) %></span>
         <% end -%>
       </div>

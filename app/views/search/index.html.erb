@@ -5,6 +5,7 @@
     <%= form_tag search_path, :method => 'get', :id => 'quick_search_form' do %>
       <%= label_tag 'quick_search_input', 'Search' %>
       <%= text_field_tag :search, params[:search], :id => 'quick_search_input' %>
+      <%= hidden_field_tag :show_hits, true %>
     <% end %>
   </div>
 
