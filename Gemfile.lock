@@ -61,7 +61,7 @@ GEM
     faraday (0.5.6)
       addressable (~> 2.2.4)
       multipart-post (~> 1.1.0)
-      rack (>= 1.1.0, < 2)
+      rack (< 2, >= 1.1.0)
     google-search (1.0.2)
       json
     i18n (0.5.0)
@@ -117,7 +117,7 @@ GEM
     polyglot (0.3.1)
     pr_geohash (1.0.0)
     pyu-ruby-sasl (0.0.3.2)
-    rack (1.2.1)
+    rack (1.2.2)
     rack-mount (0.6.13)
       rack (>= 1.0.0)
     rack-openid (1.2.0)
