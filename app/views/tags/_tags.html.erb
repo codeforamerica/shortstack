@@ -5,9 +5,9 @@
 		<a href="#" id="createTag" onClick="$('fieldset#tags').hide();">Hide Form</a>
 	</div>
 
-<%= form_for item do |f| %>
-  <%= f.label :tags %>: <%= f.text_field :tag_list, :class => 'tag_list' %>
-<% end %>
+  <%= form_for item do |f| %>
+    <%= f.label :tag_list, 'Tags' %>: <%= f.text_field :tag_list, :class => 'tag_list' %>
+  <% end %>
 
   <div id="common_tags" class="tag_cloud">
     Common Tags:
@@ -22,7 +22,7 @@ jQuery(function($) {
     htmlStr = $(this).attr('data');
     currenttaglist = tag_list.val();
     if ( currenttaglist.length > 0 )  currenttaglist += ', ';
-    tag_list.val(currenttaglist + htmlStr);        
+    tag_list.focus().val(currenttaglist + htmlStr);        
     e.preventDefault();
   });
 });

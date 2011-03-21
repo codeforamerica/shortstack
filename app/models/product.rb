@@ -53,7 +53,7 @@ class Product < ActiveRecord::Base
     end
   end
 
-  attr_accessible :crunchbase, :name
+  attr_accessible :crunchbase, :name, :tag_list
 
   validates_presence_of :name
   validates_presence_of :crunchbase, :on => :create
