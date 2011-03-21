@@ -56,7 +56,6 @@ class Product < ActiveRecord::Base
   attr_accessible :crunchbase, :name, :tag_list
 
   validates_presence_of :name
-  validates_presence_of :crunchbase, :on => :create
 
   def create_contribution
     self.contributions << Contribution.new(:user =>$current_user, :action => "Create")

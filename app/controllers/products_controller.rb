@@ -48,7 +48,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
-        if params[:product][:crunchbase]
+        if not params[:product][:crunchbase].empty?
           @product.crunch_sync
           flash[:notice] = 'Product syncing with Crunchbase.'
         end
