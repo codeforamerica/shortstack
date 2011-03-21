@@ -93,10 +93,12 @@ class Product < ActiveRecord::Base
   end
 
   def crunchbase=(url)
-    if crunchbase
-      crunchbase.link_url = url
-    else
-      @crunchbase = links.build(:link_type => crunch_lt, :name => 'Crunchbase', :link_url => url)
+    if ! url.empty?
+      if crunchbase
+        crunchbase.link_url = url
+      else
+        @crunchbase = links.build(:link_type => crunch_lt, :name => 'Crunchbase', :link_url => url)
+      end
     end
   end
 
