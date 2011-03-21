@@ -7,6 +7,7 @@
 
   <%= form_for item do |f| %>
     <%= f.label :tag_list, 'Tags' %>: <%= f.text_field :tag_list, :class => 'tag_list' %>
+    <%= f.submit 'Add Tags' %>
   <% end %>
 
   <div id="common_tags" class="tag_cloud">
