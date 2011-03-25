@@ -1,0 +1,24 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+@import "compass/css3";
+@import "layout";
+
+body{}
+#header{}
+#session{}
+#logo{ width: 18em; }
+#top_strip{ width: 1000px; }
+#strip{}
+#strip_right{}
+
+
+.column{float: left;}
+#col1{ width: $side_column_width; @extend .column; }
+#col2{ width: $main_width * .50; @extend .column;
+  #col2_internal{ }
+}
+#col3{ width: $side_column_width; @extend .column; }

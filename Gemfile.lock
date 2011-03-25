@@ -35,6 +35,8 @@ GEM
     awesome_print (0.3.2)
     bcrypt-ruby (2.1.4)
     builder (2.1.2)
+    compass (0.10.6)
+      haml (>= 3.0.4)
     daemons (1.1.0)
     delayed_job (2.1.4)
       activesupport (~> 3.0)
@@ -56,6 +58,7 @@ GEM
       rack (>= 1.1.0, < 2)
     google-search (1.0.2)
       json
+    haml (3.0.25)
     i18n (0.5.0)
     jquery-rails (0.2.7)
       rails (~> 3.0)
@@ -177,6 +180,7 @@ DEPENDENCIES
   ZenTest
   acts-as-taggable-on
   awesome_print
+  compass
   delayed_job
   devise
   factory_girl_rails

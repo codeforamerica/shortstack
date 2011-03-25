@@ -14,7 +14,7 @@ gem 'acts-as-taggable-on'
 gem 'google-search'
 gem 'delayed_job'
 gem 'will_paginate', "~> 3.0.pre2"
-
+gem 'compass'
 
 # Use unicorn as the web server
 # gem 'unicorn'

@@ -2,11 +2,13 @@
 <html>
 	<head>
     <title><%= content_for?(:title) ? yield(:title) : "Short Stack" %></title>
+    <%= stylesheet_link_tag 'compiled/screen.css', :media => 'screen, projection' %>
+    <%= stylesheet_link_tag 'compiled/print.css', :media => 'print'%>
+    
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<!--removes image toolbar in ie6 when hovering over an image-->
 		<meta content="OrgBase is the free database of technology organizations, caompanies, people, and foundations." name="description" />
     <%= csrf_meta_tag %>
-    <%= stylesheet_link_tag "application" %>
     <%= javascript_include_tag :all %>
 
 
