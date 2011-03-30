@@ -193,7 +193,7 @@ span.tip {
 
 #header
 {
-	background:url(../../../Downloads/Archive/images/bg.gif) repeat-x #FFF;
+	background:url(/images/bg.gif) repeat-x #FFF;
 	position: relative;
 	padding:1.2em;
 }
@@ -240,6 +240,7 @@ span.tip {
 {
   display: inline;
   float: left;
+  padding-right: 0.5em;
 }
 
 #dropdown_search_results
@@ -253,8 +254,22 @@ span.tip {
 #dropdown_search_results .search_result, #dropdown_search_results p
 {
   text-align: left;
-  margin: 0.5em 0.3em 0 0.3em;
+  padding: 0.3em 0.3em 0.2em 0.3em;
+  margin: 0;
   width: 19.5em;
+}
+
+.dropdown_highlighted {
+	background-color: #409DD6;
+}
+
+.dropdown_highlighted:hover
+{
+	background-color: #165d91;
+}
+
+.dropdown_highlighted a {
+  color: #ffffff;
 }
 
 /*seems like as good a place as any at this point...*/
@@ -289,7 +304,7 @@ span.tip {
 {
 	position: absolute;
 	top: 0.8em;
-	right: 37.5em;
+	right: 38em;
 	font-weight: bold;
 	text-align:right;
 }
@@ -1668,7 +1683,7 @@ ul#top_contributor_list a {
 	border: 1px solid #cfd577 !important;
 }
 
-#tag_input {
+#tag_input, .tag_list {
 	width: 33em;
 }
 
@@ -1682,24 +1697,45 @@ ul#top_contributor_list a {
 
 /* Tags */
 
-.tagsize1
+.tagsize1, .css1
 {
 	
 }
 
-.tagsize2
+.tagsize2, .css2
 {
 	font-size: 1.4em;
 }
 
-.tagsize3
+.tagsize3, .css3
 {
 	font-size: 1.6em;
 }
 
-.tagsize4
+.tagsize4, .css4
 {
 	font-size: 1.8em;
+	font-weight: bold;
+}
+
+#col1 .css1
+{
+	font-size: .7em;
+}
+
+#col1 .css2
+{
+	font-size: .8em;
+}
+
+#col1 .css3
+{
+	font-size: .9em;
+}
+
+#col1 .css4
+{
+	font-size: 1em;
 	font-weight: bold;
 }
 
@@ -1708,6 +1744,11 @@ ul#top_contributor_list a {
 	margin-left: .4em;
 	margin-right: .4em;
 	line-height: 1.8em;
+}
+
+.tag_cloud
+{
+  text-align: center;
 }
 
 .errorExplanation

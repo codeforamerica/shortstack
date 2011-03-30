@@ -1,12 +1,17 @@
-<% if !@products.blank? %>
-  <h1>Products tagged with <%=@tag%></h1>
-  <%= render :partial => "block_list", :locals => {:items => @products}%>
+<%= content_for :column1 do %>
+  <%= render :partial => 'layouts/tag_cloud', :locals => {:item => Tag.all} %>
 <% end %>
-<% if !@organizations.blank? %>
-  <h1>Organizations tagged with <%=@tag%></h1>
-  <%= render :partial => "block_list", :locals => {:items => @organizations}%>
-<% end %>
-<% if !@people.blank? %>
-  <h1>People tagged with <%=@tag%></h1>
-  <%= render :partial => "block_list", :locals => {:items => @people}%>
+<%= content_for :column2 do %>
+  <% if !@products.blank? %>
+    <h1>Products tagged with <%=@tag%></h1>
+    <%= render :partial => "block_list", :locals => {:items => @products}%>
+  <% end %>
+  <% if !@organizations.blank? %>
+    <h1>Organizations tagged with <%=@tag%></h1>
+    <%= render :partial => "block_list", :locals => {:items => @organizations}%>
+  <% end %>
+  <% if !@people.blank? %>
+    <h1>People tagged with <%=@tag%></h1>
+    <%= render :partial => "block_list", :locals => {:items => @people}%>
+  <% end %>
 <% end %>

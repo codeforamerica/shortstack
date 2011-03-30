@@ -7,6 +7,18 @@ jQuery(function($)
     meanwhile: function()
     {
       $('.search_results').html('<p>Searching...</p>');
+    },
+    buildSearch: function()
+    {
+      return function()
+      {
+        form_fields = $(this).serialize();
+        if ( $(this).hasClass('quicksearch') )
+        {
+          form_fields += '&quicksearch=true';
+        }
+        $.get(this.action, form_fields, null, 'script');
+      }
     }
   }
 
@@ -17,7 +29,8 @@ jQuery(function($)
       .searchform(search_form_options)
       .find('#search_box').dropdown({
         container_div: '#search_container',
-        dropdown_div: '#dropdown_search_results'
+        dropdown_div: '#dropdown_search_results',
+        childSelector: 'div.search_result'
         });
   }
 

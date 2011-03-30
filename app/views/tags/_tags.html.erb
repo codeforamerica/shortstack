@@ -2,17 +2,31 @@
 <fieldset id="tags" style="display:none;">
 	<legend>Tags:</legend>
 	<div id="actions">
-		<a href="#" id="createTag" onClick="$('ul#tags').append('<li><input type=\'text\' value=\'\' name=\'<%=item.class.name.downcase%>[tag_list][]\' id=\'new_tag\'/></li>');">Add New</a> | <a href="#" id="createTag" onClick="$('fieldset#tags').hide();">Hide Form</a>
+		<a href="#" id="createTag" onClick="$('fieldset#tags').hide();">Hide Form</a>
 	</div>
-<% form_for item do |f| %>	
-<ul id="tags" class="lists">
-	  <% taggings = item.taggings.collect{|x| x.tag.name}%>
-    <% Tag.select("LOWER(name) AS name").order("name").each do |tag| -%>
-  <li><%= check_box_tag :tag_list, tag.name, taggings.include?(tag.name), :name => "#{item.class.name.downcase}[tag_list][]" -%>
-    <%= label_tag :tag_list, tag.name -%></li>
-      <% end %>
-</ul>
-<%= f.submit "Submit" %>
-<% end %>
+
+  <%= form_for item do |f| %>
+    <%= f.label :tag_list, 'Tags' %>: <%= f.text_field :tag_list, :class => 'tag_list' %>
+    <%= f.submit 'Add Tags' %>
+  <% end %>
+
+  <div id="common_tags" class="tag_cloud">
+    Common Tags:
+    <p><% tag_cloud(item.class.tag_counts_on(:tags), %w(css1 css2 css3 css4)) do |tag, css_class| %>
+      <a href="" data="<%=tag.name%>" class="tag_to_add tag <%=css_class%>"><%=tag.name%></a>
+    <% end %></p>
+  </div>
+<script type="text/javascript">
+jQuery(function($) {
+  var tag_list = $('.tag_list');
+  $("a.tag_to_add").click(function (e) {
+    htmlStr = $(this).attr('data');
+    currenttaglist = tag_list.val();
+    if ( currenttaglist.length > 0 )  currenttaglist += ', ';
+    tag_list.focus().val(currenttaglist + htmlStr);        
+    e.preventDefault();
+  });
+});
+</script>
 
 </fieldset>

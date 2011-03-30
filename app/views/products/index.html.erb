@@ -1,3 +1,6 @@
+<%= content_for :column1 do %>
+  <%= render :partial => 'layouts/tag_cloud', :locals => {:item => Product.tag_counts_on(:tags)} %>
+<% end %>
 <%= content_for :column2 do %>
 <% if !@products.blank?%>
     <h1 class="h1_first">Products</h1>

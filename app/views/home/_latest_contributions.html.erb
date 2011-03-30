@@ -6,7 +6,7 @@
     	<%= contribution_image_type(contribution.action)%>
     	
     </div>	
-    	<div class="milestone_text"><strong><%= link_to contribution.contributable.name, contribution.contributable%></strong> <%= contribution_word_type(contribution.action)%> CfABase</div>
+    	<div class="milestone_text"><strong><%= link_to contribution.contributable.name, contribution.contributable%></strong> <%= contribution_word_type(contribution.action)%> <%= contribution.contributable.class.to_s.humanize.pluralize %></div>
     	<div class="meta_milestone">Posted: <%= contribution.created_at("%m/%d/%y at %I:%M:%S %p") %> by <%= link_to contribution.user.profile.name, contribution.user.profile%></div>
     </li>
     <% end %>

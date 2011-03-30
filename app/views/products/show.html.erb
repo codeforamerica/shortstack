@@ -4,13 +4,13 @@
 <% end %>
 
 <%= content_for :column2 do %>
-    <h1 class="h1_first"><%=link_to @product.name, edit_product_path(@product) %></h1>
-      <%= simple_format(tag_links(@product.taggings))%>
-      <%= render :partial => 'tags/tags', :locals => {:item => @product}%>
-      <%= render :partial => 'relationship_forms'%>
-      <%= render :partial => 'layouts/common_forms', :locals => {:item => @product}%>
-      <%= render :partial => 'notes/note', :locals => {:notes => @product.notes}%>
-      <%= render :partial => 'notes/notes', :locals => {:item => @product}%>
+  <h1 class="h1_first"><%=link_to @product.name, edit_product_path(@product) %></h1>
+  <%= simple_format(tag_links(@product.taggings))%>
+  <%= render :partial => 'tags/tags', :locals => {:item => @product}%>
+  <%= render :partial => 'relationship_forms'%>
+  <%= render :partial => 'layouts/common_forms', :locals => {:item => @product}%>
+  <%= render :partial => 'notes/note', :locals => {:notes => @product.notes}%>
+  <%= render :partial => 'notes/notes', :locals => {:item => @product}%>
 <% end %>
 
 <%= content_for :column3 do %>

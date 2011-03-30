@@ -34,7 +34,7 @@ class Product < ActiveRecord::Base
     text :note_names do
       notes.map { |note| note.name }
     end
-    text :notes do
+    text :notes, :stored => true do
       notes.map { |note| note.note }
     end
 
@@ -53,10 +53,9 @@ class Product < ActiveRecord::Base
     end
   end
 
-  attr_accessible :crunchbase, :name
+  attr_accessible :crunchbase, :name, :tag_list
 
   validates_presence_of :name
-  validates_presence_of :crunchbase, :on => :create
 
   def create_contribution
     self.contributions << Contribution.new(:user =>$current_user, :action => "Create")
@@ -94,10 +93,12 @@ class Product < ActiveRecord::Base
   end
 
   def crunchbase=(url)
-    if crunchbase
-      crunchbase.link_url = url
-    else
-      @crunchbase = links.build(:link_type => crunch_lt, :name => 'Crunchbase', :link_url => url)
+    if ! url.empty?
+      if crunchbase
+        crunchbase.link_url = url
+      else
+        @crunchbase = links.build(:link_type => crunch_lt, :name => 'Crunchbase', :link_url => url)
+      end
     end
   end
 

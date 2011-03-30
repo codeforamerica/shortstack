@@ -45,7 +45,7 @@
     <div id="col3">
       <%= render :partial => 'layouts/actions'%>
       <%= yield :column3%>
-      <%= render :partial => 'layouts/types'%>
+      <%= render :partial => 'layouts/types' if current_user.try(:admin?) %>
     </div>	
   </body>
 </html>

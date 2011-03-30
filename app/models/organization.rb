@@ -33,7 +33,7 @@ class Organization < ActiveRecord::Base
     integer :id
     time :updated_at
 
-    text :notes do
+    text :notes, :stored => true do
       notes.map { |note| note.note }
     end
     text :note_names do

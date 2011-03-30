@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '~> 3.0.4'
+gem 'rails', '~> 3.0.5'
 gem 'sqlite3'
 gem 'devise'
 gem 'nifty-generators'
@@ -15,6 +15,7 @@ gem 'google-search'
 gem 'delayed_job'
 gem 'will_paginate', "~> 3.0.pre2"
 gem 'compass'
+gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 
 # Use unicorn as the web server
 # gem 'unicorn'

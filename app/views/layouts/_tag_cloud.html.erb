@@ -1,0 +1,8 @@
+<h2>Tags:</h2>
+<div class="col1_content">
+  <p class="tag_cloud">
+  <% tag_cloud(item, %w(css1 css2 css3 css4)) do |tag, css_class| %>
+    <%= link_to tag.name, "/tags/#{tag.id}/#{tag.name}/", :class => "tag #{css_class}" %>
+  <% end %>
+  </p>
+</div>

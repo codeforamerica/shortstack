@@ -1,12 +1,12 @@
 <%= content_for :column2 do %>
 
     <h1 class="h1_first">People</h1>
-<% if !@people.blank?%>
+<% if !@people.blank? %>
     <table class= "col2_table_listing">
       <tr>
         <td>
           <ul>
-      <% @people[0..(@people.size/3)].each do |person| %>
+      <% @people[0..(@people.size/3 - 1)].each do |person| %>
             <li><%= alphabet_header(@people, person)%></li>
             <li><%= link_to person.name , person %></li>
       <% end %>
@@ -14,7 +14,7 @@
         </td>
         <td>
           <ul>
-      <% @people[(@people.size/3)+1..(2*@people.size/3)].each do |person| %>
+      <% @people[(@people.size/3)..(2*@people.size/3 - 1)].each do |person| %>
             <li><%= alphabet_header(@people, person)%></li>
             <li><%= link_to person.name , person %></li>
       <% end %>
@@ -22,7 +22,7 @@
         </td>
         <td>
           <ul>
-      <% @people[(@people.size/3)*2+1..(@people.size)].each do |person| %>
+      <% @people[(@people.size/3)*2+1..-1].each do |person| %>
             <li><%= alphabet_header(@people, person)%></li>
             <li><%= link_to person.name , person %></li>
       <% end %>
@@ -30,5 +30,6 @@
         </td>
       </tr>
     </table>
+    <%= will_paginate @people %>
     <% end %>
 <% end %>

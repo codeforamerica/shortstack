@@ -3,7 +3,7 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.xml
   def index
-    @people = Person.alpha
+    @people = Person.alpha.paginate(:per_page => 99, :page => params[:page])
 
     respond_to do |format|
       format.html # index.html.erb

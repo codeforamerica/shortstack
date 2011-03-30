@@ -4,7 +4,9 @@ class SearchController < ApplicationController
       @results = nil
     else
       @results = Sunspot.search(Organization, Product) do
-        keywords params[:search]
+        keywords params[:search] do
+          highlight :notes
+        end
         paginate :per_page => (params[:limit] || 30)
       end
     end

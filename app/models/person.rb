@@ -8,6 +8,7 @@ class Person < ActiveRecord::Base
   has_many :contacts, :as => :contactable, :class_name => "Contact", :dependent => :destroy
   has_many :parents, :as => :parentable, :class_name => "Relationship", :dependent => :destroy
   has_many :children, :as => :childable, :class_name => "Relationship", :dependent => :destroy
+  has_many :statistics, :as => :statisticable, :class_name => "Statistic", :dependent => :destroy
 
   accepts_nested_attributes_for :contacts
   accepts_nested_attributes_for :addresses
@@ -15,6 +16,7 @@ class Person < ActiveRecord::Base
   accepts_nested_attributes_for :notes
   accepts_nested_attributes_for :parents
   accepts_nested_attributes_for :children
+  accepts_nested_attributes_for :statistics
 
   scope :alpha, order("name ASC")
   scope :recent, order("created_at DESC")
@@ -25,11 +27,11 @@ class Person < ActiveRecord::Base
   acts_as_taggable
 
   def create_contribution
-    self.contributions << Contribution.new(:user =>$current_user, :action => "Create")
+    self.contributions << Contribution.new(:user => $current_user, :action => "Create")
   end
 
   def update_contribution
-    self.contributions << Contribution.new(:user =>$current_user, :action => "Update")
+    self.contributions << Contribution.new(:user => $current_user, :action => "Update")
   end
 
 end
