@@ -45,9 +45,7 @@ class WhiskBatter
   def get_all_subdomains
     #grab all the current subdomains, do a search in google
     subdomains = @item.subdomains.map {|x| "-" + x.name}.join(" ")
-    puts subdomains
     f = get_sub_domains(subdomains)
-    puts f  
     #add another delayed job, unless it returns nil.
     WhiskBatter.new(@item).send_later(:get_all_subdomains, f) unless f.nil?  
   end
@@ -74,7 +72,6 @@ class WhiskBatter
     end
     end
     if subdomains and subdomains != [""]
-      puts "these are it: #{subdomains}"
     #add them to the subdomains list if they don't already exist
     #add them to the city if they don't already exist
       subdomains.each do |subdomain|
@@ -102,7 +99,6 @@ class WhiskBatter
   #Searches the item's main website to find the query, returns an estimated count
   def google_search(query, sitelink)
     s = Google::Search::Web.new
-    puts "#{query}" + " site:#{sitelink}"
     s.query = "#{query}" + " site:#{sitelink}"
     s.get_response
   end
