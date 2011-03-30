@@ -13,5 +13,13 @@ class Link < ActiveRecord::Base
   def update_contribution
     self.contributions << Contribution.new(:user =>$current_user, :action => "Update")
   end
+  
+  def check_for_redirect
+    response = nil
+    response = Net::HTTP.start(link_url.gsub("http://", "").gsub("/", ""), 80).head('/')
+    if !response.nil? and response.code == "302" 
+      self.update_attributes(:link_url => response["location"])
+    end
+  end
 
 end
