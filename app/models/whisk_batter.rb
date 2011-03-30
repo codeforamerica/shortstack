@@ -47,7 +47,7 @@ class WhiskBatter
     subdomains = @item.subdomains.map {|x| "-" + x.name}.join(" ")
     f = get_sub_domains(subdomains)
     #add another delayed job, unless it returns nil.
-    WhiskBatter.new(@item).send_later(:get_all_subdomains, f) unless f.nil?  
+    WhiskBatter.new(@item).send_later(:get_all_subdomains) unless f.nil?  
   end
 
 
