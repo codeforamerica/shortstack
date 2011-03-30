@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110225235431) do
+ActiveRecord::Schema.define(:version => 20110330191055) do
 
   create_table "addresses", :force => true do |t|
     t.string    "address"
@@ -110,6 +110,16 @@ ActiveRecord::Schema.define(:version => 20110225235431) do
     t.timestamp "updated_at"
   end
 
+  create_table "organization_subdomains", :force => true do |t|
+    t.integer  "organization_id"
+    t.integer  "subdomain_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "organization_subdomains", ["organization_id"], :name => "index_organization_subdomains_on_organization_id"
+  add_index "organization_subdomains", ["subdomain_id"], :name => "index_organization_subdomains_on_subdomain_id"
+
   create_table "organizations", :force => true do |t|
     t.string    "name"
     t.integer   "org_type_id"
@@ -175,18 +185,24 @@ ActiveRecord::Schema.define(:version => 20110225235431) do
   end
 
   create_table "statistic_types", :force => true do |t|
-    t.string    "name"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "statistics", :force => true do |t|
-    t.string    "value"
-    t.integer   "statisticable_id"
-    t.string    "statisticable_type"
-    t.integer   "statistic_type_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.string   "value"
+    t.integer  "statisticable_id"
+    t.string   "statisticable_type"
+    t.integer  "statistic_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "subdomains", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "taggings", :force => true do |t|

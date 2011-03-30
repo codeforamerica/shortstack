@@ -15,7 +15,7 @@ gem 'google-search'
 gem 'delayed_job'
 gem 'will_paginate', "~> 3.0.pre2"
 gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
-
+gem 'domainatrix'
 
 # Use unicorn as the web server
 # gem 'unicorn'

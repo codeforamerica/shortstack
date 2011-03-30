@@ -52,6 +52,8 @@ GEM
       orm_adapter (~> 0.0.3)
       warden (~> 1.0.3)
     diff-lcs (1.1.2)
+    domainatrix (0.0.7)
+      addressable
     erubis (2.6.6)
       abstract (>= 1.0.0)
     escape (0.0.4)
@@ -188,6 +190,7 @@ DEPENDENCIES
   awesome_print
   delayed_job
   devise
+  domainatrix
   factory_girl_rails
   google-search
   jquery-rails
