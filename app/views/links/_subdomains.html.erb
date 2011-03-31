@@ -1,0 +1,12 @@
+<% if !item.subdomains.blank?%>
+<h2>Subdomains:</h2>
+<div class="col1_content">
+<ul id="milestones">
+<% item.subdomains.order("name ASC").each do |subdomain|%>
+<li style="list-style: none outside none;" class="milestone_addition subdomain">
+	<%=subdomain.name%>
+</li>
+<% end %>
+</ul>
+</div>
+<% end %>
