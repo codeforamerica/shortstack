@@ -2,11 +2,8 @@
 <h2>Subdomains:</h2>
 <div class="col1_content">
 <ul id="milestones">
-<% item.subdomains.order("name ASC").each do |subdomain|%>
-<li style="list-style: none outside none;" class="milestone_addition subdomain">
-	<%=subdomain.name%>
-</li>
-<% end %>
+<li class="subdomain"><%= item.subdomains.order('name ASC').map(&:name).join(', </li><li class="subdomain">').html_safe %></li>
 </ul>
+<div style="clear: both" ></div>
 </div>
 <% end %>
