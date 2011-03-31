@@ -50,6 +50,11 @@ float:left;
 width:140px;
 }
 
+.subdomain {
+    float: left;
+    margin-right: 3px;
+}
+
 caption,th 
 {
 	text-align: left;
