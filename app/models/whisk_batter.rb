@@ -77,10 +77,24 @@ class WhiskBatter
     }.flatten
   end
 
+  # Attempts to find a social link on an item's website
+  #
+  # Example:
+  # # grab Napervill, Il
+  # org = Organization.find(2027)
+  # wb = WhiskBatter.new(org)
+  # # find the twitter profile links
+  # wb.extract_social_links(:twitter)
+  # => ["http://twitter.com/NapervilleIl", "http://twitter.com/NapervillePD"]
   def extract_social_links(type, exclude="")
     social_url = @@social_links[type] || type
+
+    # find all websites for an item
     @item.links.where(:link_type_id => website_link_type_id).map { |website_link|
+      # search for pages on the item's website that link to the social network
       google_search("link:#{social_url} #{exclude} AND ", website_link.link_url).collect(&:uri).collect { |org_page_url|
+        # request a page and grab all of the links for that page
+        # filter the links to only include those that are to the social network
         URI.extract(Net::HTTP.get(URI.parse(org_page_url))).select { |link|
           link.downcase.include?(social_url)
         }
@@ -88,6 +102,7 @@ class WhiskBatter
     }.flatten.uniq.select { |link| usable_link?(type, link) }
   end
 
+  # Find and associate all social links from an item's website
   def associate_social_links(type)
     type_name = type.to_s.capitalize
     lt = LinkType.find_by_name(type_name)
@@ -95,6 +110,7 @@ class WhiskBatter
     args = [type]
     type_links = @item.links.where(:link_type_id => lt.id)
     if type_links.count > 0
+      # do not search for results that have already been added to the item's links
       args << ' AND -link:' + type_links.collect { |l| l.link_url }.join(' -link:')
     end
     city_links = @item.links
