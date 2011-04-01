@@ -97,10 +97,15 @@ class WhiskBatter
     if type_links.count > 0
       args << ' AND -link:' + type_links.collect { |l| l.link_url }.join(' -link:')
     end
-
-    puts args
+    city_links = @item.links
+    current_size = city_links.size
     extract_social_links(*args).each do |link|
-      @item.links << Link.create(:link_type_id => lt.id, :link_url => link, :name => type_name)
+      if !@item.links.map(&:link_url).include?(link)
+        @item.links << Link.create(:link_type_id => lt.id, :link_url => link, :name => type_name)
+      end
+    end
+    if current_size < @item.links.size
+      WhiskBatter.new(@item).delay.associate_social_links(type)
     end
   end
 
