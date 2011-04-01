@@ -51,6 +51,41 @@ class WhiskBatter
     whisk.delay.get_all_subdomains unless f.nil?  
   end
 
+  # attempts to find the facebook page for an organization
+  # first searches on facebook for profiles that include the name of the organization
+  # then searches the organizations website for links back to that facebook profile
+  #
+  # Example:
+  # # grab Albany, NY
+  # org = Organization.find(5177)
+  # # instantiate a WhiskBatter with it.
+  # wb = WhiskBatter.new(org)
+  # # find the facebook profile links
+  # wb.find_facebook_profile_links
+  # => [http://www.facebook.com/AlbanyNY]
+  def find_facebook_profile_links
+    links = []
+    # go through all of the website links of this organization
+    @item.links.where(:link_type_id => website_link_type_id).each do |website_link|
+      # each_item only iterates through the first 8 items in the response
+      # search facebook.com for the organization name
+      google_search(@item.name, 'facebook.com').each_item do |fb_result|
+        # search the organization site for a link to that facebook profile
+        org_results = google_search("link:#{fb_result.uri}", website_link.link_url)
+
+        # if the result has more than 0 results, add it to the links list
+        links << fb_result.uri if org_results.estimated_count > 0
+      end
+    end
+
+    links
+  end
+
+  # helper method that returns the link type with the name Website
+  def website_link_type_id
+    @website_link_type_id ||= LinkType.find_by_name('Website').id
+  end
+
 
 
 #Whisk Techniques
