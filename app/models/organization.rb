@@ -65,4 +65,12 @@ class Organization < ActiveRecord::Base
   def update_contribution
     self.contributions << Contribution.new(:user =>$current_user, :action => "Update")
   end
+
+  #def find_social_links(type)
+  #  lt = LinkType.find_by_name(type.to_s.capitalize)
+
+  #  WhiskBatter.new(self).extract_social_links(type).each do |link|
+  #    links << Link.create!(:link_url => link, :link_type => lt)
+  #  end
+  #end
 end

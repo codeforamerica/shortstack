@@ -51,9 +51,7 @@ class WhiskBatter
     whisk.delay.get_all_subdomains unless f.nil?  
   end
 
-  # attempts to find the facebook page for an organization
-  # first searches on facebook for profiles that include the name of the organization
-  # then searches the organizations website for links back to that facebook profile
+  # Attempts to find a profile on another site (Facebook, Twitter, etc) for an item
   #
   # Example:
   # # grab Albany, NY
@@ -61,29 +59,95 @@ class WhiskBatter
   # # instantiate a WhiskBatter with it.
   # wb = WhiskBatter.new(org)
   # # find the facebook profile links
-  # wb.find_facebook_profile_links
+  # wb.find_social_links_on(:facebook)
   # => [http://www.facebook.com/AlbanyNY]
-  def find_facebook_profile_links
-    links = []
+  def find_social_links_on(type)
+    social_url = @@social_links[type] || type
+
     # go through all of the website links of this organization
-    @item.links.where(:link_type_id => website_link_type_id).each do |website_link|
+    @item.links.where(:link_type_id => website_link_type_id).map { |website_link|
       # each_item only iterates through the first 8 items in the response
       # search facebook.com for the organization name
-      google_search(@item.name, 'facebook.com').each_item do |fb_result|
+      google_search(@item.name, social_url).collect { |result| result.uri }.select { |social_url|
         # search the organization site for a link to that facebook profile
-        org_results = google_search("link:#{fb_result.uri}", website_link.link_url)
-
         # if the result has more than 0 results, add it to the links list
-        links << fb_result.uri if org_results.estimated_count > 0
+        # (returns a boolean because we are in a select block)
+        google_search("link:#{social_url} AND", website_link.link_url).estimated_count > 0 and usable_link?(type, social_url)
+      }
+    }.flatten
+  end
+
+  # Attempts to find a social link on an item's website
+  #
+  # Example:
+  # # grab Napervill, Il
+  # org = Organization.find(2027)
+  # wb = WhiskBatter.new(org)
+  # # find the twitter profile links
+  # wb.extract_social_links(:twitter)
+  # => ["http://twitter.com/NapervilleIl", "http://twitter.com/NapervillePD"]
+  def extract_social_links(type, exclude="")
+    social_url = @@social_links[type] || type
+
+    # find all websites for an item
+    @item.links.where(:link_type_id => website_link_type_id).map { |website_link|
+      # search for pages on the item's website that link to the social network
+      google_search("link:#{social_url} #{exclude} AND ", website_link.link_url).collect(&:uri).collect { |org_page_url|
+        # request a page and grab all of the links for that page
+        # filter the links to only include those that are to the social network
+        URI.extract(Net::HTTP.get(URI.parse(org_page_url))).select { |link|
+          link.downcase.include?(social_url)
+        }
+      }
+    }.flatten.uniq.select { |link| usable_link?(type, link) }
+  end
+
+  # Find and associate all social links from an item's website
+  def associate_social_links(type)
+    type_name = type.to_s.capitalize
+    lt = LinkType.find_by_name(type_name)
+    
+    args = [type]
+    type_links = @item.links.where(:link_type_id => lt.id)
+    if type_links.count > 0
+      # do not search for results that have already been added to the item's links
+      args << ' AND -link:' + type_links.collect { |l| l.link_url }.join(' -link:')
+    end
+    city_links = @item.links
+    current_size = city_links.size
+    extract_social_links(*args).each do |link|
+      if !@item.links.map(&:link_url).include?(link)
+        @item.links << Link.create(:link_type_id => lt.id, :link_url => link, :name => type_name)
       end
     end
-
-    links
+    if current_size < @item.links.size
+      WhiskBatter.new(@item).delay.associate_social_links(type)
+    end
   end
+
+  # social_link symbol to url
+  @@social_links = {
+    :facebook => 'facebook.com',
+    :twitter => 'twitter.com',
+  }
 
   # helper method that returns the link type with the name Website
   def website_link_type_id
     @website_link_type_id ||= LinkType.find_by_name('Website').id
+  end
+
+  # checks if a link is valid based on its social network
+  def usable_link?(type, url)
+    case type
+    when :twitter
+      # twitter users starting with _ (like _NapervilleIl) are weatherbugs
+      # if the username does not start with _ it is a valid username
+      (url.match(/^http:\/\/(?:www\.)?twitter.com[^\/]*\/[^_]/)) && (! url.include?('/share'))
+    when :facebook
+      url.match(/^http:\/\/(?:www\.)?facebook.com/)
+    else
+      true
+    end
   end
 
 
