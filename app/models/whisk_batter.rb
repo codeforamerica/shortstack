@@ -77,10 +77,22 @@ class WhiskBatter
     }.flatten
   end
 
+  def extract_social_links(type)
+    social_url = @@social_links[type] || type
+
+    @item.links.where(:link_type_id => website_link_type_id).map { |website_link|
+      google_search("link:#{social_url} AND", website_link.link_url).collect(&:uri).collect { |org_page_url|
+        URI.extract(Net::HTTP.get(URI.parse(org_page_url))).select { |link|
+          link.include?(social_url)
+        }
+      }
+    }.flatten.uniq.select { |link| usable_link?(type, link) }
+  end
+
   # social_link symbol to url
   @@social_links = {
-    :facebook => 'facebook.com',
-    :twitter => 'twitter.com',
+    :facebook => 'http://www.facebook.com',
+    :twitter => 'http://www.twitter.com',
   }
 
   # helper method that returns the link type with the name Website
@@ -94,7 +106,9 @@ class WhiskBatter
     when :twitter
       # twitter users starting with _ (like _NapervilleIl) are weatherbugs
       # if the username does not start with _ it is a valid username
-      url.split('/').last.first != '_'
+      URI.parse(url).path[0..1] != '/_'
+    when :facebook
+      URI.parse(url).path.match(/^\/[^\/]+$/)
     else
       true
     end
