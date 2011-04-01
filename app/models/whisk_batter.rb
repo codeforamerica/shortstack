@@ -72,7 +72,7 @@ class WhiskBatter
         # search the organization site for a link to that facebook profile
         # if the result has more than 0 results, add it to the links list
         # (returns a boolean because we are in a select block)
-        google_search("link:#{social_url}", website_link.link_url).estimated_count > 0 and usable_link?(type, social_url)
+        google_search("link:#{social_url} AND", website_link.link_url).estimated_count > 0 and usable_link?(type, social_url)
       }
     }.flatten
   end
@@ -92,7 +92,9 @@ class WhiskBatter
   def usable_link?(type, url)
     case type
     when :twitter
-      # code to eliminate _NapervilleIl type twitter links
+      # twitter users starting with _ (like _NapervilleIl) are weatherbugs
+      # if the username does not start with _ it is a valid username
+      url.split('/').last.first != '_'
     else
       true
     end
