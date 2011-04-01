@@ -77,11 +77,10 @@ class WhiskBatter
     }.flatten
   end
 
-  def extract_social_links(type)
+  def extract_social_links(type, exclude="")
     social_url = @@social_links[type] || type
-
     @item.links.where(:link_type_id => website_link_type_id).map { |website_link|
-      google_search("link:#{social_url} AND", website_link.link_url).collect(&:uri).collect { |org_page_url|
+      google_search("link:#{social_url} AND #{exclude}", website_link.link_url).collect(&:uri).collect { |org_page_url|
         URI.extract(Net::HTTP.get(URI.parse(org_page_url))).select { |link|
           link.downcase.include?(social_url)
         }
