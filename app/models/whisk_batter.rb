@@ -80,12 +80,28 @@ class WhiskBatter
   def extract_social_links(type, exclude="")
     social_url = @@social_links[type] || type
     @item.links.where(:link_type_id => website_link_type_id).map { |website_link|
-      google_search("link:#{social_url} AND #{exclude}", website_link.link_url).collect(&:uri).collect { |org_page_url|
+      google_search("link:#{social_url} #{exclude} AND ", website_link.link_url).collect(&:uri).collect { |org_page_url|
         URI.extract(Net::HTTP.get(URI.parse(org_page_url))).select { |link|
           link.downcase.include?(social_url)
         }
       }
     }.flatten.uniq.select { |link| usable_link?(type, link) }
+  end
+
+  def associate_social_links(type)
+    type_name = type.to_s.capitalize
+    lt = LinkType.find_by_name(type_name)
+    
+    args = [type]
+    type_links = @item.links.where(:link_type_id => lt.id)
+    if type_links.count > 0
+      args << ' AND -link:' + type_links.collect { |l| l.link_url }.join(' -link:')
+    end
+
+    puts args
+    extract_social_links(*args).each do |link|
+      @item.links << Link.create(:link_type_id => lt.id, :link_url => link, :name => type_name)
+    end
   end
 
   # social_link symbol to url
