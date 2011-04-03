@@ -1,7 +1,5 @@
-Orgbase::Application.routes.draw do
-
+Shortstack::Application.routes.draw do
   resources :statistics
-
   resources :statistic_types
 
   get "search/index"

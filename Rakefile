@@ -4,4 +4,4 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
-Orgbase::Application.load_tasks
+Shortstack::Application.load_tasks
