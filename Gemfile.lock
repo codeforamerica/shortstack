@@ -43,7 +43,7 @@ GEM
     awesome_print (0.3.2)
     bcrypt-ruby (2.1.4)
     builder (2.1.2)
-    daemons (1.1.0)
+    daemons (1.1.2)
     delayed_job (2.1.4)
       activesupport (~> 3.0)
       daemons
