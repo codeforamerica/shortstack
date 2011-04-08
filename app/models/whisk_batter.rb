@@ -94,7 +94,7 @@ class WhiskBatter
       # search for pages on the item's website that link to the social network
       google_search("link:#{social_url} #{exclude} AND ", website_link.link_url).collect(&:uri).collect { |org_page_url|
         # request a page and grab all of the links for that page
-        # filter the links to only include those that are to the social network
+        # filter the links to only include those that are to the social networ
         URI.extract(Net::HTTP.get(URI.parse(org_page_url))).select { |link|
           link.downcase.include?(social_url)
         }
