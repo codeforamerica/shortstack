@@ -45,10 +45,18 @@ module Twitalysis
   
   module Acts
     module Twitalyzable
+
+      # takes a column_name for a link to a twitter_profile
       def acts_as_twitalyzable(column)
         class_eval <<-RUBY
           has_many :twitter_stats
 
+          # grabs the twitter user information for a twitter user
+          # based on the column passed into acts_as_twitalyzable
+          # currently, the column is assumed to be a link to a twitter profile
+          # and is treated as such
+          #
+          # adds a new entry to the twitter_stats collection
           def twitalyze
             twitter_stats << TwitterStat.from_twitalysis(Twitalysis::User.from_link(#{column.to_s}).get_from_twitter)
             save
@@ -60,6 +68,8 @@ module Twitalysis
         class_eval <<-RUBY
           belongs_to :#{table.to_s}
 
+          # translates some keys and then applies them to a new instance
+          # of TwitterStat
           def self.from_twitalysis(twitalysis)
             ts = self.new
 
