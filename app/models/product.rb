@@ -1,17 +1,18 @@
+require 'has_many_links'
 class Product < ActiveRecord::Base
+
+  include HasManyLinks
 
   has_many :notes, :as => :noteable, :class_name => "Note", :dependent => :destroy
   has_many :contributions, :as => :contributable, :class_name => "Contribution", :dependent => :destroy
   has_many :whisks, :as => :whiskable, :class_name => "Whisk", :dependent => :destroy
   has_many :parents, :as => :parentable, :class_name => "Relationship", :dependent => :destroy
   has_many :children, :as => :childable, :class_name => "Relationship", :dependent => :destroy
-  has_many :links, :as => :linkable, :class_name => "Link", :dependent => :destroy
   has_many :contacts, :as => :contactable, :class_name => "Contact", :dependent => :destroy
   has_many :addresses, :as => :addressable, :class_name => "Address", :dependent => :destroy
   has_many :statistics, :as => :statisticable, :class_name => "Statistic", :dependent => :destroy
 
   accepts_nested_attributes_for :contacts
-  accepts_nested_attributes_for :links
   accepts_nested_attributes_for :addresses
   accepts_nested_attributes_for :notes
   accepts_nested_attributes_for :parents
