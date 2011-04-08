@@ -59,6 +59,11 @@ module Twitalysis
           # adds a new entry to the twitter_stats collection
           def twitalyze
             twitter_stats << TwitterStat.from_twitalysis(Twitalysis::User.from_link(#{column.to_s}).get_from_twitter)
+          end
+
+          def twitalyze!
+            twitalyze
+
             save
           end
         RUBY
