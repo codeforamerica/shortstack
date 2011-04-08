@@ -1,0 +1,10 @@
+<h2>Twitter Stats:</h2>
+<div class="col1_content">
+  <ul id="milestones">
+  <% item.twitter_links.collect(&:latest_stats).each do |stats| %>
+    <li style="list-style: none outside none;" class="milestone_addition">
+      <%= stats.created %>
+    </li>
+  <% end %>
+  </ul>
+</div>
