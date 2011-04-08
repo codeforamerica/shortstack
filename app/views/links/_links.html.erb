@@ -9,5 +9,5 @@
   <% end %>
   </ul>
 </div>
-<% render :partial => 'links/twitter_stats', :locals => {:item => item} if item.has_twitter_link? %>
+<%= render :partial => 'links/twitter_stats', :locals => {:item => item} %>
 <% end %>
