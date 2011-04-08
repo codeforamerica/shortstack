@@ -43,6 +43,10 @@ GEM
     awesome_print (0.3.2)
     bcrypt-ruby (2.1.4)
     builder (2.1.2)
+    couchrest (1.0.1)
+      json (>= 1.4.6)
+      mime-types (>= 1.15)
+      rest-client (>= 1.5.1)
     daemons (1.1.2)
     delayed_job (2.1.4)
       activesupport (~> 3.0)
@@ -203,6 +207,7 @@ DEPENDENCIES
   ZenTest
   acts-as-taggable-on
   awesome_print
+  couchrest
   delayed_job
   devise
   domainatrix

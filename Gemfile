@@ -19,6 +19,7 @@ gem 'domainatrix'
 gem 'twitter', '>= 1.1'
 gem 'twitter-text', '>= 1.3'
 gem 'yajl-ruby'
+gem 'couchrest'
 
 # Use unicorn as the web server
 # gem 'unicorn'
