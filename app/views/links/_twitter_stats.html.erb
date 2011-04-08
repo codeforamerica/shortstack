@@ -1,0 +1,15 @@
+<% if item.has_twitter_link? -%>
+<h2>Twitter Stats:</h2>
+<div class="col1_content">
+  <% item.twitter_links.each do |link| %>
+    <h3><%= link_to "@" + Twitalysis.link_to_handle(link.link_url), link.link_url %>:</h3>
+    <ul id="milestones">
+      <% link.latest_stats.attributes.each do |name, stat| %>
+      <li style="list-style: none outside none;" class="milestone_addition">
+        <strong><%= name.humanize %></strong>: <%= stat %>
+      </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+<% end -%>

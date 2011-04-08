@@ -16,6 +16,10 @@ gem 'delayed_job'
 gem 'will_paginate', "~> 3.0.pre2"
 gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 gem 'domainatrix'
+gem 'twitter', '>= 1.1'
+gem 'twitter-text', '>= 1.3'
+gem 'yajl-ruby'
+gem 'couchrest'
 
 # Use unicorn as the web server
 # gem 'unicorn'
