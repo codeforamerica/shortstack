@@ -1,5 +1,5 @@
-Orgbase::Application.configure do
-  # Settings specified here will take precedence over those in config/environment.rb
+Shortstack::Application.configure do
+  # Settings specified here will take precedence over those in config/application.rb
 
   # In the development environment your application's code is reloaded on
   # every request.  This slows down response time but is perfect for development
@@ -25,4 +25,3 @@ Orgbase::Application.configure do
   config.action_dispatch.best_standards_support = :builtin
 
 end
-

@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '~> 3.0.5'
+gem 'rails', '~> 3.0.6'
 gem 'sqlite3'
 gem 'devise'
 gem 'nifty-generators'
@@ -19,7 +19,7 @@ gem 'domainatrix'
 
 # Use unicorn as the web server
 # gem 'unicorn'
-  
+
 # Deploy with Capistrano
 # gem 'capistrano'
 

@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Orgbase::Application.config.secret_token = '8aa3cdd1432236483b3bc988ff22e56a5a12b765c8f615e22ea055924be37127c9a6f06207ea4548e481e1248731e299a3a3fa727ba3e1d95779eb8f6486e4d'
+Shortstack::Application.config.secret_token = 'b1b7f7877a778e4f4e2e19611e885b80258b652055fd98b83847ec081cbeaadc02fbea565f11d4127b211a85e4826f410e46cd46781cb53e83a9a9c2ecfed6ab'

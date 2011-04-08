@@ -1,5 +1,5 @@
-Orgbase::Application.configure do
-  # Settings specified here will take precedence over those in config/environment.rb
+Shortstack::Application.configure do
+  # Settings specified here will take precedence over those in config/application.rb
 
   # The production environment is meant for finished, "live" apps.
   # Code is not reloaded between requests
@@ -19,7 +19,7 @@ Orgbase::Application.configure do
   # just comment this out and Rails will serve the files
 
   # See everything in the log (default is :info)
-  config.log_level = :debug
+  # config.log_level = :debug
 
   # Use a different logger for distributed setups
   # config.logger = SyslogLogger.new
