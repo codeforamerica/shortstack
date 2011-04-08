@@ -66,6 +66,10 @@ module Twitalysis
 
             save
           end
+
+          def latest_stats
+            twitter_stats.order(:created_at => :desc).first
+          end
         RUBY
       end
 
