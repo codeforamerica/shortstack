@@ -23,7 +23,7 @@ gem 'will_paginate', "~> 3.0.pre2"
 gem 'yajl-ruby'
 
 group :development, :test do
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', '1.1.beta1'
   gem 'mocha'
   gem 'rspec-rails'
   gem 'ZenTest'
