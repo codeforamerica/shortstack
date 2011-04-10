@@ -69,8 +69,8 @@ GEM
       addressable (~> 2.2.4)
       multipart-post (~> 1.1.0)
       rack (< 2, >= 1.1.0)
-    faraday_middleware (0.3.2)
-      faraday (~> 0.5.4)
+    faraday_middleware (0.6.3)
+      faraday (~> 0.6.0)
     google-search (1.0.2)
       json
     hashie (1.0.0)
