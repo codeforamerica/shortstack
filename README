@@ -8,7 +8,6 @@ Installation
     $ [sudo] bundle install
     $ rake db:seed
 
-
 Setup Sunspot
 -------------
 We use Sunspot for search.
