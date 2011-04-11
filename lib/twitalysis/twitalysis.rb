@@ -68,7 +68,7 @@ module Twitalysis
           end
 
           def latest_stats
-            twitter_stats.order(:created_at => :desc).first
+            twitter_stats.order("created_at DESC").first
           end
         RUBY
       end
