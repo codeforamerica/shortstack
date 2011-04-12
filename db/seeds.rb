@@ -38,7 +38,7 @@ end
 end
 
 #Link Types
-[["Blog", "Blog"], ["RSS Feed",	"none"], ["Website", "Main Website"], ["crunchbase", "none"], ["facebook", "none"], ["twitter", "none"]].each do |link_type|
+[["Blog", "Blog"], ["license", "product licenses"], ["RSS Feed",	"none"], ["Website", "Main Website"], ["crunchbase", "none"], ["facebook", "none"], ["twitter", "none"]].each do |link_type|
   LinkType.find_or_create_by_name(:name => link_type[0], :description => link_type[1])
 end
 

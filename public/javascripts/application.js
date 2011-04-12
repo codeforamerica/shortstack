@@ -37,4 +37,12 @@ jQuery(function($)
   var quick_search_form = $('#quick_search_form');
   if ( quick_search_form.length > 0 )
     quick_search_form.searchform(search_form_options);
+
+    $("#license_key").change(function() {
+        if ($(this).val() == 'oos') { 
+            $("#license_info").show();
+        } else {
+            $("#license_info").hide();
+        }
+    });    
 });

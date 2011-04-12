@@ -9,12 +9,19 @@
   <%= render :partial => 'tags/tags', :locals => {:item => @product}%>
   <%= render :partial => 'relationship_forms'%>
   <%= render :partial => 'layouts/common_forms', :locals => {:item => @product}%>
+  <%= render :partial => 'products/license', :locals => {:item => @product}%>  
   <%= render :partial => 'notes/note', :locals => {:notes => @product.notes}%>
   <%= render :partial => 'notes/notes', :locals => {:item => @product}%>
 <% end %>
 
 <%= content_for :column3 do %>
   <%= render :partial => 'layouts/details'%>
+  <h3>Complete this Product</h3>
+	<div class="col3_content contribute">
+    <% if @product.links.where(:link_type_id => LinkType.where(:name => 'license')).blank?%>
+    <a href="#" id="hide_link" onClick="$('#license-form').show();">Add a License</a><br>
+    <% end %>
+	</div>  
 	<h3>Add a Relationship</h3>
 	<div class="col3_content contribute">
     <a href="#" id="hide_link" onClick="$('#organization-child-relationship-form').show();">Add an Organization User</a><br>
