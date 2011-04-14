@@ -5,6 +5,7 @@ class Product < ActiveRecord::Base
 
   has_many :notes, :as => :noteable, :class_name => "Note", :dependent => :destroy
   has_many :contributions, :as => :contributable, :class_name => "Contribution", :dependent => :destroy
+  has_many :screenshots, :as => :shottable, :class_name => "Screenshot", :dependent => :destroy
   has_many :whisks, :as => :whiskable, :class_name => "Whisk", :dependent => :destroy
   has_many :parents, :as => :parentable, :class_name => "Relationship", :dependent => :destroy
   has_many :children, :as => :childable, :class_name => "Relationship", :dependent => :destroy
