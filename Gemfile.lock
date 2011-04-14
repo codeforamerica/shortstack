@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/sferik/rails_admin.git
-  revision: b9c50a44a1e21840b265ab58a8edd10ac69b338c
+  revision: 95c7bf0e8ba0fae25ae06b785efe32f69ea687c5
   specs:
     rails_admin (0.0.1)
       builder (~> 2.1.0)
@@ -65,7 +65,7 @@ GEM
     factory_girl_rails (1.1.beta1)
       factory_girl (~> 2.0.0.beta)
       rails (>= 3.0.0)
-    faraday (0.6.0)
+    faraday (0.6.1)
       addressable (~> 2.2.4)
       multipart-post (~> 1.1.0)
       rack (< 2, >= 1.1.0)
