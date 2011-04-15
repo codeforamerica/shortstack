@@ -12,6 +12,7 @@
       <%= render :partial => 'layouts/common_forms', :locals => {:item => @organization}%>
       <%= render :partial => 'notes/note', :locals => {:notes => @organization.notes.about}%>
       <%= render :partial => 'notes/notes', :locals => {:item => @organization}%>
+      <%= render :partial => 'twitter_stats' %>
 <% end %>
 
 <%= content_for :column3 do %>
