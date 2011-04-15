@@ -1,4 +1,5 @@
 require 'builder'
+require 'google_chart'
 
 module ApplicationHelper
   def contribution_image_type(action)
@@ -93,5 +94,36 @@ module ApplicationHelper
     else
       result.class.to_s
     end
+  end
+
+  def make_bar_chart(label, name, cur, avg)
+    chart = GoogleChart::BarChart.new('150x200', label, :vertical, false) do |chart|
+      max = [avg, cur].max
+
+      chart.data name, [(cur.to_f / max)], 'C9D7D8'
+      chart.data 'Average', [(avg.to_f / max)], '409DD6'
+      chart.axis :y, :range => [0, max]
+    end
+
+    image_tag chart.to_url + '&chdlp=b', :alt => 'Comparison', :class => 'twitter_chart'
+  end
+
+  def twitter_chart(type, stat)
+    case type
+    when :followers
+      cur = stat.followers_count
+      avg = TwitterSummary.average_followers
+      label = 'Followers'
+    when :following
+      cur = stat.following_count
+      avg = TwitterSummary.average_following
+      label = 'Following'
+    when :statuses
+      cur = stat.statuses_count
+      avg = TwitterSummary.average_statuses
+      label = 'Posts'
+    end
+
+    make_bar_chart label, stat.twitter_stat.screen_name, cur, avg
   end
 end

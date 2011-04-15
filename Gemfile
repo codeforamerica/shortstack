@@ -20,6 +20,7 @@ gem 'twitter'
 gem 'twitter-text'
 gem 'will_paginate', "~> 3.0.pre2"
 gem 'yajl-ruby'
+gem 'gchartrb'
 
 group :development, :test do
   gem 'factory_girl_rails', '1.1.beta1'
