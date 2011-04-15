@@ -5,6 +5,8 @@ module TwitterHelper
 
   def sortable(column, title)
     direction = column == sort_column && sort_direction == 'asc' ? 'desc' : 'asc'
-    link_to title, {:sort => column, :direction => direction}
+    title += " (#{direction == 'desc' ? '&#8593;' : '&#8595;'})" if column == sort_column
+
+    link_to title.html_safe, {:sort => column, :direction => direction}
   end
 end
