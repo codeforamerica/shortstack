@@ -3,7 +3,7 @@ class TwitterStatObserver < ActiveRecord::Observer
     #Find the Twit Summary
     summary = TwitterSummary.where(:link_id => stat.link_id).first
     #update the attributes
-    if summary
+    if !summary.blank?
     #or create new Twit summary
     summary.update_attributes(:followers_count => stat.followers_count  , :following_count => stat.following_count, :listed_count => stat.listed_count, :statuses_count => stat.statuses_count )
     else
