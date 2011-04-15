@@ -2,7 +2,7 @@
 <h2>Twitter Stats:</h2>
 <div class="col1_content">
   <% @organization.twitter_links.each do |link| %>
-    <h3><%= twitter_link Twitalysis.link_to_handle(link.link_url) %>:</h3>
+    <h3 style="clear:both;"><%= twitter_link Twitalysis.link_to_handle(link.link_url) %>:</h3>
     <ul id="milestones">
       <li style="list-style: none outside none;" class="milestone_addition">
         <strong>Followers</strong>: <%= link.twitter_summary.followers_count %>
@@ -14,6 +14,10 @@
         <strong>Number of Posts</strong>: <%= link.twitter_summary.statuses_count %>
       </li>
     </ul>
+
+    <%= twitter_chart(:followers, link.twitter_summary) %>
+    <%= twitter_chart(:following, link.twitter_summary) %>
+    <%= twitter_chart(:statuses, link.twitter_summary) %>
   <% end %>
 </div>
 <% end -%>

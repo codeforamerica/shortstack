@@ -30,4 +30,24 @@ class TwitterSummary < ActiveRecord::Base
   def self.sortable_directions
     @@sortable_directions
   end
+
+  def self.average_followers
+    @average_followers ||= TwitterSummary.average(:followers_count).round
+  end
+
+  def self.average_following
+    @average_following ||= TwitterSummary.average(:following_count).round
+  end
+
+  def self.average_statuses
+    @average_statuses ||= TwitterSummary.average(:statuses_count).round
+  end
+
+  def self.averages
+    [self.average_followers, self.average_following, self.average_statuses]
+  end
+
+  def counts
+    [followers_count, following_count, statuses_count]
+  end
 end
