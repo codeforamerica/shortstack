@@ -3,6 +3,7 @@ Shortstack::Application.routes.draw do
   resources :statistic_types
 
   get "search/index"
+  get "twitter/index"
 
   #details
   resources :contacts
@@ -47,6 +48,8 @@ Shortstack::Application.routes.draw do
 
   #search
   match 'search', :to => 'search#index'
+  #twitter
+  match 'twitter', :to => 'twitter#index'
 
   #home
   root :to => "home#index"

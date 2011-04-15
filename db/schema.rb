@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110415185642) do
+ActiveRecord::Schema.define(:version => 20110415201751) do
 
   create_table "addresses", :force => true do |t|
     t.string    "address"
@@ -223,40 +223,41 @@ ActiveRecord::Schema.define(:version => 20110415185642) do
   end
 
   create_table "twitter_stats", :force => true do |t|
-    t.datetime "created"
-    t.string   "description"
-    t.integer  "favourites_count"
-    t.integer  "followers_count"
-    t.integer  "following_count"
-    t.boolean  "geo_enabled"
-    t.integer  "listed_count"
-    t.string   "profile_background_color"
-    t.string   "profile_background_image_url"
-    t.string   "profile_background_tile"
-    t.string   "profile_image_url"
-    t.string   "profile_link_color"
-    t.string   "profile_sidebar_border_color"
-    t.string   "profile_sidebar_fill_color"
-    t.string   "profile_text_color"
-    t.string   "screen_name"
-    t.integer  "statuses_count"
-    t.string   "time_zone"
-    t.string   "url"
-    t.boolean  "verified"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "link_id"
+    t.timestamp "created"
+    t.string    "description"
+    t.integer   "favourites_count"
+    t.integer   "followers_count"
+    t.integer   "following_count"
+    t.boolean   "geo_enabled"
+    t.integer   "listed_count"
+    t.string    "profile_background_color"
+    t.string    "profile_background_image_url"
+    t.string    "profile_background_tile"
+    t.string    "profile_image_url"
+    t.string    "profile_link_color"
+    t.string    "profile_sidebar_border_color"
+    t.string    "profile_sidebar_fill_color"
+    t.string    "profile_text_color"
+    t.string    "screen_name"
+    t.integer   "statuses_count"
+    t.string    "time_zone"
+    t.string    "url"
+    t.boolean   "verified"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "link_id"
   end
 
   create_table "twitter_summaries", :force => true do |t|
-    t.integer  "organization_id"
-    t.integer  "link_id"
-    t.integer  "followers_count"
-    t.integer  "following_count"
-    t.integer  "listed_count"
-    t.integer  "statuses_count"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "organization_id"
+    t.integer   "link_id"
+    t.integer   "followers_count"
+    t.integer   "following_count"
+    t.integer   "listed_count"
+    t.integer   "statuses_count"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "twitter_stat_id"
   end
 
   add_index "twitter_summaries", ["link_id"], :name => "index_twitter_summaries_on_link_id"

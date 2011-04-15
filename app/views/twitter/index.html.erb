@@ -1,0 +1,21 @@
+<%= content_for :column2 do %>
+  <h1 class="title">Wassup</h1>
+  <table>
+    <tr>
+      <th><%= sortable 'screen_name', 'Twitter Handle' %></th>
+      <th><%= sortable 'org_name', 'Organization Name' %></th>
+      <th><%= sortable 'followers_count', 'Followers Count' %></th>
+      <th><%= sortable 'following_count', 'Following Count' %></th>
+      <th><%= sortable 'statuses_count', 'Number of Posts' %></th>
+    </tr>
+  <% @stats.each do |stat| %>
+    <tr>
+      <td><%= twitter_link stat.twitter_stat.screen_name %></td>
+      <td><%= link_to stat.organization.name, stat.organization %></td>
+      <td><%= stat.followers_count %></td>
+      <td><%= stat.following_count %></td>
+      <td><%= stat.statuses_count %></td>
+    </tr>
+  <% end %>
+  </table>
+<% end %>

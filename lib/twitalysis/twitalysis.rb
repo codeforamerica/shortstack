@@ -68,7 +68,11 @@ module Twitalysis
           end
 
           def latest_stats
-            twitter_stats.order("created_at DESC").first
+            if instance_variables.include? :@twitter_stats
+              twitter_stats.first
+            else
+              twitter_stats.order("created_at DESC").first
+            end
           end
         RUBY
       end
