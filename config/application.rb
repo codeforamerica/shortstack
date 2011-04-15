@@ -44,5 +44,8 @@ module Shortstack
       g.fixture_replacement :factory_girl
       g.helper false
     end
+    
+    config.active_record.observers = :twitter_stat_observer
+    
   end
 end
