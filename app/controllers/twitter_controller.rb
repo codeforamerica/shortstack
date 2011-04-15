@@ -3,8 +3,8 @@ class TwitterController < ApplicationController
   
 
   def index
-    @stats = TwitterSummary.joins(:organization)
-      .order(sort_column + " " + sort_direction)
+    @stats = TwitterSummary
+      .sortable(sort_column, sort_direction)
       .paginate(:per_page => 50, :page => params[:page])
   end
 
