@@ -5,13 +5,13 @@
     <h3><%= twitter_link Twitalysis.link_to_handle(link.link_url) %>:</h3>
     <ul id="milestones">
       <li style="list-style: none outside none;" class="milestone_addition">
-        <strong>Followers</strong>: <%= link.latest_stats.followers_count %>
+        <strong>Followers</strong>: <%= link.twitter_summary.followers_count %>
       </li>
       <li style="list-style: none outside none;" class="milestone_addition">
-        <strong>Following</strong>: <%= link.latest_stats.following_count %>
+        <strong>Following</strong>: <%= link.twitter_summary.following_count %>
       </li>
       <li style="list-style: none outside none;" class="milestone_addition">
-        <strong>Number of Posts</strong>: <%= link.latest_stats.statuses_count %>
+        <strong>Number of Posts</strong>: <%= link.twitter_summary.statuses_count %>
       </li>
     </ul>
   <% end %>

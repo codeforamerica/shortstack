@@ -9,10 +9,12 @@ class TwitterSummary < ActiveRecord::Base
 
   def self.sortable(column, direction)
     c = case column
+        when 'screen_name'
+          'twitter_stats.screen_name'
         when 'org_name'
           'organizations.name'
         else
-          'twitter_stats.' + column
+          'twitter_summaries.' + column
         end
 
     joins(:organization)

@@ -10,7 +10,7 @@
     </tr>
   <% @stats.each do |stat| %>
     <tr>
-      <td><%= twitter_link stat.screen_name %></td>
+      <td><%= twitter_link stat.twitter_stat.screen_name %></td>
       <td><%= link_to stat.organization.name, stat.organization %></td>
       <td><%= stat.followers_count %></td>
       <td><%= stat.following_count %></td>
