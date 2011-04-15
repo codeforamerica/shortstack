@@ -1,6 +1,6 @@
 require 'twitalysis/twitalysis'
 class Link < ActiveRecord::Base
-  default_scope order("created_at ASC")
+  # default_scope order("created_at ASC")
   belongs_to :link_type
   belongs_to :linkable, :polymorphic => true
   has_one :twitter_summary
@@ -36,6 +36,10 @@ class Link < ActiveRecord::Base
       "asf20"=> ['Apache License 2.0','http://www.apache.org/licenses/LICENSE-2.0.html'],
       "epl"=> ['Eclipse Public License 1.0','http://www.eclipse.org/legal/epl-v10.html']                  
     }
+  end
+
+  def self.twitter_link_type
+    LinkType.select('id').where(:name => 'Twitter').first.id
   end
   
 end
