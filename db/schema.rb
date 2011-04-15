@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110415194526) do
+ActiveRecord::Schema.define(:version => 20110415201751) do
 
   create_table "addresses", :force => true do |t|
     t.string    "address"
@@ -249,15 +249,15 @@ ActiveRecord::Schema.define(:version => 20110415194526) do
   end
 
   create_table "twitter_summaries", :force => true do |t|
-    t.integer  "organization_id"
-    t.integer  "link_id"
-    t.integer  "followers_count"
-    t.integer  "following_count"
-    t.integer  "listed_count"
-    t.integer  "statuses_count"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "screen_name"
+    t.integer   "organization_id"
+    t.integer   "link_id"
+    t.integer   "followers_count"
+    t.integer   "following_count"
+    t.integer   "listed_count"
+    t.integer   "statuses_count"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "twitter_stat_id"
   end
 
   add_index "twitter_summaries", ["link_id"], :name => "index_twitter_summaries_on_link_id"

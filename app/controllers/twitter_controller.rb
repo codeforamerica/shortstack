@@ -11,10 +11,10 @@ class TwitterController < ApplicationController
   private
 
   def sort_column
-   Link.sortable_columns.include?(params[:sort]) ? params[:sort] : Link.sortable_columns.first
+   TwitterSummary.sortable_columns.include?(params[:sort]) ? params[:sort] : TwitterSummary.sortable_columns.first
   end
 
   def sort_direction
-    Link.sortable_directions.include?(params[:direction]) ? params[:direction] : Link.sortable_directions.first
+    TwitterSummary.sortable_directions.include?(params[:direction]) ? params[:direction] : TwitterSummary.sortable_directions.first
   end
 end
