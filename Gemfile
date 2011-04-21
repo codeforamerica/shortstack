@@ -27,4 +27,7 @@ group :development, :test do
   gem 'mocha'
   gem 'rspec-rails'
   gem 'ZenTest'
+  gem 'simplecov'
+  gem 'webmock'
+  gem 'yard'
 end
