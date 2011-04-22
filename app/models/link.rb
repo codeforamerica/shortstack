@@ -9,6 +9,7 @@ class Link < ActiveRecord::Base
   after_create :create_contribution
 
   acts_as_twitalyzable :link_url
+  after_create :after_creation
 
   def create_contribution
     self.contributions << Contribution.new(:user =>$current_user, :action => "Create")
@@ -42,4 +43,9 @@ class Link < ActiveRecord::Base
     LinkType.select('id').where(:name => 'Twitter').first.id
   end
   
+  def after_creation
+    if link_type_id = Link.twitter_link_type
+      WhiskBatter.new(linkable).delay.associate_social_links :twitter
+    end
+  end
 end
