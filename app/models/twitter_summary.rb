@@ -21,7 +21,7 @@ class TwitterSummary < ActiveRecord::Base
     joins(:organization)
       .joins(:link)
       .joins(:twitter_stat)
-      .joins(:twitter_census)
+      .includes(:twitter_census)
       .order(c + ' ' + direction)
   end
 
