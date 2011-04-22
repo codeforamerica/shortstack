@@ -22,7 +22,7 @@ gem 'yajl-ruby'
 gem 'gchartrb'
 gem 'sunspot_rails', '~> 1.2.1'
 
-group :development, :test do
+group :test do
   gem 'factory_girl_rails', '1.1.beta1'
   gem 'mocha'
   gem 'rspec-rails'
