@@ -2,6 +2,7 @@ class TwitterSummary < ActiveRecord::Base
   belongs_to :organization
   belongs_to :link
   belongs_to :twitter_stat
+  belongs_to :twitter_census
 
   # twitter stuff
   @@sortable_columns = ['screen_name', 'org_name', 'followers_count', 'following_count', 'statuses_count', 'interesting', 'sway', 'outflux', 'feedness', 'chattiness'].freeze
@@ -20,6 +21,7 @@ class TwitterSummary < ActiveRecord::Base
     joins(:organization)
       .joins(:link)
       .joins(:twitter_stat)
+      .joins(:twitter_census)
       .order(c + ' ' + direction)
   end
 

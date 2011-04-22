@@ -130,6 +130,8 @@ module Twitalysis
 
       def acts_as_twitter_census
         class_eval do
+          belongs_to :link
+
           def self.from_hash(hash)
             census = self.new
             census.attributes.keys.each do |key|

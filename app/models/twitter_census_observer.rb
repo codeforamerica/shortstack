@@ -1,13 +1,13 @@
-class TwitterStatObserver < ActiveRecord::Observer
-  def after_save(stat)
+class TwitterCensusObserver < ActiveRecord::Observer
+  def after_save(census)
     #Find the Twit Summary
-    summary = TwitterSummary.where(:link_id => stat.link_id).first
+    summary = TwitterSummary.where(:link_id => census.link_id).first
     #update the attributes
     if !summary.blank?
       #or create new Twit summary
-      summary.update_attributes(make_attr_hash(stat))
+      summary.update_attributes(make_attr_hash(census))
     else
-      TwitterSummary.create(make_attr_hash(stat).merge(:organization => stat.link.linkable, :link => stat.link))
+      TwitterSummary.create(make_attr_hash(census).merge(:organization => census.link.linkable, :link => census.link))
     end  
   end
 

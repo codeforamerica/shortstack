@@ -184,6 +184,21 @@ describe Twitalysis do
           @bad_link.flag.should == before + 1
         end
       end
+
+      describe '#do_census!' do
+        it 'should not save the Link' do
+          before = @twitter_link.twitter_censuses.count
+          @twitter_link.do_census!
+
+          @twitter_link.twitter_censuses.count.should == before + 1
+        end
+
+        it 'should associate itself with the TwitterSummary' do
+          @twitter_link.do_census!
+
+          @twitter_link.twitter_summary.feedness.should == 0.42857143 
+        end
+      end
     end
   end
 
