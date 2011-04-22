@@ -5,7 +5,7 @@ class TwitterController < ApplicationController
   def index
     @stats = TwitterSummary
       .sortable(sort_column, sort_direction)
-      .paginate(:per_page => 50, :page => params[:page])
+      .paginate(:per_page => params[:per_page] || 50, :page => params[:page])
   end
 
   private
