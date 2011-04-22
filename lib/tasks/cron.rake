@@ -1,5 +1,6 @@
 desc "This task is called by the Heroku cron add-on"
 task :cron => :environment do
+  
   if Time.now.hour == 0 # run at midnight
     linktype = LinkType.find_by_name('Facebook').id
     links = Link.where(:link_type_id => linktype)   
@@ -7,6 +8,7 @@ task :cron => :environment do
       link.facebook_stats.new.delay.save_facebook_data
     end 
   end
+  
   if Time.now.hour == 0 # run at midnight
     linktype = LinkType.find_by_name('Twitter').id
     links = Link.where(:link_type_id => linktype)
@@ -31,8 +33,6 @@ task :cron => :environment do
       links[0..900].each do |link|
         CompeteStat.new(link).delay.create_statistic
       end
-    end
   end
-  
   
 end
