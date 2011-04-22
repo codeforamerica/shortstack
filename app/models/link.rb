@@ -4,6 +4,7 @@ class Link < ActiveRecord::Base
   belongs_to :link_type
   belongs_to :linkable, :polymorphic => true
   has_one :twitter_summary
+  has_one :facebook_summary  
   has_many :contributions, :as => :contributable, :class_name => "Contribution", :dependent => :destroy
   has_many :facebook_stats
   after_update :update_contribution

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110421223721) do
+ActiveRecord::Schema.define(:version => 20110421232938) do
 
   create_table "addresses", :force => true do |t|
     t.string    "address"
@@ -72,6 +72,17 @@ ActiveRecord::Schema.define(:version => 20110421223721) do
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
   create_table "facebook_stats", :force => true do |t|
+    t.integer  "link_id"
+    t.integer  "facebook_id"
+    t.string   "name"
+    t.string   "category"
+    t.integer  "likes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "facebook_summaries", :force => true do |t|
+    t.integer  "organization_id"
     t.integer  "link_id"
     t.integer  "facebook_id"
     t.string   "name"

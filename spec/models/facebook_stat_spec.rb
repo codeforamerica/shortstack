@@ -3,6 +3,7 @@ require 'spec_helper'
 describe FacebookStat, '.save_facebook_data' do
   
   before do
+
     stub_request(:get, 'http://graph.facebook.com/SF').
       to_return(:body => fixture('facebook_graph.json'), :headers => {'Content-Type' => 'text/json; charset=utf-8'})
     stub_request(:get, 'http://graph.facebook.com/SF1').
@@ -14,6 +15,14 @@ describe FacebookStat, '.save_facebook_data' do
     FacebookStat.count.should == 0
     graph = @link.facebook_stats.new.save_facebook_data
     FacebookStat.count.should == 1
+    graph["facebook_id"].should == 48411192144
+  end
+  
+  it "should create a new FacebookStat record and update FacebookSummary" do
+    puts "starting test"
+    @summary = Factory(:facebook_summary, :organization => @link.linkable, :link => @link)
+    @link.facebook_stats.new.save_facebook_data
+    @summary.reload.likes.should == 257428
   end
 
 end
@@ -21,6 +30,7 @@ end
 describe FacebookStat, '.get_graph' do
   
   before do
+
     stub_request(:get, 'http://graph.facebook.com/SF').
       to_return(:body => fixture('facebook_graph.json'), :headers => {'Content-Type' => 'text/json; charset=utf-8'})
     stub_request(:get, 'http://graph.facebook.com/SF1').
@@ -50,6 +60,7 @@ end
 describe FacebookStat, '.alter_url' do
 
   before do
+
     @link = Factory(:facebook)
   end
   

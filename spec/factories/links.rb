@@ -12,6 +12,5 @@ Factory.define :facebook, :parent => :link do |f|
   f.name "Facebook"
   f.link_url "http://www.facebook.com/SF"
   f.link_type_id 1
-  f.linkable_type "Organization"
-  f.linkable_id 1
+  f.linkable {Factory(:organization)}
 end

@@ -15,12 +15,12 @@ gem 'omniauth'
 gem 'rails', '3.0.6'
 gem 'rails3-generators'
 gem 'sqlite3'
-gem 'sunspot_rails'
 gem 'twitter'
 gem 'twitter-text'
 gem 'will_paginate', "~> 3.0.pre2"
 gem 'yajl-ruby'
 gem 'gchartrb'
+gem 'sunspot_rails', '~> 1.2.1'
 
 group :development, :test do
   gem 'factory_girl_rails', '1.1.beta1'

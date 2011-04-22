@@ -1,5 +1,6 @@
 class FacebookStat < ActiveRecord::Base
   belongs_to :link
+  validates_presence_of :link_id
 
   # Gets the graph from graph.facebook.com for a link
   #
@@ -28,12 +29,13 @@ class FacebookStat < ActiveRecord::Base
   def save_facebook_data
     data = get_graph
     if !data.nil?
-      facebook_id = data["id"]
-      name = data["name"]
-      category = data["category"]
-      likes = data["likes"]
+      self.facebook_id = data["id"]
+      self.name = data["name"]
+      self.category = data["category"]
+      self.likes = data["likes"]
       self.save
     end
+    self
   end  
   
   

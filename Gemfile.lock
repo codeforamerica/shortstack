@@ -235,7 +235,7 @@ DEPENDENCIES
   rspec-rails
   simplecov
   sqlite3
-  sunspot_rails
+  sunspot_rails (~> 1.2.1)
   twitter
   twitter-text
   webmock
