@@ -21,7 +21,12 @@ class FacebookStat < ActiveRecord::Base
     if body["error"].nil?
       body 
     else
-      link.update_attributes(:flag => link.flag + 1)
+      if  link.flag.nil?
+        flag = 0
+      else
+        flag = link.flag + 1
+      end
+      link.update_attributes(:flag => flag)
       nil
     end
   end
