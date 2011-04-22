@@ -8,6 +8,9 @@ describe Twitalysis do
     stub_request(:get, "https://api.twitter.com/1/users/show.json?screen_name=rockymeza")
      .with(:headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Twitter Ruby Gem 1.4.0'})
      .to_return(:status => 200, :body => fixture('rockymeza.json'), :headers => {})
+    stub_request(:get, Twitalysis.census_url('rockymeza'))
+      .with(:headers => {'Accept'=>'*/*', 'User-Agent'=>'Ruby-Wget'})
+      .to_return(:status => 200, :body => fixture('census_rocky.json'), :headers => {})
   end
 
   describe Twitalysis::User do
@@ -38,13 +41,31 @@ describe Twitalysis do
         user.location.should == 'Denver, CO'
       end
     end
+
+    describe '#get_census' do
+      before do
+        @user = Twitalysis::User.new('rockymeza')
+      end
+
+      it 'should throw no errors' do
+        expect { @user.get_census }.to_not raise_error
+      end
+
+      it 'should return a census hash' do
+        census = @user.get_census
+
+        census.class.should == Hash
+        census['sway'].should == 0.0
+      end
+    end
   end
 
   describe Twitalysis::Acts do
     describe Twitalysis::Acts::Twitalyzable do
       it 'should be attached to ActiveRecord::Base' do
         ActiveRecord::Base.should respond_to :acts_as_twitalyzable
-        ActiveRecord::Base.should respond_to :acts_as_twitalyzable
+        ActiveRecord::Base.should respond_to :acts_as_twitter_stat
+        ActiveRecord::Base.should respond_to :acts_as_twitter_census
       end
 
       describe '#twitalyze' do
@@ -115,6 +136,52 @@ describe Twitalysis do
           ts = TwitterStat.from_twitalysis(@twitalysis)
 
           ts.following_count.should == @twitalysis.friends_count
+        end
+      end
+
+      describe '#from_hash' do
+        before do
+          @census = Twitalysis::User.new('rockymeza').get_census
+        end
+
+        it 'should throw no errors' do
+          expect {TwitterCensus.from_hash(@census)}.to_not raise_error
+        end
+
+        it 'should create a TwitterCensus object from a hash' do
+          census = TwitterCensus.from_hash(@census)
+
+          census.class.should == TwitterCensus
+        end
+      end
+
+      describe '#do_census' do
+        before do
+          stub_request(:get, Twitalysis.census_url('bad'))
+            .with(:headers => {'Accept'=>'*/*', 'User-Agent'=>'Ruby-Wget'})
+            .to_return(:status => 404, :body => '', :headers => {})
+          @bad_link = Factory.build(:twitter_link, :link_url => 'http://twitter.com/bad')
+        end
+
+        it 'should append a TwitterCensus' do
+          before = @twitter_link.twitter_censuses.count
+          after = @twitter_link.do_census.size
+
+          after.should == before + 1
+        end
+
+        it 'should not save the Link' do
+          before = @twitter_link.twitter_censuses.count
+          @twitter_link.do_census
+
+          @twitter_link.twitter_censuses.count.should == before
+        end
+
+        it 'should upflag it there are errors' do
+          before = @bad_link.flag
+          @bad_link.do_census
+
+          @bad_link.flag.should == before + 1
         end
       end
     end

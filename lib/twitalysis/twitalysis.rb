@@ -1,3 +1,6 @@
+require 'open-uri'
+require 'json'
+
 module Twitalysis
 
   class Cached
@@ -26,6 +29,11 @@ module Twitalysis
       Twitter.__send__(@method, @handle)
     end
 
+    def get_census
+      url = Twitalysis.census_url(@handle)
+      JSON.parse open(url, "User-Agent" => "Ruby-Wget").read
+    end
+
     # def cache
     #   CouchRest.put "#{@db.root}/#{@handle}", @doc
     # end
@@ -51,6 +59,7 @@ module Twitalysis
       def acts_as_twitalyzable(column)
         class_eval <<-RUBY
           has_many :twitter_stats
+          has_many :twitter_censuses
 
           # grabs the twitter user information for a twitter user
           # based on the column passed into acts_as_twitalyzable
@@ -75,6 +84,22 @@ module Twitalysis
             save
           end
 
+          def do_census
+            begin
+              census = Twitalysis::User.from_link(#{column.to_s}).get_census
+              twitter_censuses << TwitterCensus.from_hash(census)
+            rescue
+              self.upflag
+            end
+
+            twitter_censuses
+          end
+
+          def do_census!
+            do_census
+            save
+          end
+
           def latest_stats
             if instance_variables.include? :@twitter_stats
               twitter_stats.first
@@ -85,9 +110,9 @@ module Twitalysis
         RUBY
       end
 
-      def acts_as_twitter_stat_for(table)
-        class_eval <<-RUBY
-          belongs_to :#{table.to_s}
+      def acts_as_twitter_stat
+        class_eval do
+          belongs_to :link
 
           # translates some keys and then applies them to a new instance
           # of TwitterStat
@@ -100,7 +125,20 @@ module Twitalysis
 
             ts
           end
-        RUBY
+        end
+      end
+
+      def acts_as_twitter_census
+        class_eval do
+          def self.from_hash(hash)
+            census = self.new
+            census.attributes.keys.each do |key|
+              census[key] = hash[key]
+            end
+
+            census
+          end
+        end
       end
     end
   end
@@ -137,7 +175,16 @@ module Twitalysis
   def self.link_to_handle(link)
     link.match(/https?:\/\/(?:www\.)?twitter.com\/([^\/]+).*/)[1]
   end
+
+  def self.census_key
+    ENV['INFOCHIMPS_API_KEY']
+  end
+
+  def self.census_url(handle)
+    "http://api.infochimps.com/social/network/tw/influence/metrics?apikey=#{Twitalysis.census_key}&screen_name=" + handle
+  end
 end
+
 
 
 ActiveRecord::Base.extend Twitalysis::Acts::Twitalyzable

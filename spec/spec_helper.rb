@@ -43,12 +43,8 @@ Spork.prefork do
     # instead of true.
     config.use_transactional_fixtures = true
     include Devise::TestHelpers
-    
   end
 
-  def fixture(file)
-    File.new(fixture_path + '/' + file)
-  end
 end
 
 Spork.each_run do
@@ -91,3 +87,6 @@ end
 
 
 
+def fixture(file)
+  File.new(fixture_path + '/' + file)
+end
