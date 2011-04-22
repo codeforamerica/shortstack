@@ -9,17 +9,22 @@ class FacebookStat < ActiveRecord::Base
   #   Link.facebook_stats.new.get_graph
   def get_graph(link_url=link.link_url)
     url = alter_url(link_url)
-    if !url.nil?  
-      body = JSON.parse(open(url).read) 
+    if !url.nil?
+      body = begin  
+      JSON.parse(open(url).read) 
+      rescue
+        { "error" => "We had a problem."}
+      end
+    else
+      body = { "error" => "Link not properly formed"}
     end
-    if body["error"].nil? 
+    if body["error"].nil?
       body 
     else
       link.update_attributes(:flag => link.flag + 1)
       nil
     end
   end
-  
   
   # Save graph data from graph.facebook.com for a link
   #
@@ -37,7 +42,6 @@ class FacebookStat < ActiveRecord::Base
     end
     self
   end  
-  
   
   # Changes facebook url to the social graph url
   #

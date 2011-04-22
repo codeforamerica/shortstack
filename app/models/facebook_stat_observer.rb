@@ -4,13 +4,9 @@ class FacebookStatObserver < ActiveRecord::Observer
     summary = FacebookSummary.where(:link_id => stat.link_id).first
     #update the attributes
     if !summary.blank?
-      puts "Its not blank"
-      #or create new Twit summary
-      puts stat.inspect
-      
+      #or create new summary
       summary.update_attributes(make_attr_hash(stat))
     else
-      puts "its  blank"
       FacebookSummary.create(make_attr_hash(stat).merge(:organization => stat.link.linkable, :link => stat.link))
     end  
   end
