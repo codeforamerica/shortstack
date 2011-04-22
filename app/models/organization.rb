@@ -23,7 +23,7 @@ class Organization < ActiveRecord::Base
 
   scope :alpha, order("name ASC")
   scope :recent, order("created_at DESC")
-
+  
   validates_presence_of :name, :on => :create, :message => "can't be blank"
   validates_presence_of :org_type, :on => :create, :message => "can't be blank"
 

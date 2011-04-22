@@ -21,10 +21,13 @@ gem 'twitter-text'
 gem 'will_paginate', "~> 3.0.pre2"
 gem 'yajl-ruby'
 gem 'gchartrb'
+gem 'compete'
 
-group :development, :test do
+group :test do
   gem 'factory_girl_rails', '1.1.beta1'
   gem 'mocha'
   gem 'rspec-rails'
   gem 'ZenTest'
+  gem 'simplecov'
+  gem 'webmock'
 end

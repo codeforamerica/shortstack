@@ -1,0 +1,41 @@
+<ci> 
+	<dmn> 
+		<nm>google.com</nm> 
+		<trust caption="Trust"> 
+			<val>green</val> 
+			<link>http://toolbar.compete.com/trustgreen/google.com</link> 
+		<icon>http://home.compete.com.edgesuite.net/site_media/images/icons/trust_green_53.gif</icon> 
+		</trust> 
+		<rank caption="Profile"> 
+			<val>1</val> 
+			<link>http://toolbar.compete.com/siteprofile/google.com</link> 
+		    <icon>http://home.compete.com.edgesuite.net/site_media/images/icons/profile_3_53.gif</icon> 
+		</rank> 
+        <metrics caption="Profile"> 
+            <val> 
+                <mth> 
+                    03
+                </mth> 
+                <yr> 
+                    2011
+                </yr> 
+                <uv> 
+                   <ranking> 
+                        1
+                    </ranking> 
+                    <count> 
+                       150,571,274
+                    </count> 
+                </uv> 
+            </val> 
+            <link>http://toolbar.compete.com/siteprofile/google.com</link> 
+            <icon>http://home.compete.com.edgesuite.net/site_media/images/icons/profile_3_53.gif</icon> 
+        </metrics> 
+		<deals caption="Deals"> 
+			<val>0</val> 
+			<link></link> 
+			<icon>http://home.compete.com.edgesuite.net/site_media/images/icons/deals_off_53.gif</icon> 
+		</deals> 
+	</dmn> 
+</ci> 
+ 
