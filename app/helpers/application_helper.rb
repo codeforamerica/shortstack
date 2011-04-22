@@ -122,6 +122,10 @@ module ApplicationHelper
       cur = stat.statuses_count
       avg = TwitterSummary.average_statuses
       label = 'Posts'
+    else
+      cur = stat[type]
+      avg = TwitterSummary.average(type)
+      label = type.to_s.titleize
     end
 
     make_bar_chart label, stat.twitter_stat.screen_name, cur, avg
