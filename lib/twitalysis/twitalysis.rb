@@ -1,6 +1,7 @@
 module Twitalysis
 
   class Cached
+    attr_accessor :method, :handle
     def initialize(handle)
       # @db = CouchRest.database!(@db_name)
       @method = self.class.name.split('::').last.downcase.to_sym

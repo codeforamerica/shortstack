@@ -4,6 +4,7 @@ FactoryGirl.define do
   factory :twitter_summary do
       organization_id 1
       link_id 1
+      twitter_stat_id 1
       followers_count 1
       following_count 1
       listed_count 1

@@ -31,4 +31,5 @@ group :test do
   gem 'simplecov'
   gem 'webmock'
   gem 'yard'
+  gem 'spork', '~> 0.9.0.rc'
 end

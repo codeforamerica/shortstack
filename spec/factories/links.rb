@@ -14,3 +14,10 @@ Factory.define :facebook, :parent => :link do |f|
   f.link_type_id 1
   f.linkable {Factory(:organization)}
 end
+
+Factory.define :twitter_link, :parent => :link do |f|
+  f.name 'Twitter'
+  f.link_url 'http://twitter.com/rockymeza'
+  f.link_type {Factory(:twitter_link_type)}
+  f.linkable {Factory(:organization)}
+end
