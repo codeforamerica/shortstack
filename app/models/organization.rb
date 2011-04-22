@@ -12,6 +12,7 @@ class Organization < ActiveRecord::Base
   has_many :children, :as => :childable, :class_name => "Relationship", :dependent => :destroy
   has_many :statistics, :as => :statisticable, :class_name => "Statistic", :dependent => :destroy
   has_many :twitter_summaries
+  has_many :facebook_summaries    
 
   has_many :organization_subdomains
   has_many :subdomains, :through => :organization_subdomains

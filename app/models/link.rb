@@ -4,12 +4,18 @@ class Link < ActiveRecord::Base
   belongs_to :link_type
   belongs_to :linkable, :polymorphic => true
   has_one :twitter_summary
+  has_one :facebook_summary  
   has_many :contributions, :as => :contributable, :class_name => "Contribution", :dependent => :destroy
+  has_many :facebook_stats
   after_update :update_contribution
   after_create :create_contribution
 
   acts_as_twitalyzable :link_url
   after_create :after_creation
+
+  def grab_facebook_stats
+    self.facebook_stats.new.save_facebook_data
+  end
 
   def create_contribution
     self.contributions << Contribution.new(:user =>$current_user, :action => "Create")

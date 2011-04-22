@@ -1,0 +1,34 @@
+{
+   "id": "48411192144",
+   "name": "City and County of San Francisco",
+   "picture": "http://profile.ak.fbcdn.net/hprofile-ak-snc4/50284_48411192144_4159795_s.jpg",
+   "link": "http://www.facebook.com/SF",
+   "category": "Government organization",
+   "likes": 257428,
+   "website": "http://sfgov.org",
+   "username": "SF",
+   "location": {
+      "street": "1 Dr. Carlton B. Goodlett Place",
+      "city": "San Francisco",
+      "state": "CA",
+      "country": "United States",
+      "zip": "94102"
+   },
+   "parking": {
+      "street": 1
+   },
+   "public_transit": "The San Francisco Municipal Transportation Agency (SFMTA) manages transportation in San Francisco, California.\nhttp://sfmta.com\n\nBay Area Transit Info\nhttp://511.org\n\n",
+   "hours": {
+      "mon_1_open": 403200,
+      "mon_1_close": 446400,
+      "tue_1_open": 489600,
+      "tue_1_close": 532800,
+      "wed_1_open": 576000,
+      "wed_1_close": 619200,
+      "thu_1_open": 57600,
+      "thu_1_close": 100800,
+      "fri_1_open": 144000,
+      "fri_1_close": 187200
+   },
+   "phone": "Calling within San Francisco: 311  (available 24/7) Calling outside San Francisco (415) 701-2323"
+}
