@@ -695,6 +695,16 @@ table#full_top_contributors_table {
 	margin-right:auto;
 }
 
+#wide_col
+{
+	float: left;
+	width: 89.6em;
+	text-align: left;
+	padding: 1em;
+	background-color:#ffffff;
+	border-bottom:#FFFFFF 3px solid;
+}
+
 #col2
 {
 	float: left;
@@ -725,7 +735,7 @@ table#full_top_contributors_table {
 	border-bottom: 0px;
 }
 
-#col2_internal h1
+#col2_internal h1, #wide_col h1
 {
 	border-bottom: 3px solid #ecf3f2;
 	font-size: 1.8em;
@@ -746,7 +756,7 @@ table#full_top_contributors_table {
 	color: #777;
 }
 
-#col2_internal .h1_first
+#col2_internal .h1_first, #wide_col .h1_first
 {
 	margin-top: 0;
 	padding-right: 1.3em;

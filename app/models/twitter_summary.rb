@@ -4,7 +4,7 @@ class TwitterSummary < ActiveRecord::Base
   belongs_to :twitter_stat
 
   # twitter stuff
-  @@sortable_columns = ['screen_name', 'org_name', 'followers_count', 'following_count', 'statuses_count'].freeze
+  @@sortable_columns = ['screen_name', 'org_name', 'followers_count', 'following_count', 'statuses_count', 'interesting', 'sway', 'outflux', 'feedness', 'chattiness'].freeze
   @@sortable_directions = ['asc', 'desc'].freeze
 
   def self.sortable(column, direction)

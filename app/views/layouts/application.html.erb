@@ -31,6 +31,11 @@
     	</div>
     	<a href="/" title="Home" rel="nofollow">Home</a>
     </div>
+<% if params[:controller] == 'twitter' -%>
+    <div id="wide_col">
+      <%= yield %>
+    </div>
+<% else -%>     
     <div id="col1">
       <%= yield :column1%>
     </div>
@@ -45,5 +50,6 @@
       <%= yield :column3%>
       <%= render :partial => 'layouts/types' if current_user.try(:admin?) %>
     </div>	
+<% end -%>
   </body>
 </html>
