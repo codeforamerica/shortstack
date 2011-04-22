@@ -54,4 +54,8 @@ class Link < ActiveRecord::Base
       WhiskBatter.new(linkable).delay.associate_social_links :twitter
     end
   end
+
+  def upflag
+    update_attributes(:flag => flag + 1)
+  end
 end

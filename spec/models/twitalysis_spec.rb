@@ -49,6 +49,10 @@ describe Twitalysis do
 
       describe '#twitalyze' do
         before do
+          stub_request(:get, "https://api.twitter.com/1/users/show.json?screen_name=share")
+            .with(:headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Twitter Ruby Gem 1.4.0'})
+            .to_return(:status => 403, :body => fixture('twitter_share.json'), :headers => {})
+          @bad_link = FactoryGirl.build(:twitter_link, :link_url => 'http://twitter.com/share')
         end
 
         it 'should throw no errors' do
@@ -67,6 +71,13 @@ describe Twitalysis do
           @twitter_link.twitalyze
 
           @twitter_link.twitter_stats.count.should == before
+        end
+
+        it 'should upflag it there are errors' do
+          before = @bad_link.flag
+          @bad_link.twitalyze
+
+          @bad_link.flag.should == before + 1
         end
       end
 
