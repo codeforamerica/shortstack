@@ -127,7 +127,7 @@ module Twitalysis
 
   # module methods
   def self.link_to_handle(link)
-    link.match(Twitter::Regex::REGEXEN[:valid_url])[6].split('/')[1]
+    link.match(/https?:\/\/(?:www\.)?twitter.com\/([^\/]+).*/)[1]
   end
 end
 
