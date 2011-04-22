@@ -19,4 +19,20 @@ task :cron => :environment do
       links = links.drop(350)
     end
   end
+  
+  if Time.now.hour == 0 # run at midnight
+    linktype = LinkType.find_by_name('Website').id
+    links = Link.where(:link_type_id => linktype)
+    g = []
+      links.each do |link|
+        link.statistics.where('"statistics".created_at > ?', 30.days.ago).blank? ? g << link : nil
+      end
+# we throttled to 1000 requests a day, so we'll need to schedule 900 per day
+      links[0..900].each do |link|
+        CompeteStat.new(link).delay.create_statistic
+      end
+    end
+  end
+  
+  
 end

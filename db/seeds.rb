@@ -42,5 +42,10 @@ end
   LinkType.find_or_create_by_name(:name => link_type[0], :description => link_type[1])
 end
 
+#Statistic Type
+["Compete"].each do |stat_type|
+  StatisticType.find_or_create_by_name(:name => stat_type)
+end
+
 #Social Account Settings
 [['github_key', 'bc26368331e1c5448ad8'],['github_secret', '12d49cf3bc803557934f396e739a388d1151af8d'],['facebook_key', '159760180721815'],['facebook_secret', '91ac6ce27fcb09d6b65d8be47c47784e'],['twitter_key', 'g6ECF8TKdbGQQI7bgkKVg'], ['twitter_secret', 'WIIaOGyBkOo0Y1kOpkBMYJEPgLNHiskLmvOWGGQnZkI']].each do  |setting| Setting.find_or_create_by_name(:name => setting[0], :setting => setting[1]) end

@@ -42,6 +42,3 @@ end
 def fixture(file)
   File.new(fixture_path + '/' + file)
 end
-
-
-

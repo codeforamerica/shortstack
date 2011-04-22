@@ -3,6 +3,7 @@ class Link < ActiveRecord::Base
   # default_scope order("created_at ASC")
   belongs_to :link_type
   belongs_to :linkable, :polymorphic => true
+  has_many :statistics, :as => :statisticable, :class_name => "Statistic", :dependent => :destroy
   has_one :twitter_summary
   has_one :facebook_summary  
   has_many :contributions, :as => :contributable, :class_name => "Contribution", :dependent => :destroy
