@@ -1,0 +1,42 @@
+
+<ci> 
+	<dmn> 
+		<nm>INVALID</nm> 
+		<trust caption="Trust"> 
+			<val>yellow</val> 
+			<link>http://toolbar.compete.com/trustyellow/INVALID</link> 
+		<icon>http://home.compete.com.edgesuite.net/site_media/images/icons/trust_yellow_53.gif</icon> 
+		</trust> 
+		<rank caption="Profile"> 
+			<val>0</val> 
+			<link></link> 
+		    <icon>http://home.compete.com.edgesuite.net/site_media/images/icons/profile_0_53.gif</icon> 
+		</rank> 
+        <metrics caption="Profile"> 
+            <val> 
+                <mth> 
+                    03
+                </mth> 
+                <yr> 
+                    2011
+                </yr> 
+                <uv> 
+                   <ranking> 
+                        0
+                    </ranking> 
+                    <count> 
+                       0
+                    </count> 
+                </uv> 
+            </val> 
+            <link></link> 
+            <icon>http://home.compete.com.edgesuite.net/site_media/images/icons/profile_0_53.gif</icon> 
+        </metrics> 
+		<deals caption="Deals"> 
+			<val>0</val> 
+			<link></link> 
+			<icon>http://home.compete.com.edgesuite.net/site_media/images/icons/deals_off_53.gif</icon> 
+		</deals> 
+	</dmn> 
+</ci> 
+ 

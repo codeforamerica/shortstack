@@ -244,6 +244,7 @@ ActiveRecord::Schema.define(:version => 20110422200401) do
     t.string "name"
   end
 
+<<<<<<< HEAD
   create_table "twitter_censuses", :force => true do |t|
     t.decimal  "fo_trstrank"
     t.integer  "followers"
@@ -264,6 +265,8 @@ ActiveRecord::Schema.define(:version => 20110422200401) do
     t.datetime "updated_at"
   end
 
+=======
+>>>>>>> master
   create_table "twitter_stats", :force => true do |t|
     t.timestamp "created"
     t.string    "description"
@@ -291,6 +294,7 @@ ActiveRecord::Schema.define(:version => 20110422200401) do
   end
 
   create_table "twitter_summaries", :force => true do |t|
+<<<<<<< HEAD
     t.integer  "organization_id"
     t.integer  "link_id"
     t.integer  "followers_count"
@@ -307,6 +311,17 @@ ActiveRecord::Schema.define(:version => 20110422200401) do
     t.decimal  "feedness",          :default => 0.0
     t.decimal  "sway",              :default => 0.0
     t.integer  "twitter_census_id"
+=======
+    t.integer   "organization_id"
+    t.integer   "link_id"
+    t.integer   "followers_count"
+    t.integer   "following_count"
+    t.integer   "listed_count"
+    t.integer   "statuses_count"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "twitter_stat_id"
+>>>>>>> master
   end
 
   add_index "twitter_summaries", ["link_id"], :name => "index_twitter_summaries_on_link_id"

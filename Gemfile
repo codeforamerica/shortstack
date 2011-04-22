@@ -22,6 +22,7 @@ gem 'will_paginate', "~> 3.0.pre2"
 gem 'yajl-ruby'
 gem 'gchartrb'
 gem 'sunspot_rails', '~> 1.2.1'
+gem 'compete'
 
 group :test do
   gem 'factory_girl_rails', '1.1.beta1'
