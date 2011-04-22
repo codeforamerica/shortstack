@@ -12,6 +12,10 @@ class Link < ActiveRecord::Base
 
   acts_as_twitalyzable :link_url
 
+  def grab_facebook_stats
+    self.facebook_stats.new.save_facebook_data
+  end
+
   def create_contribution
     self.contributions << Contribution.new(:user =>$current_user, :action => "Create")
   end
