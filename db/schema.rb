@@ -84,12 +84,12 @@ ActiveRecord::Schema.define(:version => 20110426172656) do
   create_table "facebook_summaries", :force => true do |t|
     t.integer  "organization_id"
     t.integer  "link_id"
-    t.integer  "facebook_id"
     t.string   "name"
     t.string   "category"
     t.integer  "likes"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "facebook_id"
   end
 
   create_table "link_types", :force => true do |t|
