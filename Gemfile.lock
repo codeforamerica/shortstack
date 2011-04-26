@@ -234,7 +234,7 @@ DEPENDENCIES
   json
   mocha
   nifty-generators
-  omniauth
+  omniauth (~> 0.2.4)
   rails (= 3.0.7)
   rails3-generators
   rspec-rails
