@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110422200401) do
+ActiveRecord::Schema.define(:version => 20110426172656) do
 
   create_table "addresses", :force => true do |t|
     t.string    "address"
@@ -73,12 +73,12 @@ ActiveRecord::Schema.define(:version => 20110422200401) do
 
   create_table "facebook_stats", :force => true do |t|
     t.integer  "link_id"
-    t.integer  "facebook_id"
     t.string   "name"
     t.string   "category"
     t.integer  "likes"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "facebook_id"
   end
 
   create_table "facebook_summaries", :force => true do |t|
@@ -291,22 +291,22 @@ ActiveRecord::Schema.define(:version => 20110422200401) do
   end
 
   create_table "twitter_summaries", :force => true do |t|
-    t.integer  "organization_id"
-    t.integer  "link_id"
-    t.integer  "followers_count"
-    t.integer  "following_count"
-    t.integer  "listed_count"
-    t.integer  "statuses_count"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "twitter_stat_id"
-    t.decimal  "outflux",           :default => 0.0
-    t.decimal  "interesting",       :default => 0.0
-    t.decimal  "chattiness",        :default => 0.0
-    t.decimal  "follow_rate",       :default => 0.0
-    t.decimal  "feedness",          :default => 0.0
-    t.decimal  "sway",              :default => 0.0
-    t.integer  "twitter_census_id"
+    t.integer   "organization_id"
+    t.integer   "link_id"
+    t.integer   "followers_count"
+    t.integer   "following_count"
+    t.integer   "listed_count"
+    t.integer   "statuses_count"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "twitter_stat_id"
+    t.decimal   "outflux",           :default => 0.0
+    t.decimal   "interesting",       :default => 0.0
+    t.decimal   "chattiness",        :default => 0.0
+    t.decimal   "follow_rate",       :default => 0.0
+    t.decimal   "feedness",          :default => 0.0
+    t.decimal   "sway",              :default => 0.0
+    t.integer   "twitter_census_id"
   end
 
   add_index "twitter_summaries", ["link_id"], :name => "index_twitter_summaries_on_link_id"
