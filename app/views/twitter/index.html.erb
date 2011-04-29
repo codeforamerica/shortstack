@@ -19,11 +19,11 @@
     <td><%= stat.followers_count %></td>
     <td><%= stat.following_count %></td>
     <td><%= stat.statuses_count %></td>
-    <td><%= stat.interesting %></td>
-    <td><%= stat.sway %></td>
-    <td><%= stat.outflux %></td>
-    <td><%= stat.feedness %></td>
-    <td><%= stat.chattiness %></td>
+    <td><%= stat.get_round(:interesting) %></td>
+    <td><%= stat.get_round(:sway) %></td>
+    <td><%= stat.get_round(:outflux) %></td>
+    <td><%= stat.get_round(:feedness) %></td>
+    <td><%= stat.get_round(:chattiness) %></td>
   </tr>
 <% end %>
 </table>

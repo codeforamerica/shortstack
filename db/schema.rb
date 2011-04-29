@@ -72,24 +72,24 @@ ActiveRecord::Schema.define(:version => 20110429164119) do
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
   create_table "facebook_stats", :force => true do |t|
-    t.integer  "link_id"
-    t.string   "name"
-    t.string   "category"
-    t.integer  "likes"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "facebook_id"
+    t.integer   "link_id"
+    t.string    "name"
+    t.string    "category"
+    t.integer   "likes"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "facebook_id"
   end
 
   create_table "facebook_summaries", :force => true do |t|
-    t.integer  "organization_id"
-    t.integer  "link_id"
-    t.string   "name"
-    t.string   "category"
-    t.integer  "likes"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "facebook_id"
+    t.integer   "organization_id"
+    t.integer   "link_id"
+    t.string    "name"
+    t.string    "category"
+    t.integer   "likes"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "facebook_id"
   end
 
   create_table "link_types", :force => true do |t|
@@ -245,20 +245,20 @@ ActiveRecord::Schema.define(:version => 20110429164119) do
   end
 
   create_table "twitter_censuses", :force => true do |t|
-    t.float    "fo_trstrank"
+    t.float    "fo_trstrank",  :default => 0.0
     t.integer  "followers"
-    t.float    "outflux"
-    t.float    "interesting"
-    t.float    "chattiness"
+    t.float    "outflux",      :default => 0.0
+    t.float    "interesting",  :default => 0.0
+    t.float    "chattiness",   :default => 0.0
     t.integer  "user_id"
-    t.float    "follow_rate"
+    t.float    "follow_rate",  :default => 0.0
     t.string   "screen_name"
-    t.float    "at_trstrank"
-    t.float    "influx"
-    t.float    "enthusiasm"
-    t.float    "feedness"
-    t.float    "sway"
-    t.float    "follow_churn"
+    t.float    "at_trstrank",  :default => 0.0
+    t.float    "influx",       :default => 0.0
+    t.float    "enthusiasm",   :default => 0.0
+    t.float    "feedness",     :default => 0.0
+    t.float    "sway",         :default => 0.0
+    t.float    "follow_churn", :default => 0.0
     t.integer  "link_id"
     t.datetime "created_at"
     t.datetime "updated_at"

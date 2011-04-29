@@ -15,7 +15,7 @@ class TwitterSummary < ActiveRecord::Base
         when 'org_name'
           'organizations.name'
         else
-          'twitter_summaries.' + column
+          "twitter_summaries." + column
         end
 
     joins(:organization)
@@ -51,5 +51,9 @@ class TwitterSummary < ActiveRecord::Base
 
   def counts
     [followers_count, following_count, statuses_count]
+  end
+
+  def get_round(key)
+    self[key].to_f.round(2)
   end
 end
