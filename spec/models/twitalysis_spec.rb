@@ -6,7 +6,7 @@ describe Twitalysis do
     @twitter_link = FactoryGirl.build(:twitter_link)
 
     stub_request(:get, "https://api.twitter.com/1/users/show.json?screen_name=rockymeza")
-     .with(:headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Twitter Ruby Gem 1.4.0'})
+     .with(:headers => {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Twitter Ruby Gem 1.4.1'})
      .to_return(:status => 200, :body => fixture('rockymeza.json'), :headers => {})
     stub_request(:get, Twitalysis.census_url('rockymeza'))
       .with(:headers => {'Accept'=>'*/*', 'User-Agent'=>'Ruby-Wget'})
