@@ -88,7 +88,9 @@ module Twitalysis
             begin
               census = Twitalysis::User.from_link(#{column.to_s}).get_census
               twitter_censuses << TwitterCensus.from_hash(census)
-            rescue
+            rescue StandardError => e
+              puts e
+              puts "upflagged link (#{id})"
               self.upflag
             end
 
@@ -133,7 +135,7 @@ module Twitalysis
           belongs_to :link
 
           def self.from_hash(hash)
-            census = self.new
+            census = TwitterCensus.new
             census.attributes.keys.each do |key|
               census[key] = hash[key]
             end
