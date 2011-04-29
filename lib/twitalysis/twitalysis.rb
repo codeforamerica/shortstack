@@ -88,10 +88,9 @@ module Twitalysis
             begin
               census = Twitalysis::User.from_link(#{column.to_s}).get_census
               twitter_censuses << TwitterCensus.from_hash(census)
-            rescue StandardError => e
+            rescue OpenURI::HTTPError => e
               puts ["upflagged link (", id, ")"]
               self.upflag
-              raise
             end
 
             twitter_censuses
