@@ -15,7 +15,7 @@ class TwitterSummary < ActiveRecord::Base
         when 'org_name'
           'organizations.name'
         else
-          "twitter_summaries." + column
+          "twitter_summaries.#{column} IS NOT NULL DESC, twitter_summaries." + column
         end
 
     joins(:organization)
