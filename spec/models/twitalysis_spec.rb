@@ -179,7 +179,7 @@ describe Twitalysis do
 
         it 'should upflag it there are errors' do
           before = @bad_link.flag
-          @bad_link.do_census
+          expect {@bad_link.do_census}.to raise_error
 
           @bad_link.flag.should == before + 1
         end
