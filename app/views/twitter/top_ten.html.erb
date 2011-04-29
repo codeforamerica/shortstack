@@ -12,8 +12,8 @@
   </tr>
 <% @stats.each do |stat| %>
   <tr>
-    <td><%= stat.organization.name %></td>
-    <td><%= stat.twitter_stat.screen_name %></td>
+    <td><%= link_to stat.organization.name, stat.organization %></td>
+    <td><%= twitter_link stat.twitter_stat.screen_name %></td>
     <td><%= stat[aspect_column] %></td>
   </tr>
 <% end %>
