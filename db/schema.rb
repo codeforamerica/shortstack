@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110426172656) do
+ActiveRecord::Schema.define(:version => 20110429164119) do
 
   create_table "addresses", :force => true do |t|
     t.string    "address"
@@ -245,20 +245,20 @@ ActiveRecord::Schema.define(:version => 20110426172656) do
   end
 
   create_table "twitter_censuses", :force => true do |t|
-    t.decimal  "fo_trstrank"
+    t.float    "fo_trstrank"
     t.integer  "followers"
-    t.decimal  "outflux"
-    t.decimal  "interesting"
-    t.decimal  "chattiness"
+    t.float    "outflux"
+    t.float    "interesting"
+    t.float    "chattiness"
     t.integer  "user_id"
-    t.decimal  "follow_rate"
+    t.float    "follow_rate"
     t.string   "screen_name"
-    t.decimal  "at_trstrank"
-    t.decimal  "influx"
-    t.decimal  "enthusiasm"
-    t.decimal  "feedness"
-    t.decimal  "sway"
-    t.decimal  "follow_churn"
+    t.float    "at_trstrank"
+    t.float    "influx"
+    t.float    "enthusiasm"
+    t.float    "feedness"
+    t.float    "sway"
+    t.float    "follow_churn"
     t.integer  "link_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -291,22 +291,22 @@ ActiveRecord::Schema.define(:version => 20110426172656) do
   end
 
   create_table "twitter_summaries", :force => true do |t|
-    t.integer   "organization_id"
-    t.integer   "link_id"
-    t.integer   "followers_count"
-    t.integer   "following_count"
-    t.integer   "listed_count"
-    t.integer   "statuses_count"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "twitter_stat_id"
-    t.decimal   "outflux",           :default => 0.0
-    t.decimal   "interesting",       :default => 0.0
-    t.decimal   "chattiness",        :default => 0.0
-    t.decimal   "follow_rate",       :default => 0.0
-    t.decimal   "feedness",          :default => 0.0
-    t.decimal   "sway",              :default => 0.0
-    t.integer   "twitter_census_id"
+    t.integer  "organization_id"
+    t.integer  "link_id"
+    t.integer  "followers_count"
+    t.integer  "following_count"
+    t.integer  "listed_count"
+    t.integer  "statuses_count"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "twitter_stat_id"
+    t.float    "outflux",           :default => 0.0
+    t.float    "interesting",       :default => 0.0
+    t.float    "chattiness",        :default => 0.0
+    t.float    "follow_rate",       :default => 0.0
+    t.float    "feedness",          :default => 0.0
+    t.float    "sway",              :default => 0.0
+    t.integer  "twitter_census_id"
   end
 
   add_index "twitter_summaries", ["link_id"], :name => "index_twitter_summaries_on_link_id"
