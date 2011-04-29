@@ -1,0 +1,20 @@
+<h1 class="title">Twitter Top Tens</h1>
+<ul id="submenu">
+<% TwitterSummary.aspect_columns.each do |aspect| %>
+  <li><%= link_to aspect.titleize, '/twitter/top_ten/' + aspect %></li>
+<% end %>
+</ul>
+<table>
+  <tr>
+    <th>City</th>
+    <th>Twitter Handle</th>
+    <th><%= aspect_column %></th>
+  </tr>
+<% @stats.each do |stat| %>
+  <tr>
+    <td><%= stat.organization.name %></td>
+    <td><%= stat.twitter_stat.screen_name %></td>
+    <td><%= stat[aspect_column] %></td>
+  </tr>
+<% end %>
+</table>

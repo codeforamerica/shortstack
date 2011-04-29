@@ -151,7 +151,7 @@ class WhiskBatter
   end
 
   def normalize_link(type, link)
-    link.sub 'http://www.', 'http://'
+    link.downcase.sub(/^(?:http:\/\/)?(?:www\.)?/, 'http://').sub(/\/$/, '')
   end
 
 

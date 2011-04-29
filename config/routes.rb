@@ -4,6 +4,7 @@ Shortstack::Application.routes.draw do
 
   get "search/index"
   get "twitter/index"
+  get "twitter/top_ten"
 
   #details
   resources :contacts
@@ -50,6 +51,7 @@ Shortstack::Application.routes.draw do
   match 'search', :to => 'search#index'
   #twitter
   match 'twitter', :to => 'twitter#index'
+  match 'twitter/top_ten/:aspect', :to => 'twitter#top_ten'
 
   #home
   root :to => "home#index"

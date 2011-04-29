@@ -7,6 +7,7 @@ class TwitterSummary < ActiveRecord::Base
   # twitter stuff
   @@sortable_columns = ['screen_name', 'org_name', 'followers_count', 'following_count', 'statuses_count', 'interesting', 'sway', 'outflux', 'feedness', 'chattiness'].freeze
   @@sortable_directions = ['asc', 'desc'].freeze
+  @@aspect_columns = ['followers_count', 'following_count', 'statuses_count', 'interesting', 'sway', 'outflux', 'feedness', 'chattiness'].freeze
 
   def self.sortable(column, direction)
     c = case column
@@ -31,6 +32,10 @@ class TwitterSummary < ActiveRecord::Base
 
   def self.sortable_directions
     @@sortable_directions
+  end
+
+  def self.aspect_columns
+    @@aspect_columns
   end
 
   def self.average_followers
