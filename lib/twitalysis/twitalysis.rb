@@ -137,7 +137,7 @@ module Twitalysis
           def self.from_hash(hash)
             census = TwitterCensus.new
             census.attributes.keys.each do |key|
-              census[key] = hash[key]
+              census[key] = hash[key] unless key == 'created_at'
             end
 
             census
