@@ -99,7 +99,7 @@ class WhiskBatter
           link.downcase.include?(social_url)
         }
       }
-    }.flatten.uniq.select { |link| usable_link?(type, link) }
+    }.flatten.collect { |link| normalize_link(type, link) }.uniq.select { |link| usable_link?(type, link) }
   end
 
   # Find and associate all social links from an item's website
@@ -142,12 +142,16 @@ class WhiskBatter
     when :twitter
       # twitter users starting with _ (like _NapervilleIl) are weatherbugs
       # if the username does not start with _ it is a valid username
-      (url.match(/^http:\/\/(?:www\.)?twitter.com[^\/]*\/[^_]/)) && (! url.include?('/share'))
+      (url.match(/^http:\/\/(?:www\.)?twitter.com[^\/]*\/[^_]/)) && (! url.match(/\/share|\/goodies/))
     when :facebook
       url.match(/^http:\/\/(?:www\.)?facebook.com/)
     else
       true
     end
+  end
+
+  def normalize_link(type, link)
+    link.sub 'http://www.', 'http://'
   end
 
 

@@ -123,7 +123,7 @@ module ApplicationHelper
       avg = TwitterSummary.average_statuses
       label = 'Posts'
     else
-      cur = stat[type]
+      cur = stat[type].to_f
       avg = TwitterSummary.average(type)
       label = type.to_s.titleize
     end
