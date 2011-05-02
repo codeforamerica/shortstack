@@ -54,17 +54,18 @@ class FacebookStat < ActiveRecord::Base
     if !facebook_link.nil? and facebook_link.path != "" and facebook_link.path.size != 1
       if facebook_link.path.include?("pages")
         facebook_link.path.split("/").each do |f| 
+          # Detect a facebook id numbder  
           if f.to_i > 0 
-            "http://graph.facebook.com/" + f.to_s
-          else
-            nil
+            url = "http://graph.facebook.com/" + f.to_s
           end
+        end
       else
-      "http://graph.facebook.com#{facebook_link.path}"
+      url "http://graph.facebook.com#{facebook_link.path}"
       end
     else 
-      nil
+      url = nil
     end   
+    url
   end
   
 end
