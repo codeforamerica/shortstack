@@ -52,7 +52,16 @@ class FacebookStat < ActiveRecord::Base
   def alter_url(url)
     facebook_link = Domainatrix.parse(url)
     if !facebook_link.nil? and facebook_link.path != "" and facebook_link.path.size != 1
+      if facebook_link.path.include?("pages")
+        facebook_link.path.split("/").each do |f| 
+          if f.to_i > 0 
+            "http://graph.facebook.com/" + f.to_s
+          else
+            nil
+          end
+      else
       "http://graph.facebook.com#{facebook_link.path}"
+      end
     else 
       nil
     end   
