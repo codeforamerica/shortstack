@@ -60,7 +60,7 @@ class FacebookStat < ActiveRecord::Base
           end
         end
       else
-      url "http://graph.facebook.com#{facebook_link.path}"
+      url = "http://graph.facebook.com#{facebook_link.path}"
       end
     else 
       url = nil
