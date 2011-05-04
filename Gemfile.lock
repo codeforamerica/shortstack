@@ -205,8 +205,8 @@ GEM
     twitter-text (1.4.2)
       actionpack
     tzinfo (0.3.27)
-    warden (1.0.3)
-      rack (>= 1.0.0)
+    warden (1.0.4)
+      rack (>= 1.0)
     webmock (1.6.2)
       addressable (>= 2.2.2)
       crack (>= 0.1.7)
