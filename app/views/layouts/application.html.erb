@@ -31,7 +31,7 @@
     	</div>
     	<a href="/" title="Home" rel="nofollow">Home</a>
     </div>
-<% if params[:controller] == 'twitter' -%>
+<% if params[:controller] == 'twitter' or params[:controller] == 'facebook' -%>
     <div id="wide_col">
       <%= yield %>
     </div>

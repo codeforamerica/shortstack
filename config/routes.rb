@@ -1,10 +1,12 @@
 Shortstack::Application.routes.draw do
+
   resources :statistics
   resources :statistic_types
 
   get "search/index"
   get "twitter/index"
   get "twitter/top_ten"
+  get "facebook/index"
 
   #details
   resources :contacts
@@ -52,6 +54,8 @@ Shortstack::Application.routes.draw do
   #twitter
   match 'twitter', :to => 'twitter#index'
   match 'twitter/top_ten/:aspect', :to => 'twitter#top_ten'
+  #facebook
+  match 'facebook', :to => 'facebook#index'
 
   #home
   root :to => "home#index"
