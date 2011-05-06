@@ -8,7 +8,7 @@
   </tr>
 <% @stats.each do |stat| %>
   <tr>
-    <td><%= link_to stat.link.link_url, stat.name %></td>
+    <td><%= link_to stat.name, stat.link.link_url %></td>
     <td><%= link_to stat.organization.name, stat.organization %></td>
     <td><%= stat.category %></td>
     <td><%= stat.likes %></td>
