@@ -133,7 +133,12 @@ module ApplicationHelper
 
 
   def direction(current)
-    dir = (['asc', 'desc'] - [current]).first
-    link_to dir, params.merge(:direction => dir)
+    ['asc', 'desc'].map do |dir|
+      if dir == current
+        "<span>#{dir}</span>"
+      else
+        link_to dir, params.merge(:direction => dir)
+      end
+    end.join(', ').html_safe
   end
 end

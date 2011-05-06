@@ -2,7 +2,7 @@
 <h1 class="title">Statistics</h1>
 
 <%= sort_list StatisticType.all, 'statistic_type_id', 'Population' %>
-<%= direction sort_direction %>
+<p>Sort direction: <%= direction sort_direction %></p>
 <table>
   <tr>
     <th>Organization</th>
