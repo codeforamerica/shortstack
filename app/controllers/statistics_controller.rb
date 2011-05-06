@@ -8,7 +8,7 @@ class StatisticsController < ApplicationController
   def index
     @statistics = Statistic
       .where(:statistic_type_id => params[:statistic_type_id] || 1)
-      .where('value != ""')
+      .where("value != ''")
       .order('CAST(value AS int) ' + sort_direction)
       .paginate(
         :per_page => params[:per_page] || 50,
