@@ -1,0 +1,18 @@
+<h1 class="title">Facebook Summary</h1>
+<table>
+  <tr>
+    <th><%= sortable 'name', 'Facebook Name' %></th>
+    <th><%= sortable 'org_name', 'Organization Name' %></th>
+    <th><%= sortable 'category', 'Category' %></th>
+    <th><%= sortable 'likes', 'Likes' %></th>
+  </tr>
+<% @stats.each do |stat| %>
+  <tr>
+    <td><%= stat.name %></td>
+    <td><%= link_to stat.organization.name, stat.organization %></td>
+    <td><%= stat.category %></td>
+    <td><%= stat.likes %></td>
+  </tr>
+<% end %>
+</table>
+<%= will_paginate @stats %>
