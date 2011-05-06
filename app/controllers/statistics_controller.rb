@@ -1,9 +1,19 @@
 class StatisticsController < ApplicationController
   before_filter :authenticate_user!
+
+  helper_method :sort_direction
+
   # GET /statistics
   # GET /statistics.xml
   def index
-    @statistics = Statistic.all
+    @statistics = Statistic
+      .where(:statistic_type_id => params[:statistic_type_id] || 1)
+      .where('value')
+      .order('CAST(value AS int) ' + sort_direction)
+      .paginate(
+        :per_page => params[:per_page] || 50,
+        :page => params[:page]
+      )
 
     respond_to do |format|
       format.html # index.html.erb
@@ -95,5 +105,9 @@ class StatisticsController < ApplicationController
       end
     end
     nil
+  end
+
+  def sort_direction
+    ['asc', 'desc'].include?(params[:direction]) ? params[:direction] : 'desc'
   end
 end

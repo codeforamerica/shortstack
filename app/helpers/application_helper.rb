@@ -130,4 +130,10 @@ module ApplicationHelper
 
     make_bar_chart label, stat.twitter_stat.screen_name, cur, avg
   end
+
+
+  def direction(current)
+    dir = (['asc', 'desc'] - [current]).first
+    link_to dir, params.merge(:direction => dir)
+  end
 end

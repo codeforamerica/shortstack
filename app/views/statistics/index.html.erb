@@ -1,15 +1,23 @@
 <% title "Statistics" %>
+<h1 class="title">Statistics</h1>
 
+<%= sort_list StatisticType.all, 'statistic_type_id', 'Population' %>
+<%= direction sort_direction %>
 <table>
   <tr>
+    <th>Organization</th>
     <th>Value</th>
+    <th>Actions</th>
   </tr>
   <% for statistic in @statistics %>
     <tr>
+      <td><%= link_to statistic.org.name, statistic.org %></td>
       <td><%= statistic.value %></td>
       <td><%= link_to "Edit", statistics_path %></td>
     </tr>
   <% end %>
 </table>
+
+<%= will_paginate(@statistics) %>
 
 <p><%= link_to "New Statistic", statistics_path %></p>
