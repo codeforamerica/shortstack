@@ -7,7 +7,7 @@ class Link < ActiveRecord::Base
   has_one :twitter_summary, :dependent => :destroy
   has_one :facebook_summary, :dependent => :destroy 
   has_many :contributions, :as => :contributable, :class_name => "Contribution", :dependent => :destroy
-  has_many :facebook_stats
+  has_many :facebook_stats, :dependent => :destroy
   after_update :update_contribution
   after_create :create_contribution
 
