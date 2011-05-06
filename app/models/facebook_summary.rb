@@ -35,4 +35,18 @@ class FacebookSummary < ActiveRecord::Base
   def get_round(key)
     self[key].to_f.round(2)
   end
+
+  def completely_delete
+    puts self.name
+    begin
+      self.link.destroy
+    rescue
+      FacebookStat.where(:link_id => link_id).delete_all
+      self.delete
+    end
+  end
+
+  def self.non_gov
+    FacebookSummary.where('category NOT LIKE ? AND category NOT IN (?)', '%overnment%', ['Politician', 'Library', 'Museum/art gallery', 'Hospital/clinic', 'Health/medical/pharmacy'])
+  end
 end
