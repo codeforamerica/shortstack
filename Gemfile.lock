@@ -178,7 +178,7 @@ GEM
     ruby-openid-apps-discovery (1.2.0)
       ruby-openid (>= 2.1.7)
     rubyntlm (0.1.1)
-    simple_oauth (0.1.4)
+    simple_oauth (0.1.5)
     simplecov (0.4.2)
       simplecov-html (~> 0.4.4)
     simplecov-html (0.4.4)
