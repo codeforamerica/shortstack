@@ -25,7 +25,8 @@ class CompeteStat
   # @return Statistic
   def create_statistic
     stat_type = StatisticType.find_by_name('Compete') 
-    Statistic.create!(:statisticable => @link, :statistic_type => stat_type, :value => get_compete_score)
+    score = get_compete_score
+    Statistic.create!(:statisticable => @link, :statistic_type => stat_type, :value => score) unless score.nil?
   end
   
   
