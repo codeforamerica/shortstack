@@ -35,7 +35,7 @@ GEM
     awesome_print (0.4.0)
     bcrypt-ruby (2.1.4)
     builder (2.1.2)
-    compete (0.2.0)
+    compete (0.2.1)
       httparty (>= 0.4.3)
     couchrest (1.0.2)
       json (~> 1.5.1)
