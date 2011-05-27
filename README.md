@@ -27,3 +27,5 @@ We use the GitHub wiki for documentation.
 Submitting an Issue
 -------------------
 We use the GitHub issue tracker to track bugs and features. Before submitting a bug report or feature request, check to make sure it hasn't already been submitted.
+
+[![Code for America Tracker](http://stats.codeforamerica.org/codeforamerica/github_tracker.png)](http://stats.codeforamerica.org/projects/github_tracker)
