@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.7'
+gem 'rails', '3.0.8'
 gem 'acts-as-taggable-on'
 gem 'awesome_print', :require => 'ap'
 gem 'couchrest'
