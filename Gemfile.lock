@@ -212,7 +212,7 @@ GEM
       crack (>= 0.1.7)
     will_paginate (3.0.pre2)
     yajl-ruby (0.8.2)
-    yard (0.7.1)
+    yard (0.7.2)
 
 PLATFORMS
   ruby
