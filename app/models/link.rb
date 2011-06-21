@@ -8,6 +8,7 @@ class Link < ActiveRecord::Base
   has_one :facebook_summary, :dependent => :destroy 
   has_many :contributions, :as => :contributable, :class_name => "Contribution", :dependent => :destroy
   has_many :facebook_stats, :dependent => :destroy
+  has_many :tweets
   after_update :update_contribution
   after_create :create_contribution
 
@@ -50,6 +51,50 @@ class Link < ActiveRecord::Base
     LinkType.select('id').where(:name => 'Twitter').first.id
   end
   
+  def grab_tweets(page)
+    tweeter = self.link_url.split('/').last
+    found_tweets = false
+
+    all_tweets = Twitter.user_timeline(tweeter, :trim_user => true, :count => 200, :include_rts => true)
+    unless all_tweets.empty?
+      if page == 1
+        first_tweet = all_tweets.shift
+        Tweet.new(:data => first_tweet, :is_latest => true, :link_id => self.id).save
+      end
+        
+      for item in all_tweets do
+        Tweet.new(:data => item, :link_id => self.id).save
+      end
+      found_tweets = true
+    end
+    return found_tweets
+  end
+
+  def update_tweets
+    updated = false
+    tweeter = self.link_url.split('/').last
+    latest_tweet = Tweet.all(:is_latest => true, :user_id => self.id).first
+
+    new_tweets = Twitter.user_timeline(tweeter, :since_id => latest_tweet.data["id"], :trim_user => true)
+
+    unless new_tweets.empty?
+      first_tweet = new_tweets.shift
+      Tweet.new(:data => first_tweet, :is_latest => true, :link_id => self.id).save
+      latest_tweet.is_latest = false
+      latest_tweet.save
+
+      for item in new_tweets do
+        Tweet.new(:data => item, :link_id => self.id).save
+      end
+
+      updated = true
+    end
+
+    return updated
+  end
+
+
+
   def after_creation
     if link_type_id = Link.twitter_link_type
       WhiskBatter.new(linkable).delay.associate_social_links :twitter
