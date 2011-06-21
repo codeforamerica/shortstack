@@ -23,6 +23,7 @@ gem 'yajl-ruby'
 gem 'gchartrb'
 gem 'sunspot_rails', '~> 1.2.1'
 gem 'compete'
+gem 'mongo_mapper'
 
 group :test do
   gem 'factory_girl_rails', '1.1.beta1'
