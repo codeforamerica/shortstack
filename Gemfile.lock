@@ -213,7 +213,7 @@ GEM
       multi_xml (~> 0.2.0)
       rash (~> 0.3.0)
       simple_oauth (~> 0.1.5)
-    twitter-text (1.4.2)
+    twitter-text (1.4.6)
       actionpack
     tzinfo (0.3.28)
     warden (1.0.4)
