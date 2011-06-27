@@ -212,7 +212,7 @@ GEM
       simple_oauth (~> 0.1.5)
     twitter-text (1.4.6)
       actionpack
-    tzinfo (0.3.28)
+    tzinfo (0.3.29)
     warden (1.0.4)
       rack (>= 1.0)
     webmock (1.6.2)
