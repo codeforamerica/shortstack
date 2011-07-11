@@ -17,11 +17,11 @@ task :cron => :environment do
 # # # we throttled to 350 requests an hour, so we'll need to schedule
 #     c.times do |num|
 #        links[0..150].each do |link|
-#          link.delay(:run_at => Time.now + num.hours).grab_tweets(1)
-#         link.delay(:run_at => Time.now + num.hours).twitalyze!
-#         link.delay(:run_at => Time.now + num.hours).update_tweets
+#         link.delay(:run_at => Time.now + num.hours).grab_tweets(1)
+#         # link.delay(:run_at => Time.now + num.hours).twitalyze!
+#         # link.delay(:run_at => Time.now + num.hours).update_tweets
 #       end
-#       links = links.drop(175)
+#       links = links.drop(150)
 #     end
 #   end
 #   
