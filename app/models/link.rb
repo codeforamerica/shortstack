@@ -51,12 +51,23 @@ class Link < ActiveRecord::Base
     LinkType.select('id').where(:name => 'Twitter').first.id
   end
   
+  # pulls in tweets by the page (of 200).
+  # returns false if no tweets found, 0 if there is no need to
+  # pull the next page of tweets. should therefore be called
+  # with while(grab_tweets(i) != 0) do i +=1 end
   def grab_tweets(page)
-    tweeter = self.link_url.split('/').last
+    tweeter = self.get_tweeter
     found_tweets = false
 
-    all_tweets = Twitter.user_timeline(tweeter, :trim_user => true, :count => 200, :include_rts => true)
+    all_tweets = Twitter.user_timeline(tweeter, :trim_user => true, :count => 200, :include_rts => true, :page => page)
+
     unless all_tweets.empty?
+      if all_tweets.size < 200 
+        found_tweets = 0
+      else
+        found_tweets = true
+      end
+
       if page == 1
         first_tweet = all_tweets.shift
         Tweet.new(:data => first_tweet, :is_latest => true, :link_id => self.id).save
@@ -65,15 +76,17 @@ class Link < ActiveRecord::Base
       for item in all_tweets do
         Tweet.new(:data => item, :link_id => self.id).save
       end
-      found_tweets = true
     end
     return found_tweets
   end
 
+
+  # pulls in all tweets tweeted since the previous most-recent.
+  # example: link.delay.update_tweets
   def update_tweets
     updated = false
-    tweeter = self.link_url.split('/').last
-    latest_tweet = Tweet.all(:is_latest => true, :user_id => self.id).first
+    tweeter = self.get_tweeter
+    latest_tweet = Tweet.all(:is_latest => true, :link_id => self.id).first
 
     new_tweets = Twitter.user_timeline(tweeter, :since_id => latest_tweet.data["id"], :trim_user => true)
 
@@ -93,6 +106,41 @@ class Link < ActiveRecord::Base
     return updated
   end
 
+  # uses facebook's graph to find a wall's rss feed, then feedzirra
+  # to pull the updates; returns false if no new data
+  def update_wall
+    id = self.facebook_stats.first.facebook_id
+    new_posts = Feedzirra::Feed.fetch_and_parse("http://www.facebook.com/feeds/page.php?format=rss20&id=" + id.to_s)
+    latest_post = Facebook_Post.all(:is_latest => true, :link_id => self.id).first
+    found_posts = false
+    first_post = new_posts.entries.shift
+
+    unless latest_post.nil?
+      if first_post.entry_id == latest_post.entry_id
+        return found_posts
+      else
+        Facebook_Post.new(:data => first_post, :is_latest => true, :link_id => self.id).save
+        found_posts = true
+      end
+    end
+
+    for item in new_posts.entries do
+      if !latest_post.nil? && item.entry_id == latest_post.entry_id then break
+        end
+      Facebook_Post.new(:data => item, :link_id => self.id).save
+    end
+    return found_posts
+  end
+
+
+  def get_tweeter
+    blah = self.link_url.split("/")
+    i = 0
+    until(blah[i] == "twitter.com") do i +=1 end
+    if blah[i+1] == "#!" then return blah[i+2]
+    else return blah[i+1] end
+    return false
+  end
 
 
   def after_creation

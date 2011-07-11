@@ -6,19 +6,21 @@ task :cron => :environment do
 #     links = Link.where(:link_type_id => linktype)   
 #     links.each do |link|
 #       link.facebook_stats.new.delay.save_facebook_data
+#       link.delay.update_wall
 #     end 
 #   end
 #   
 #   if Time.now.hour == 0 # run at midnight
 #     linktype = LinkType.find_by_name('Twitter').id
 #     links = Link.where(:link_type_id => linktype)
-#     c = links.size/350
+#     c = links.size/175
 # # we throttled to 350 requests an hour, so we'll need to schedule
 #     c.times do |num|
-#       links[0..350].each do |link|
+#       links[0..175].each do |link|
 #         link.delay(:run_at => Time.now + num.hours).twitalyze!
+#         link.delay(:run_at => Time.now + num.hours).update_tweets
 #       end
-#       links = links.drop(350)
+#       links = links.drop(175)
 #     end
 #   end
 #   
