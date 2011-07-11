@@ -79,6 +79,11 @@ class Link < ActiveRecord::Base
     end
     return found_tweets
   end
+  
+  #add an hour to a grab_tweets delayed job
+  def add_hour_to_delayed_jobs
+    Delayed::Job.where("handler LIKE '%grab_tweets%'").each { |x| x.update_attributes(:run_at => Time.now + 1.hour)}
+  end
 
 
   # pulls in all tweets tweeted since the previous most-recent.
@@ -116,7 +121,7 @@ class Link < ActiveRecord::Base
     first_post = new_posts.entries.shift
 
     unless latest_post.nil?
-      if first_post.entry_id == latest_post.entry_id
+      if a.firstfirst_post.entry_id == latest_post.entry_id
         return found_posts
       else
         FacebookPost.create(:is_latest => true, :link_id => self.id,  :entry_id => item.entry_id, :title => item.title,
