@@ -66,7 +66,7 @@ GEM
     faraday (0.6.1)
       addressable (~> 2.2.4)
       multipart-post (~> 1.1.0)
-      rack (< 2, >= 1.1.0)
+      rack (>= 1.1.0, < 2)
     faraday_middleware (0.6.5)
       faraday (~> 0.6.0)
     feedzirra (0.0.24)
@@ -223,8 +223,6 @@ GEM
       multi_json (~> 1.0.0)
       multi_xml (~> 0.2.0)
       simple_oauth (~> 0.1.5)
-    twitter-text (1.4.7)
-      actionpack
     tzinfo (0.3.29)
     warden (1.0.4)
       rack (>= 1.0)
@@ -267,7 +265,6 @@ DEPENDENCIES
   sqlite3
   sunspot_rails (~> 1.2.1)
   twitter
-  twitter-text
   webmock
   will_paginate (~> 3.0.pre2)
   yajl-ruby

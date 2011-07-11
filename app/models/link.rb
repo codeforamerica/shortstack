@@ -111,7 +111,7 @@ class Link < ActiveRecord::Base
   def update_wall
     id = self.facebook_stats.first.facebook_id
     new_posts = Feedzirra::Feed.fetch_and_parse("http://www.facebook.com/feeds/page.php?format=rss20&id=" + id.to_s)
-    latest_post = Facebook_Post.all(:is_latest => true, :link_id => self.id).first
+    latest_post = FacebookPost.all(:is_latest => true, :link_id => self.id).first
     found_posts = false
     first_post = new_posts.entries.shift
 
@@ -119,7 +119,8 @@ class Link < ActiveRecord::Base
       if first_post.entry_id == latest_post.entry_id
         return found_posts
       else
-        Facebook_Post.new(:data => first_post, :is_latest => true, :link_id => self.id).save
+        FacebookPost.create(:is_latest => true, :link_id => self.id,  :entry_id => item.entry_id, :title => item.title,
+              :url => item.url, :summary => item.summary, :published => item.published, :author => item.author)
         found_posts = true
       end
     end
@@ -127,11 +128,12 @@ class Link < ActiveRecord::Base
     for item in new_posts.entries do
       if !latest_post.nil? && item.entry_id == latest_post.entry_id then break
         end
-      Facebook_Post.new(:data => item, :link_id => self.id).save
+      FacebookPost.create(:link_id => self.id,  :entry_id => item.entry_id, :title => item.title, :url => item.url,
+        :summary => item.summary, :published => item.published, :author => item.author)
     end
     return found_posts
   end
-
+  
 
   def get_tweeter
     blah = self.link_url.split("/")
