@@ -12,6 +12,7 @@
 .DS_Store
 .Spotlight-V100
 .Trashes
+coverage/
 ._*
 .bundle
 .config
