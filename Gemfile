@@ -21,6 +21,7 @@ gem 'rails3-generators'
 gem 'sqlite3'
 gem 'twitter'
 gem 'raingrams'
+gem 'fastercsv'
 
 gem 'will_paginate', "~> 3.0.pre2"
 gem 'yajl-ruby'
