@@ -20,6 +20,7 @@ gem 'omniauth', '~> 0.2.4'
 gem 'rails3-generators'
 gem 'sqlite3'
 gem 'twitter'
+gem 'raingrams'
 
 gem 'will_paginate', "~> 3.0.pre2"
 gem 'yajl-ruby'

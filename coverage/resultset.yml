@@ -2,7 +2,7 @@
 RSpec: 
   :original_result: {}
 
-  :created_at: 2011-04-29 12:46:34.574155 -06:00
+  :created_at: 2011-07-11 16:39:42.885715 -07:00
 "/home/rocky/local/bin/spork ": 
   :original_result: 
     /home/rocky/projects/codeforamerica/shortstack/spec/spec_helper.rb: 
@@ -1010,4 +1010,4 @@ RSpec:
     - 0
     - 
     - 
-  :created_at: 2011-04-29 10:33:50.438334 -06:00
+  :created_at: 2011-04-29 09:33:50.438334 -07:00
