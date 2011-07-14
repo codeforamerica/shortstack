@@ -1,13 +1,16 @@
-class NgramBuilder
+class NgramBuilder << Wordalysis
   include Raingrams
-  
-  # initialize text block
-  def initialize(text_block)
-    @text = text_block
+  has_one: text
+
+  def clean_up
+    self.text.downcase!.gsub!(/<\/?[^>]*>/, "")
   end
-  
-  #process txt block
-  
-  #
-  
+
+  def get_freqs
+    model = BigramModel.build
+    # using sentence gets rid of <s> tags
+    ngrams = model.frequencies_for(model.train_from_sentence(text))
+    return ngrams
+  end
+
 end
