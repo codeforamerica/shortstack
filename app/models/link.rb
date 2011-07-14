@@ -70,11 +70,11 @@ class Link < ActiveRecord::Base
 
       if page == 1
         first_tweet = all_tweets.shift
-        Tweet.new(:data => first_tweet, :is_latest => true, :link_id => self.id).save
+        Tweet.new(:data => first_tweet, :is_latest => true, :link_id => self.id, :created_at => first_tweet.created_at.to_time).save
       end
         
       for item in all_tweets do
-        Tweet.new(:data => item, :link_id => self.id).save
+        Tweet.new(:data => item, :link_id => self.id, :created_at => item.created_at.to_time).save
       end
     end
     return found_tweets

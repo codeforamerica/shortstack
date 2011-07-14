@@ -25,16 +25,16 @@ class Wordalysis
       end
     end
 
-    linktype = LinkType.find_by_name('type').id
+    linktype = LinkType.find_by_name(type).id
     authors = Link.where(:link_type_id => linktype)
     temp_text = ""
 
     authors.each do |author|
       case type
       when "Twitter"
-        if length = 1
+        if length == 1
           tweet_texts = #query limited to 200; returns data["text"] array
-  #something like: Tweet.find({"date" : {$lt: end_date, $gt: start_date}, {"text": 1} })
+  #something like: Tweet.find({:created_at : {$lt: end_date, $gt: start_date}, {"text": 1} })
         else
           tweet_texts = #query
         end
