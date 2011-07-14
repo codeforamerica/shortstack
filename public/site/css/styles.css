@@ -1,0 +1,354 @@
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+body {
+	width: 100%;
+/*	background-image: url('../images/grid.jpg');
+	background-repeat: repeat-y;
+	background-position:138px 0px;*/
+}
+
+h1, h2, h3, p, ul, td {
+	font-family: 'Lato', sans-serif;
+	padding: 0;
+	margin: 0;
+}
+
+h2 {
+	padding: 5px 0px 5px;
+	font-size: 32px;
+}
+
+h3 {
+	color: #666;
+	padding: 0px 0px 5px 10px;
+	font-size: 24px;
+}
+
+ul {
+	list-style: none;
+}
+
+.grey_text {
+	font-size: 25px;
+	color: #999999;
+}
+
+.bold_black {
+	font-size: 46px;
+	color: black;
+	font-weight: bold;
+}
+
+.hide {
+	display: none;
+}
+
+/*HEADER STYLES*/
+
+#header {
+	color: #CB2A3D;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 72px;
+	text-transform:uppercase;
+	margin: 15px 0px 0px 0px;
+	letter-spacing: -5px;
+}
+
+#subhead {
+	color: #666666;
+	font-size: 14px;
+	margin: -14px 0px 0px 5px;
+	padding: 5px 0 0 0;
+	letter-spacing: 2px
+}
+
+
+/*ROW 1 STYLES*/
+
+#country {
+	height: 282px;
+}
+
+
+#country p:nth-child(1) {
+	position:absolute;
+	left:196px;
+	top:150px;
+}
+
+#country p:nth-child(2) {
+	position:absolute;
+	left:166px;
+	top:195px;
+}
+
+#country img {
+	left:193px;
+	top:94px;
+	position: absolute;
+}
+
+#country_data {
+	height: 282px;
+	border-left: dotted;
+	border-width:2px;
+	border-color: #666666;
+	}
+	
+#country_data table, #traffic_data table {
+	width: 100%;
+}
+
+#country_data table {
+	margin: 35px 20px; 
+	
+}
+
+#country_data td, #traffic_data td {
+	padding: 2px 8px 0 0;
+	vertical-align: middle;
+}
+
+#country_data td:nth-child(1), #traffic_data td:nth-child(1) {
+	text-align: right;
+	font-size: 46px;
+	color: black;
+	font-weight: bold;
+}
+
+#country_data td:nth-child(2), #traffic_data td:nth-child(2) {
+	font-size: 25px;
+	color: #999999;
+}
+
+#country_data ul {
+	position:relative;
+	width: 100%;
+	line-height: 35px;
+	text-align:right;
+	float: right
+	padding: 20px 0px 0px 0px;
+}
+
+#country_data ul li:nth-child(1) {
+	font-size:18px;
+	color: #999999;
+	text-transform: uppercase;
+}
+
+#country_data ul li:nth-child(2) {
+	font-size: 46px;
+	color: black;
+	font-weight: bold;
+}
+
+/*ROW 2 STYLES*/
+
+#traffic_head {
+	height: 50px;
+	margin-bottom: 20px;
+}
+
+#traffic_head div:nth-child(1), #traffic_head div:nth-child(2) {
+	position:relative;
+	float: left;
+	width: 50%;
+}
+
+#traffic_head div:nth-child(2) {
+	text-align: right;
+}
+
+#traffic_data {
+	height: 260px;
+}
+
+#traffid_data table {
+	margin: 15px 0 0 0;
+}
+
+#traffic_data ul:nth-child(1) {
+
+	width: 50%;
+	float: left;
+	padding: 10px 0 0 0;
+	text-align: right;
+	
+}
+
+#traffic_data ul:nth-child(1) li{
+	padding: 0px 0px 14px;
+}
+
+#traffic_data ul:nth-child(2) {
+	width:42%;
+	float:left;
+	margin:0;
+	padding: 18px 0 0 14px;
+	border-right: 2px dotted #666666;
+	line-height: 22px;	
+}
+
+#traffic_data ul:nth-child(2) li {
+	padding: 0 0 36px 0;
+}
+
+#traffic_graph {
+	left: 481px;
+    position: absolute;
+    text-align: right;
+    top: 431px;
+}
+
+.customStyleSelectBox {
+/* Styles For Your Select Box */
+	background: red;
+	width: 100px;
+	height: 25px;
+}
+
+.customStyleSelectBox.changed {
+/* You can use this if you want a different style after user has made a selection */
+}
+
+/* on the next line we add a down arrow on the right to indicate that it is a select box */
+.customStyleSelectBoxInner {
+background:url(canvas-list-nav-item-arrow-.gif) no-repeat center right;
+}
+
+
+/*ROW 3 SYTLES*/
+
+#twitter_container {
+	border-left: 2px dotted #666;
+}
+
+
+
+#facebook div:nth-child(1), #twitter div:nth-child(1) {
+	text-align:right;
+}
+
+#facebook div:nth-child(1), #facebook div:nth-child(2), #twitter div:nth-child(1), #twitter div:nth-child(2){
+	position: relative;
+	width: 100%;
+}
+
+.leader_chart {
+	padding: 0 0 20px 50px;
+	height: 175px;
+}
+
+.leader_chart ul ul li{
+	display:table-cell;
+	padding: 5px 5px 0 5px;	
+}
+
+.leader_chart ul ul:nth-child(1) li{
+	border-bottom: solid 1px #666;
+}
+
+.leader_chart ul ul li:nth-child(1) {
+	width: 120px;
+	text-align: right;
+	border-right: solid 1px #666 ;
+	font-size: 25px;	
+}
+
+.leader_chart ul ul li:nth-child(2) {
+	width: 230px;
+	font-size: 25px;
+	color: #666;	
+}
+
+#facebook div:nth-child(4) {
+	padding: 0 0 10px 0;
+}
+
+#facebook div:nth-child(4), #twitter div:nth-child(4) {
+	position: relative;
+}
+
+#facebook div:nth-child(4) ul, #twitter div:nth-child(4) ul{
+	text-align:center;
+	padding: 0 0 0 10px;
+}
+
+#facebook div:nth-child(4) li, #twitter div:nth-child(4) li{
+	display: inline;
+	font-size: 14px;
+	padding: 0 2px 0 0;
+	letter-spacing: .3px;
+	
+}
+
+#facebook div:nth-child(4) li:nth-child(even), #twitter div:nth-child(4) li:nth-child(even) {
+	font-weight: bold;
+}
+
+
+#top_terms {
+	margin-top: 25px;
+	
+}
+
+/*HORIZONTAL RULE*/
+
+.horizontal_rule {
+	display: block;
+	height: 10px;
+	margin: 0px -10px 5px -10px;
+	border-bottom: dotted;
+	border-width:2px;
+	border-color:#666666;
+}
+
+
