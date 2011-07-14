@@ -153,6 +153,7 @@ class Link < ActiveRecord::Base
   def after_creation
     if link_type_id = Link.twitter_link_type
       WhiskBatter.new(linkable).delay.associate_social_links :twitter
+      WhiskBatter.new(linkable).delay.associate_social_links :facebook      
     end
   end
 
