@@ -51,6 +51,10 @@ class Link < ActiveRecord::Base
     LinkType.select('id').where(:name => 'Twitter').first.id
   end
   
+  def self.website_link_type
+    LinkType.select('id').where(:name => 'Website').first.id
+  end
+  
   # pulls in tweets by the page (of 200).
   # returns false if no tweets found, 0 if there is no need to
   # pull the next page of tweets. should therefore be called
@@ -151,7 +155,7 @@ class Link < ActiveRecord::Base
 
 
   def after_creation
-    if link_type_id = Link.twitter_link_type
+    if link_type_id = Link.website_link_type
       WhiskBatter.new(linkable).delay.associate_social_links :twitter
       WhiskBatter.new(linkable).delay.associate_social_links :facebook      
     end
