@@ -62,10 +62,10 @@ GEM
     facebooker2 (0.0.11)
       mogli (>= 0.0.12)
       ruby-hmac
-    factory_girl (2.0.0.rc4)
-    factory_girl_rails (1.1.beta1)
-      factory_girl (~> 2.0.0.beta)
-      rails (>= 3.0.0)
+    factory_girl (2.0.0)
+    factory_girl_rails (1.1.0)
+      factory_girl (~> 2.0.0)
+      railties (>= 3.0.0)
     faraday (0.6.1)
       addressable (~> 2.2.4)
       multipart-post (~> 1.1.0)
@@ -256,7 +256,7 @@ DEPENDENCIES
   devise
   domainatrix
   facebooker2
-  factory_girl_rails (= 1.1.beta1)
+  factory_girl_rails
   fastercsv
   feedzirra
   gchartrb
