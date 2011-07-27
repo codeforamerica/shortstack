@@ -233,7 +233,7 @@ GEM
       multi_xml (~> 0.2.0)
       simple_oauth (~> 0.1.5)
     tzinfo (0.3.29)
-    warden (1.0.4)
+    warden (1.0.5)
       rack (>= 1.0)
     webmock (1.6.2)
       addressable (>= 2.2.2)
