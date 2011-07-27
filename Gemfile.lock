@@ -238,7 +238,7 @@ GEM
     webmock (1.6.2)
       addressable (>= 2.2.2)
       crack (>= 0.1.7)
-    will_paginate (3.0.pre2)
+    will_paginate (3.0.pre4)
     yajl-ruby (0.8.2)
     yard (0.7.2)
 
