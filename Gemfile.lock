@@ -185,7 +185,7 @@ GEM
     raingrams (0.1.2)
       nokogiri (>= 1.2.0)
     rake (0.8.7)
-    rdoc (3.8)
+    rdoc (3.9)
     rest-client (1.6.3)
       mime-types (>= 1.16)
     rsolr (0.12.1)
