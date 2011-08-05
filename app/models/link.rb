@@ -74,11 +74,11 @@ class Link < ActiveRecord::Base
 
       if page == 1
         first_tweet = all_tweets.shift
-        Tweet.new(:data => first_tweet, :is_latest => true, :link_id => self.id).save
+        Tweet.new(:data => first_tweet, :is_latest => true, :link_id => self.id, :created_at => first_tweet.created_at.to_time).save
       end
         
       for item in all_tweets do
-        Tweet.new(:data => item, :link_id => self.id).save
+        Tweet.new(:data => item, :link_id => self.id, :created_at => item.created_at.to_time).save
       end
     end
     return found_tweets
@@ -101,12 +101,12 @@ class Link < ActiveRecord::Base
 
     unless new_tweets.empty?
       first_tweet = new_tweets.shift
-      Tweet.new(:data => first_tweet, :is_latest => true, :link_id => self.id).save
+      Tweet.new(:data => first_tweet, :is_latest => true, :link_id => self.id, :created_at => first_tweet.created_at.to_time).save
       latest_tweet.is_latest = false
       latest_tweet.save
 
       for item in new_tweets do
-        Tweet.new(:data => item, :link_id => self.id).save
+        Tweet.new(:data => item, :link_id => self.id, :created_at => item.created_at.to_time).save
       end
 
       updated = true
@@ -129,7 +129,7 @@ class Link < ActiveRecord::Base
         return found_posts
       else
         FacebookPost.create(:is_latest => true, :link_id => self.id,  :entry_id => item.entry_id, :title => item.title,
-              :url => item.url, :summary => item.summary, :published => item.published, :author => item.author)
+              :url => item.url, :summary => item.summary, :published => item.published.to_time, :author => item.author)
         found_posts = true
       end
     end
@@ -138,7 +138,7 @@ class Link < ActiveRecord::Base
       if !latest_post.nil? && item.entry_id == latest_post.entry_id then break
         end
       FacebookPost.create(:link_id => self.id,  :entry_id => item.entry_id, :title => item.title, :url => item.url,
-        :summary => item.summary, :published => item.published, :author => item.author)
+        :summary => item.summary, :published => item.published.to_time, :author => item.author)
     end
     return found_posts
   end
