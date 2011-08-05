@@ -52,7 +52,7 @@ class WordDay
     return words - stopwords
   end
 
-  # own_hash would be self.word_hash or self.bigram_hash
+  # own_hash would be self.word_hash or self.bigram_hash (or others, in the future)
   def add_hash(own_hash, small_hash)
     small_hash.each do |item|
       if own_hash.key?(item[0])
