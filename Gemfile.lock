@@ -62,7 +62,7 @@ GEM
     facebooker2 (0.0.11)
       mogli (>= 0.0.12)
       ruby-hmac
-    factory_girl (2.0.2)
+    factory_girl (2.0.3)
     factory_girl_rails (1.1.0)
       factory_girl (~> 2.0.0)
       railties (>= 3.0.0)
