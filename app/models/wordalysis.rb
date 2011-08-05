@@ -1,13 +1,12 @@
 class Wordalysis
 
-  def initialize(time)
-  orgs = Organization.all
-
-  orgs.each do |org|
-    twit_init(org, time)
-    face_init(org, time)
-    end
-  end
+#  def initialize(time)
+#    orgs = Organization.all
+#    orgs.each do |org|
+#      twit_init(org, time)
+#      face_init(org, time)
+#    end
+#  end
 
 
   def twit_init(org, time)
@@ -17,8 +16,9 @@ class Wordalysis
     twitters.each do |id|
       Tweet.all(:created_at => { '$gt' => time - 1.day, '$lt' => time}, :link_id => id.id).each do |tweet|
         words << " " << tweet.data["text"]
+      end
     end
-    day.initialise(words)
+    day.initialize(words)
   end
 
   def face_init(org, time)
@@ -29,12 +29,10 @@ class Wordalysis
     FacebookPost.all(:created_at => { '$gt' => time - 1.day, '$lt' => time}, :org_id => org.id).each do |tweet|
       words << " " << tweet.data["text"]
     end
-    day.initialise(words)
+    day.initialize(words)
   end
 
-  def merge_hash(big_hash, small_hash)
-    
-  end
+
 
 
 end
