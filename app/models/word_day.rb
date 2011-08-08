@@ -11,10 +11,7 @@ class WordDay
     make_word_hash(text)
     make_bigram_hash(text)
     self.time_date = Time.now
-#    self.bigram_hash.each do |gram|
- #     simplify_bigram(gram)
-  #  end
-   # self.save
+    self.save
   end
 
   def make_word_hash(text)
@@ -31,20 +28,30 @@ class WordDay
   end
 
   def make_bigram_hash(text)
+    hash = {}
     words = text.downcase.gsub(/<\/?[^>]*>/, "")
     model = BigramModel.build
     # using sentence gets rid of <s> tags
     bigrams = model.frequencies_for(model.train_with_sentence(words))
-#    bigrams.each do |bigram|
-#      simplify_bigram(bigram)
-#    end
-    self.bigram_hash = bigrams
+    bigrams.each do |bigram|
+      gram = simplify_bigram(bigram)
+      unless gram.nil?
+        hash[gram[0]] = gram[1]
+      end
+    end
+    self.bigram_hash = hash
   end
 
   #An attempt to circumvent issues with translating the bigram format
   #into bison; this is behaving strangely currently.
   def simplify_bigram(bigram)
-    bigram[0] = [bigram[0][0],bigram[0][1]]
+    gram = []
+    gram[0] = bigram.first.to_s #.split(",").delete_if {|x| x.include?("s>")}
+    if gram[0].include?("s>") then return nil
+    else
+      gram[1] = bigram[1]
+      return gram
+    end
   end
 
   def pull_stopwords(words)
