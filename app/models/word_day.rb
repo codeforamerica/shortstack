@@ -6,11 +6,15 @@ class WordDay
   key :type
   key :word_hash
   key :bigram_hash
+  key :is_global
 
-  def initialize(text)
+  def initialize(text,type,org_id)
     make_word_hash(text)
     make_bigram_hash(text)
     self.time_date = Time.now
+    self.type = type
+    if org_id.nil? then self.is_global = true
+    else self.org_id = org_id end
     self.save
   end
 
@@ -68,7 +72,7 @@ class WordDay
         own_hash[item[0]] = item[1]
       end
     end
-    return self
+    self.save
   end
 
   def sort_hash(hash)
