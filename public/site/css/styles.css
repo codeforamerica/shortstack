@@ -1,3 +1,77 @@
+/*
+  960 Grid System ~ Core CSS.
+  Learn more ~ http://960.gs/
+
+  Licensed under GPL and MIT.
+*/
+
+/*
+  Forces backgrounds to span full width,
+  even if there is horizontal scrolling.
+  Increase this if your layout is wider.
+
+  Note: IE6 works fine without this fix.
+*/
+
+body {
+  min-width: 960px;
+}
+
+/* `Containers
+----------------------------------------------------------------------------------------------------*/
+
+.container_12 {
+  margin-left: auto;
+  margin-right: auto;
+  width: 960px;
+}
+
+/* `Grid >> Global
+----------------------------------------------------------------------------------------------------*/
+
+
+.grid_4,
+.grid_6,
+.grid_8,
+.grid_12 {
+  display: inline;
+  float: left;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+/* `Grid >> 12 Columns
+----------------------------------------------------------------------------------------------------*/
+.container_12 .grid_4 {
+  width: 300px;
+}
+
+.container_12 .grid_6 {
+  width: 460px;
+}
+
+.container_12 .grid_8 {
+  width: 620px;
+}
+
+.container_12 .grid_12 {
+  width: 940px;
+}
+
+/* `Clear Floated Elements
+----------------------------------------------------------------------------------------------------*/
+
+/* http://sonspring.com/journal/clearing-floats */
+
+.clear {
+  clear: both;
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
 
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
@@ -119,21 +193,21 @@ ul {
 
 
 #country p:nth-child(1) {
-	position:absolute;
-	left:196px;
-	top:150px;
+    left: 50px;
+    position: relative;
+    top: 65px;
 }
 
 #country p:nth-child(2) {
-	position:absolute;
-	left:166px;
-	top:195px;
+    left: 20px;
+    position: relative;
+    top: 60px;
 }
 
 #country img {
-	left:193px;
-	top:94px;
-	position: absolute;
+    left: 60px;
+    position: relative;
+    top: -75px;
 }
 
 #country_data {
@@ -170,6 +244,7 @@ ul {
 }
 
 #country_data ul {
+	bottom: 5px;
 	position:relative;
 	width: 100%;
 	line-height: 35px;
@@ -208,7 +283,8 @@ ul {
 }
 
 #traffic_data {
-	height: 260px;
+    height: 245px;
+    padding-top: 25px;
 }
 
 #traffid_data table {
@@ -242,10 +318,11 @@ ul {
 }
 
 #traffic_graph {
-	left: 481px;
-    position: absolute;
+	height: 200px;
+    position: relative;
+    right: -7px;
     text-align: right;
-    top: 431px;
+    top: -35px;
 }
 
 .customStyleSelectBox {
