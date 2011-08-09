@@ -282,6 +282,6 @@ DEPENDENCIES
   sunspot_rails (~> 1.2.1)
   twitter
   webmock
-  will_paginate (~> 3.0.pre2)
+  will_paginate
   yajl-ruby
   yard
