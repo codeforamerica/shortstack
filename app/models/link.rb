@@ -57,9 +57,10 @@ class Link < ActiveRecord::Base
   # with while(grab_tweets(i) != 0) do i +=1 end
   def grab_tweets(page)
     tweeter = self.get_tweeter
+    if tweeter.empty? then return false end
     found_tweets = false
 
-    all_tweets = Twitter.user_timeline(tweeter, :trim_user => true, :count => 200, :include_rts => true, :page => page)
+    all_tweets = Twitter.user_timeline(tweeter, :trim_user => true, :count => 200, :include_rts => true, :page => page) unless (tweeter.nil? or tweeter.empty?)
 
     unless all_tweets.empty?
       if all_tweets.size < 200 
@@ -143,9 +144,9 @@ class Link < ActiveRecord::Base
   def get_tweeter
     blah = self.link_url.split("/")
     i = 0
-    until(blah[i] == "twitter.com") do i +=1 end
-    if blah[i+1] == "#!" then return blah[i+2]
-    else return blah[i+1] end
+    until(blah[i] == "twitter.com" or blah[i] == "www.twitter.com") do i +=1 end
+    if blah[i+1] == "#!" then return blah[i+2].downcase.gsub(/[^a-z _]/, '')
+    else return blah[i+1].downcase.gsub(/[^a-z _]/, '') end
     return false
   end
 

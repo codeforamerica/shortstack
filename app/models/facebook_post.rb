@@ -4,7 +4,7 @@ include MongoMapper::Document
   key :title
   key :url
   key :summary
-  key :created_at, Time
+  key :published, Time 
   key :author
   key :link_id, Integer
   key :is_latest, Boolean
