@@ -1,7 +1,6 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    ZenTest (4.6.0)
     abstract (1.0.0)
     actionmailer (3.0.9)
       actionpack (= 3.0.9)
@@ -248,7 +247,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  ZenTest
   acts-as-taggable-on
   awesome_print
   bson_ext

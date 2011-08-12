@@ -36,7 +36,6 @@ group :test do
   gem 'factory_girl_rails'
   gem 'mocha'
   gem 'rspec-rails'
-  gem 'ZenTest'
   gem 'simplecov'
   gem 'webmock'
   gem 'yard'
