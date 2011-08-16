@@ -240,7 +240,7 @@ GEM
       addressable (>= 2.2.2)
       crack (>= 0.1.7)
     will_paginate (3.0.0)
-    yajl-ruby (0.8.2)
+    yajl-ruby (0.8.3)
     yard (0.7.2)
 
 PLATFORMS
