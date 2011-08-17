@@ -8,6 +8,7 @@ class WordDay
   key :bigram_hash
   key :is_global
 
+  #type is twitter or facebook
   def initialize(text, type, org_id)
     make_word_hash(text)
     make_bigram_hash(text)

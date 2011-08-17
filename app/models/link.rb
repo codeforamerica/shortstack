@@ -57,18 +57,13 @@ class Link < ActiveRecord::Base
   # with while(grab_tweets(i) != 0) do i +=1 end
   def grab_tweets(page)
     tweeter = self.get_tweeter
-    if tweeter.empty? then return false end
+    if tweeter.nil? then return false end
     found_tweets = false
 
     all_tweets = Twitter.user_timeline(tweeter, :trim_user => true, :count => 200, :include_rts => true, :page => page) unless (tweeter.nil? or tweeter.empty?)
 
     unless all_tweets.empty?
-      if all_tweets.size < 200 
-        found_tweets = 0
-      else
-        found_tweets = true
-      end
-
+      found_tweets = true
       if page == 1
         first_tweet = all_tweets.shift
         Tweet.new(:data => first_tweet, :is_latest => true, :link_id => self.id, :created_at => first_tweet.created_at.to_time).save
@@ -90,9 +85,10 @@ class Link < ActiveRecord::Base
   # pulls in all tweets tweeted since the previous most-recent.
   # example: link.delay.update_tweets
   def update_tweets
-    updated = false
     tweeter = self.get_tweeter
+    if tweeter.nil? then return false end
     latest_tweet = Tweet.all(:is_latest => true, :link_id => self.id).first
+    if latest_tweet.nil? then return false end
 
     new_tweets = Twitter.user_timeline(tweeter, :since_id => latest_tweet.data["id"], :trim_user => true)
 
@@ -105,20 +101,18 @@ class Link < ActiveRecord::Base
       for item in new_tweets do
         Tweet.new(:data => item, :link_id => self.id, :created_at => item.created_at.to_time).save
       end
-
-      updated = true
     end
 
-    return updated
+    return true
   end
 
   # uses facebook's graph to find a wall's rss feed, then feedzirra
-  # to pull the updates; returns false if no new data
+  # to pull the updates; returns false if graph or db fail
   def update_wall
     id = self.facebook_stats.first.facebook_id
     new_posts = Feedzirra::Feed.fetch_and_parse("http://www.facebook.com/feeds/page.php?format=rss20&id=" + id.to_s)
+    if new_posts.entries.first.title == "Facebook Syndication Error" then return false end
     latest_post = FacebookPost.all(:is_latest => true, :link_id => self.id).first
-    found_posts = false
     first_post = new_posts.entries.shift
 
     unless latest_post.nil?
@@ -137,17 +131,19 @@ class Link < ActiveRecord::Base
       FacebookPost.create(:link_id => self.id,  :entry_id => item.entry_id, :title => item.title, :url => item.url,
         :summary => item.summary, :published => item.published.to_time, :author => item.author)
     end
-    return found_posts
+    return true
   end
   
 
   def get_tweeter
-    blah = self.link_url.split("/")
+    url = self.link_url.split("/")
     i = 0
-    until(blah[i] == "twitter.com" or blah[i] == "www.twitter.com") do i +=1 end
-    if blah[i+1] == "#!" then return blah[i+2].downcase.gsub(/[^a-z _]/, '')
-    else return blah[i+1].downcase.gsub(/[^a-z _]/, '') end
-    return false
+    until(url[i] == "twitter.com" or url[i] == "www.twitter.com" or i == url.length) do i +=1 end
+    if i == url.length then return nil end
+    if blah[i+1] == "#!" then name = blah[i+2]
+    else name = blah[i+1] end
+    if Twitter.user?(name) then return name
+    else return nil end
   end
 
 
