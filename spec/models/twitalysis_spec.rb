@@ -86,7 +86,7 @@ describe Twitalysis do
 
           after.should == before + 1
         end
-        
+
         it 'should not save the Link' do
           before = @twitter_link.twitter_stats.count
           @twitter_link.twitalyze
@@ -102,7 +102,7 @@ describe Twitalysis do
         end
       end
 
-      describe '#twitalyze!' do  
+      describe '#twitalyze!' do
         before do
           @before = @twitter_link.twitter_stats.count
           @twitter_link.twitalyze!
@@ -160,7 +160,7 @@ describe Twitalysis do
           stub_request(:get, Twitalysis.census_url('bad'))
             .with(:headers => {'Accept'=>'*/*', 'User-Agent'=>'Ruby-Wget'})
             .to_return(:status => 404, :body => '', :headers => {})
-          @bad_link = Factory.build(:twitter_link, :link_url => 'http://twitter.com/bad')
+          @bad_link = FactoryGirl.build(:twitter_link, :link_url => 'http://twitter.com/bad')
         end
 
         it 'should append a TwitterCensus' do
@@ -196,7 +196,7 @@ describe Twitalysis do
         it 'should associate itself with the TwitterSummary' do
           @twitter_link.do_census!
 
-          @twitter_link.twitter_summary.feedness.should == 0.42857143 
+          @twitter_link.twitter_summary.feedness.should == 0.42857143
         end
       end
     end
