@@ -2,12 +2,12 @@ Shortstack
 ==========
 This is Code for America's knowledgebase about software, people, funders, cities and things we should know probably know something about.
 
-Installation
+<a name="installation">Installation</a>
 ------------
     $ bundle install
     $ rake db:seed
 
-Setup Sunspot
+<a name="setup">Setup</a>
 -------------
 We use Sunspot for search.
 
@@ -20,11 +20,11 @@ To stop that:
 You may have to build an index if you haven't already:
     $ rake sunspot:reindex
 
-Documentation
+<a name="documentation">Documentation</a>
 -------------
 We use the GitHub wiki for documentation.
 
-Submitting an Issue
+<a name="issues">Submitting an Issue</a>
 -------------------
 We use the GitHub issue tracker to track bugs and features. Before submitting a bug report or feature request, check to make sure it hasn't already been submitted.
 

@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.9'
+gem 'rails', '~> 3.0.10'
 gem 'rake', '0.8.7'
 gem 'acts-as-taggable-on'
 gem 'awesome_print', :require => 'ap'
@@ -25,7 +25,7 @@ gem 'twitter'
 gem 'raingrams'
 gem 'fastercsv'
 
-gem 'will_paginate', "~> 3.0.pre2"
+gem 'will_paginate'
 gem 'yajl-ruby'
 gem 'gchartrb'
 gem 'sunspot_rails', '~> 1.2.1'
@@ -36,7 +36,6 @@ group :test do
   gem 'factory_girl_rails'
   gem 'mocha'
   gem 'rspec-rails'
-  gem 'ZenTest'
   gem 'simplecov'
   gem 'webmock'
   gem 'yard'
