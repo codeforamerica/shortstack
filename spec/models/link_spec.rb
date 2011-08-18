@@ -2,9 +2,8 @@ require 'spec_helper'
 
 describe Link do
   before do
-    @facebook = Factory(:facebook)
-    @twitter = Factory(:twitter)
-    facebook.grab_facebook_stats
+    @facebook = FactoryGirl.build(:facebook)
+    @twitter = FactoryGirl.build(:twitter_link)
   end
 
   context "twitter functions" do
@@ -20,6 +19,7 @@ describe Link do
 
   context "facebook funtions" do
     it "should find and store wall posts" do
+      @facebook.grab_facebook_stats
       @facebook.update_wall.should == true
       FacebookPost.all.first.summary.should ==
         Feedzirra::Feed.fetch_and_parse("http://www.facebook.com/feeds/page.php?format=rss20&id=" + @facebook.facebook_stats.first.facebook_id.to_s).first.summary

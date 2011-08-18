@@ -11,7 +11,7 @@ end
 Factory.define :facebook, :parent => :link do |f|
   f.name "Facebook"
   f.link_url "http://www.facebook.com/SF"
-  f.link_type_id 1
+  f.link_type_id 1  #this is wrong
   f.linkable {Factory(:organization)}
 end
 

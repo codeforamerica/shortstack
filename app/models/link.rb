@@ -140,8 +140,8 @@ class Link < ActiveRecord::Base
     i = 0
     until(url[i] == "twitter.com" or url[i] == "www.twitter.com" or i == url.length) do i +=1 end
     if i == url.length then return nil end
-    if blah[i+1] == "#!" then name = blah[i+2]
-    else name = blah[i+1] end
+    if url[i+1] == "#!" then name = url[i+2]
+    else name = url[i+1] end
     if Twitter.user?(name) then return name
     else return nil end
   end

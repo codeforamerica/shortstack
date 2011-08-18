@@ -66,6 +66,8 @@ GEM
     factory_girl_rails (1.1.beta1)
       factory_girl (~> 2.0.0.beta)
       rails (>= 3.0.0)
+    faker (0.9.5)
+      i18n (~> 0.4)
     faraday (0.6.1)
       addressable (~> 2.2.4)
       multipart-post (~> 1.1.0)
@@ -257,6 +259,7 @@ DEPENDENCIES
   domainatrix
   facebooker2
   factory_girl_rails (= 1.1.beta1)
+  faker
   fastercsv
   feedzirra
   gchartrb

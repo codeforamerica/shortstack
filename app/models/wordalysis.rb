@@ -1,7 +1,7 @@
 class Wordalysis
 
   def initialize(time)
-    orgs = Organization.all[0..400]
+    orgs = Organization.all
     orgs.each do |org|
       twit_init(org, time)
       face_init(org, time)
@@ -14,7 +14,7 @@ class Wordalysis
     words = ""
     twitters = org.links.where(:link_type_id => 6)
     twitters.each do |id|
-      Tweet.all(:created_at => { '$gt' => time - 7.days, '$lt' => time}, :link_id => id.id).each do |tweet|
+      Tweet.all(:created_at => { '$gt' => time - 1.day, '$lt' => time}, :link_id => id.id).each do |tweet|
         words << " " << tweet.data["text"]
       end
     end
@@ -26,7 +26,7 @@ class Wordalysis
     links = org.links.where(:link_type_id => linktype) 
     words = ""
     links.each do |id|
-      FacebookPost.all(:published => { '$gt' => time - 7.days, '$lt' => time}, :link_id => id.id).each do |post|
+      FacebookPost.all(:published => { '$gt' => time - 1.day, '$lt' => time}, :link_id => id.id).each do |post|
         words << " " << post.summary
       end
     end
