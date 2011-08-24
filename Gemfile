@@ -32,8 +32,9 @@ gem 'sunspot_rails', '~> 1.2.1'
 gem 'compete'
 gem 'mongo_mapper'
 
-group :test do
+group :test, :developer do
   gem 'factory_girl_rails'
+  gem 'faker'
   gem 'mocha'
   gem 'rspec-rails'
   gem 'ZenTest'
