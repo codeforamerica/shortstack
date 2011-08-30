@@ -3,8 +3,19 @@
 
 class PadSpecification
   
-  def initialization(product,format="json")
+  def initialize(product)
     @product = product
+  end
+  
+  def produce
+    content = {
+    "PAD Information" => pad_information,
+    "Company Information" => company_information,
+    "Program Information" => program_information,
+    "Program Description" => program_description,
+    "Web Information" => web_information,
+    "Permission Information" => permission_information
+    }
   end
   
   def pad_information(version="3.11", editor="shortstack", comment="http://pad.asp-software.org/spec/spec.php")
@@ -35,37 +46,29 @@ class PadSpecification
   def program_information
     content = {}
     content["Name"] = @product.name
-    content["Requirements"] = @product.notes.requirements.first.text unless @product.notes.requirements.blank?
+    content["Requirements"] = @product.notes.requirements.first.note unless @product.notes.requirements.blank?
     content
   end
   
   def program_description
     content = {}    
     content["Keywords"] = @product.tag_list unless @product.tag_list.blank?
-    content["2000 character description"] = @product.notes.about.first.text unless @product.notes.about.blank?
+    content["2000 character description"] = @product.notes.about.first.note unless @product.notes.about.blank?
     content
   end
   
   def web_information
     content = {}    
     content["Application info URL"] = @product.links.website.first.link_url unless @product.links.website.blank?
-    content["Screenshot URL"] = @product.screenshots.first.public_url unless @product.screenshots.blank?
     content    
   end
   
   def permission_information
     content = {}    
-    content["Distribution permissions"] = @product.notes.permission.first.text unless @product.notes.permission.blank?
-    content["EULA"] = @product.notes.eula.first.text unless @product.notes.eula.blank?
+    content["Distribution permissions"] = @product.notes.permission.first.note unless @product.notes.permission.blank?
+    content["EULA"] = @product.notes.eula.first.note unless @product.notes.eula.blank?
     content
   end
-    
-  def format(content)
-    if @format == "json"
-      content.to_json
-    else
-      content.to_xml
-    end
-  end
+
   
 end

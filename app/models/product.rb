@@ -7,6 +7,8 @@ class Product < ActiveRecord::Base
 
   has_many :screenshots, :as => :shottable, :class_name => "Screenshot", :dependent => :destroy
   has_many :whisks, :as => :whiskable, :class_name => "Whisk", :dependent => :destroy
+  has_many :parents, :as => :parentable, :class_name => "Relationship", :dependent => :destroy
+  has_many :children, :as => :childable, :class_name => "Relationship", :dependent => :destroy  
   has_many :contacts, :as => :contactable, :class_name => "Contact", :dependent => :destroy
   has_many :addresses, :as => :addressable, :class_name => "Address", :dependent => :destroy
   has_many :statistics, :as => :statisticable, :class_name => "Statistic", :dependent => :destroy

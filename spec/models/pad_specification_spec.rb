@@ -19,19 +19,24 @@ describe PadSpecification do
     it 'program_information' do
       @company = Factory(:company)
       @company.products << @product
-      PadSpecification.new(@product).program_information.should == {}      
+      PadSpecification.new(@product).program_information.should == {"Name"=>@product.name, "Requirements"=>@product.notes.requirements.first.note}    
     end
     
     it 'program_description' do
-      PadSpecification.new(@product).program_description.should == {}     
+      PadSpecification.new(@product).program_description.should == {"Keywords"=>@product.tag_list, "2000 character description"=>@product.notes.about.first.note}
     end
     
     it 'web_information' do
-      PadSpecification.new(@product).web_information.should == {}      
+      PadSpecification.new(@product).web_information.should == {"Application info URL"=>@product.links.website.first.link_url}     
     end
     
     it 'permission_information' do
-      PadSpecification.new(@product).permission_information.should == {}      
+      PadSpecification.new(@product).permission_information.should == {"Distribution permissions"=>"text", "EULA"=>"text"} 
+    end
+    
+    it 'produces' do
+      pad = PadSpecification.new(@product).produce
+      pad.size.should == 6
     end
     
   end
