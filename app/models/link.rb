@@ -6,14 +6,11 @@ class Link < ActiveRecord::Base
   has_many :statistics, :as => :statisticable, :class_name => "Statistic", :dependent => :destroy
   has_one :twitter_summary, :dependent => :destroy
   has_one :facebook_summary, :dependent => :destroy 
-  has_many :contributions, :as => :contributable, :class_name => "Contribution", :dependent => :destroy
   has_many :facebook_stats, :dependent => :destroy
   has_many :tweets
-  after_update :update_contribution
-  after_create :create_contribution
+  scope :website, joins(:link_type).where("link_types.name = 'website'")
 
   acts_as_twitalyzable :link_url
-  after_create :after_creation
 
   def grab_facebook_stats
     self.facebook_stats.new.save_facebook_data
@@ -48,11 +45,11 @@ class Link < ActiveRecord::Base
   end
 
   def self.twitter_link_type
-    LinkType.select('id').where(:name => 'Twitter').first.id
+    LinkType.select('id').where(:name => 'twitter').first.id
   end
   
   def self.website_link_type
-    LinkType.select('id').where(:name => 'Website').first.id
+    LinkType.select('id').where(:name => 'website').first.id
   end
   
   # pulls in tweets by the page (of 200).

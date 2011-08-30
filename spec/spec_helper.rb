@@ -9,7 +9,6 @@ Spork.prefork do
   ENV["RAILS_ENV"] ||= 'test'
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
-  require 'simplecov'
   SimpleCov.start
   require 'webmock/rspec'
   require 'sunspot/rails/spec_helper'
@@ -49,6 +48,12 @@ end
 
 Spork.each_run do
   # This code will be run each time you run your specs.
+  require 'factory_girl_rails'
+  require 'simplecov'
+  SimpleCov.start do
+    add_group "Models", "app/models"
+    add_group "Controllers", "app/controllers"
+  end
 
 end
 

@@ -16,12 +16,12 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @has_whisks = !@product.whisks.blank?
-
     @has_crunchies = !@product.links.where(:link_type_id => @product.crunch_lt).blank?
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @product }
+      format.xml  { render :xml => PadSpecification.new(@product).produce }
+      format.json  { render :json => PadSpecification.new(@product).produce }      
     end
   end
 
