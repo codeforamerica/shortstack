@@ -59,7 +59,7 @@ GEM
     erubis (2.6.6)
       abstract (>= 1.0.0)
     escape (0.0.4)
-    facebooker2 (0.0.11)
+    facebooker2 (0.0.12)
       mogli (>= 0.0.12)
       ruby-hmac
     factory_girl (2.0.5)
