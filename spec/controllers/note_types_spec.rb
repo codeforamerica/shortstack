@@ -10,7 +10,7 @@ describe NoteTypesController do
 
   describe '#create' do
      before do
-       post :create, :note_type => Factory.attributes_for(:note_type)
+       post :create, :note_type => FactoryGirl.attributes_for(:note_type)
      end
 
      it "should create a note_type" do

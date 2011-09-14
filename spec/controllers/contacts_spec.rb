@@ -11,7 +11,7 @@ describe ContactsController do
 
   describe '#create' do
      before do
-       post :create, :contact => Factory.attributes_for(:contact, :contactable => @product), :product_id => @product.id
+       post :create, :contact => FactoryGirl.attributes_for(:contact, :contactable => @product), :product_id => @product.id
      end
 
      it "should create a contact" do

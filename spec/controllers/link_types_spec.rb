@@ -10,7 +10,7 @@ describe LinkTypesController do
 
   describe '#create' do
      before do
-       post :create, :link_type => Factory.attributes_for(:link_type)
+       post :create, :link_type => FactoryGirl.attributes_for(:link_type)
      end
 
      it "should create a link_type" do

@@ -11,7 +11,7 @@ describe LinksController do
 
   describe '#create' do
      before do
-       post :create, :link => Factory.attributes_for(:link, :linkable => @product), :product_id => @product.id
+       post :create, :link => FactoryGirl.attributes_for(:link, :linkable => @product), :product_id => @product.id
      end
 
      it "should create a link" do

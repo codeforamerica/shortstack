@@ -11,7 +11,7 @@ describe NotesController do
 
   describe '#create' do
      before do
-       post :create, :note => Factory.attributes_for(:note, :noteable => @product), :product_id => @product.id
+       post :create, :note => FactoryGirl.attributes_for(:note, :noteable => @product), :product_id => @product.id
      end
 
      it "should create a note" do

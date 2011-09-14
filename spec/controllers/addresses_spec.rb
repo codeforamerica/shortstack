@@ -11,7 +11,7 @@ describe AddressesController do
 
   describe '#create' do
      before do
-       post :create, :address => Factory.attributes_for(:address, :addressable => @product), :product_id => @product.id
+       post :create, :address => FactoryGirl.attributes_for(:address, :addressable => @product), :product_id => @product.id
      end
 
      it "should create a address" do

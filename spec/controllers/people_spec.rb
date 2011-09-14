@@ -9,7 +9,7 @@ describe PeopleController do
 
   describe '#create' do
      before do
-       post :create, :person => Factory.attributes_for(:person)
+       post :create, :person => FactoryGirl.attributes_for(:person)
        @person = Person.find(:first)
        @response = response
      end

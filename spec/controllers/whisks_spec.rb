@@ -10,7 +10,7 @@ describe WhisksController do
 
   describe '#create' do
      before do
-       post :create, :whisk => Factory.attributes_for(:whisk, :whiskable => @product), :product_id => @product.id
+       post :create, :whisk => FactoryGirl.attributes_for(:whisk, :whiskable => @product), :product_id => @product.id
      end
 
      it "should create a whisk" do
