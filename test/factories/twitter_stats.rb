@@ -1,4 +1,6 @@
 # Read about factories at http://github.com/thoughtbot/factory_girl
 
-Factory.define :twitter_stat do |f|
+FactoryGirl.define do
+  factory :twitter_stat do
+  end
 end

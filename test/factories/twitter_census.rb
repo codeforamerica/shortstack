@@ -2,5 +2,5 @@
 
 FactoryGirl.define do
   factory :twitter_census do
-    end
+  end
 end

@@ -1,219 +1,218 @@
-Factory.define :user do |user|
-  user.email                 { Faker::Internet.email }
-  user.password              { "password" }
-  user.password_confirmation { "password" }
-end
+FactoryGirl.define do
+  factory :user do
+    email                 { Faker::Internet.email }
+    password              { "password" }
+    password_confirmation { "password" }
+  end
 
+  factory :org_type do
+    name "City"
+  end
 
-#  Organizations
+  #  Organizations
 
-Factory.define :org_type do |o|
-  o.name "City"
-end
+  factory :company_type, :parent => :org_type do
+    name "Company"
+  end
 
-Factory.define :company_type, :parent => :org_type do |c|
-  c.name "Company"
-end
+  factory :county_type, :parent => :org_type do
+    name "County"
+  end
 
-Factory.define :county_type, :parent => :org_type do |c|
-  c.name "County"
-end
+  factory :nonprofit_type, :parent => :org_type do
+    name "Nonprofit"
+  end
 
-Factory.define :nonprofit_type, :parent => :org_type do |c|
-  c.name "Nonprofit"
-end
+  factory :organization do
+    name "Some name"
+    org_type {Factory(:org_type)}
+  end
 
-Factory.define :organization do |o|
-  o.name "Some name"
-  o.org_type {Factory(:org_type)}
-end
+  factory :company, :parent => :organization do
+    org_type {Factory(:company_type)}
+    links {[Factory(:website_link), Factory(:twitter_link), Factory(:blog_link), Factory(:twitter_link)]}
+    addresses {[Factory(:address)]}
+    contacts {[Factory(:contact)]}
+    notes {[Factory(:about_note)] }
+  end
 
-Factory.define :company, :parent => :organization do |c|
-  c.org_type {Factory(:company_type)}
-  c.links {[Factory(:website_link), Factory(:twitter_link), Factory(:blog_link), Factory(:twitter_link)]}
-  c.addresses {[Factory(:address)]}
-  c.contacts {[Factory(:contact)]}
-  c.notes {[Factory(:about_note)] } 
-end
+  # Products
 
-# Products
+  factory :product do
+    name Faker::Lorem.words(2).join(" ")
+    links {[Factory(:website_link), Factory(:twitter_link), Factory(:blog_link), Factory(:twitter_link)]}
+    addresses {[Factory(:address)]}
+    contacts {[Factory(:contact)]}
+    notes {[Factory(:about_note), Factory(:requirement_note), Factory(:permission_note), Factory(:eula_note)] }
+    tag_list {Faker::Lorem.words(5).join(", ")}
+  end
 
-Factory.define :product do |p|
-  p.name Faker::Lorem.words(2).join(" ")
-  p.links {[Factory(:website_link), Factory(:twitter_link), Factory(:blog_link), Factory(:twitter_link)]}
-  p.addresses {[Factory(:address)]}
-  p.contacts {[Factory(:contact)]}
-  p.notes {[Factory(:about_note), Factory(:requirement_note), Factory(:permission_note), Factory(:eula_note)] } 
-  p.tag_list {Faker::Lorem.words(5).join(", ")}
-end
+  # Address
 
-# Address
+  factory :address do
+    address "1600 Pennsylvania Ave"
+    city "Washington"
+    state "DC"
+    zipcode "20500"
+    country "USA"
+  end
 
-Factory.define :address do |f|
-  f.address "1600 Pennsylvania Ave"
-  f.city "Washington"
-  f.state "DC"
-  f.zipcode "20500"
-  f.country "USA"
-end
+  # contacts
 
-# contacts
+  factory :contact do
+    phone "1-415-625-9627"
+    email "info@codeforamerica.org"
+  end
 
-Factory.define :contact do |f|
-  f.phone "1-415-625-9627"
-  f.email "info@codeforamerica.org"
-end
+  #  notes
 
-#  notes
+  factory :note_type do
+    name "MyString"
+  end
 
-Factory.define :note_type do |f|
-  f.name "MyString"
-end
+  factory :note do
+    note_type_id 1
+    name 'title'
+    note 'text'
+  end
 
-Factory.define :note do |f|
-  f.note_type_id 1
-  f.name 'title'
-  f.note 'text'
-end
+  factory :eula_note, :parent => :note do
+    note_type {Factory(:note_type, :name => "end user license agreement")}
+  end
 
-Factory.define :eula_note, :parent => :note do |n|
-  n.note_type {Factory(:note_type, :name => "end user license agreement")}
-end
+  factory :requirement_note, :parent => :note do
+    note_type {Factory(:note_type, :name => "requirements")}
+  end
 
-Factory.define :requirement_note, :parent => :note do |n|
-  n.note_type {Factory(:note_type, :name => "requirements")}
-end
+  factory :permission_note, :parent => :note do
+    note_type {Factory(:note_type, :name => "distribution permissions")}
+  end
 
-Factory.define :permission_note, :parent => :note do |n|
-  n.note_type {Factory(:note_type, :name => "distribution permissions")}
-end
+  factory :about_note, :parent => :note do
+    note_type_id {Factory(:note_type, :name => "about")}
+    name 'title'
+    note 'text'
+  end
 
+  #  relationships
 
-Factory.define :about_note, :parent => :note do |f|
-  f.note_type_id {Factory(:note_type, :name => "about")}
-  f.name 'title'
-  f.note 'text'
-end
+  factory :relationship do
+    person_id 1
+    organization_id 1
+    product_id 1
+    relation_type "MyString"
+  end
 
+  factory :relation_type do
+    name "MyString"
+    type_name "MyString"
+  end
 
-#  relationships
+  # Stats
 
-Factory.define :relationship do |f|
-  f.person_id 1
-  f.organization_id 1
-  f.product_id 1
-  f.relation_type "MyString"
-end
+  factory :statistic do
+    statisticable {Factory(:organization)}
+    statistic_type {Factory(:statistic_type)}
+    value 1
+  end
 
-Factory.define :relation_type do |f|
-  f.name "MyString"
-  f.type_name "MyString"
-end
+  factory :statistic_type do
+    name 1
+    description "MyString"
+  end
 
-# Stats
+  factory :compete_stat, :parent => :statistic do
+    statisticable {Factory(:organization)}
+    statistic_type {Factory(:compete_type)}
+    value 88000
+  end
 
-Factory.define :statistic do |f|
-  f.statisticable {Factory(:organization)}
-  f.statistic_type {Factory(:statistic_type)}
-  f.value 1
-end
+  factory :compete_type, :parent => :statistic_type do
+    name "Compete"
+    description 'Compete Statistic'
+  end
 
-Factory.define :statistic_type do |f|
-  f.name 1
-  f.description "MyString"
-end
+  # Links
 
-Factory.define :compete_stat, :parent => :statistic do |f|
-  f.statisticable {Factory(:organization)}
-  f.statistic_type {Factory(:compete_type)}
-  f.value 88000
-end
+  factory :link_type do
+    name "MyString"
+    description "MyString"
+  end
 
-Factory.define :compete_type, :parent => :statistic_type do |f|
-  f.name "Compete"
-  f.description 'Compete Statistic'
-end
+  factory :link do
+    name "google"
+    link_url {Faker::Internet.domain_name}
+    link_type Factory(:link_type)
+  end
 
-# Links
+  factory :website_link, :parent => :link do
+    name 'Website'
+    link_type Factory(:link_type, :name => "website")
+  end
 
-Factory.define :link_type do |f|
-  f.name "MyString"
-  f.description "MyString"
-end
+  factory :blog_link, :parent => :link do
+    name 'Website'
+    link_type Factory(:link_type, :name => "blog")
+  end
 
-Factory.define :link do |f|
-  f.name "google"
-  f.link_url {Faker::Internet.domain_name}
-  f.link_type Factory(:link_type)
-end
+  factory :facebook_link, :parent => :link do
+    name 'Website'
+    link_url "http://www.facebook.com/SF"
+    link_type Factory(:link_type, :name => "blog")
+  end
 
-Factory.define :website_link, :parent => :link do |f|
-  f.name 'Website'
-  f.link_type Factory(:link_type, :name => "website")
-end
+  factory :facebook, :parent => :link do
+    name "Facebook"
+    link_url "http://www.facebook.com/SF"
+  end
 
-Factory.define :blog_link, :parent => :link do |f|
-  f.name 'Website'
-  f.link_type Factory(:link_type, :name => "blog")
-end
+  factory :twitter_link, :parent => :link do
+    name 'Twitter'
+    link_url 'http://twitter.com/rockymeza'
+  end
 
-Factory.define :facebook_link, :parent => :link do |f|
-  f.name 'Website'
-  f.link_url "http://www.facebook.com/SF"
-  f.link_type Factory(:link_type, :name => "blog")
-end
+  factory :twitter_link_type, :parent => :link_type do
+    name "Twitter"
+    description "Twitter"
+  end
 
+  # FaceBook
 
-Factory.define :facebook, :parent => :link do |f|
-  f.name "Facebook"
-  f.link_url "http://www.facebook.com/SF"
-end
+  factory :facebook_summary do
+      organization {Factory(:facebook)}
+      link {Factory(:facebook)}
+      facebook_id 1
+      name "MyString"
+      category "MyString"
+      likes 1
+  end
 
-Factory.define :twitter_link, :parent => :link do |f|
-  f.name 'Twitter'
-  f.link_url 'http://twitter.com/rockymeza'
-end
+  factory :facebook_stat do
+    link {Factory(:facebook)}
+    facebook_id "1"
+    name "Something"
+    category "something"
+    likes "1"
+  end
 
-Factory.define :twitter_link_type, :parent => :link_type do |f|
-  f.name "Twitter"
-  f.description "Twitter"
-end
+  # Whisks
 
-# FaceBook 
+  factory :whisk_type do
+    name "MyString"
+    setting "MyString"
+  end
 
-Factory.define :facebook_summary do |f|
-    f.organization {Factory(:facebook)}
-    f.link {Factory(:facebook)}
-    f.facebook_id 1
-    f.name "MyString"
-    f.category "MyString"
-    f.likes 1
-end
+  factory :whisk do
+    setting "1600"
+    whisk_type {Factory(:whisk_type)}
+    whiskable {Factory(:organization)}
+  end
 
-Factory.define :facebook_stat do |f|
-  f.link {Factory(:facebook)}
-  f.facebook_id "1"
-  f.name "Something"
-  f.category "something"
-  f.likes "1"
-end
+  #  Contributions
 
-# Whisks
+  factory :contribution do
+    user_id 1
+    action "MyString"
+  end
 
-Factory.define :whisk_type do |f|
-  f.name "MyString"
-  f.setting "MyString"
-end
-
-Factory.define :whisk do |f|
-  f.setting "1600"
-  f.whisk_type {Factory(:whisk_type)}
-  f.whiskable {Factory(:organization)}
-end
-
-#  Contributions
-
-Factory.define :contribution do |f|
-  f.user_id 1
-  f.action "MyString"
 end
