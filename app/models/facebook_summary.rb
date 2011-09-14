@@ -37,7 +37,6 @@ class FacebookSummary < ActiveRecord::Base
   end
 
   def completely_delete
-    puts self.name
     begin
       self.link.destroy
     rescue

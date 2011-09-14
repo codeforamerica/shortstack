@@ -33,7 +33,6 @@ class CityImport
   end
 
   def add_city(org)
-    puts org["name"]
     city = Organization.create!(:name => org["name"], :org_type =>@citytype ) unless org["name"].nil?
     city.links.create(:link_url => org["url"], :link_type => @linktype) unless org["url"].nil?
     city.whisks.create(:setting=>org["feature_id"], :whisk_type => @featureid) unless org["feature_id"].nil?
@@ -41,7 +40,6 @@ class CityImport
   end
 
   def add_county(org)
-    puts org["name"]
     county = Organization.create!(:name => org["name"], :org_type =>@countytype) unless org["name"].nil?
     county.links.create(:link_url => org["url"], :link_type => @linktype) unless org["url"].nil?
     county.whisks.create(:setting=>org["feature_id"], :whisk_type => @featureid) unless org["feature_id"].nil?

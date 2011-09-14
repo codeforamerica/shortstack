@@ -17,6 +17,5 @@ describe ProductsController do
   it 'should return json pad specification' do
     get :show, :id => @product.id, :format => :json
     response.should be_success
-    puts JSON.parse(response.body).inspect
   end
 end

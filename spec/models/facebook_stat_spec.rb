@@ -19,7 +19,6 @@ describe FacebookStat, '.save_facebook_data' do
   end
 
   it "should create a new FacebookStat record and update FacebookSummary" do
-    puts "starting test"
     @summary = Factory(:facebook_summary, :organization => @link.linkable, :link => @link)
     @link.facebook_stats.new.save_facebook_data
     @summary.reload.likes.should == 257428

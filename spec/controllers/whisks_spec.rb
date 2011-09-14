@@ -18,7 +18,6 @@ describe WhisksController do
      end
 
      it "should have a parent object" do
-       puts Whisk.first.inspect
        Whisk.first.whiskable_type.should == 'Product'
      end
    end
