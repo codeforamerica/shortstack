@@ -12,7 +12,7 @@ We recommend using Ruby Version Manager. Ruby 1.9.2 or later is required. If you
       rvm gemset create shortstack
       rvm gemset use shortstack
 
-Then:    
+Then:
       bundle install
 
 To Reset the DB & Data:
@@ -37,7 +37,7 @@ To stop that:
 You may have to build an index if you haven't already:
     $ rake sunspot:reindex
 
-You should be good to go.  
+You should be good to go.
 
 Road Map
 -------
@@ -56,7 +56,7 @@ We use spork to speed up development tests.  Run the following in a separate con
 
     spork
 
-Until rake .9.2 is fixed, you'll most likely need to run: 
+Until rake .9.2 is fixed, you'll most likely need to run:
 
     bundle exec rspec your_test
 
@@ -73,7 +73,7 @@ Edit your git config file:
 
     vi .git/config
 
-and copy/paste the following in:  
+and copy/paste the following in:
 
     repositoryformatversion = 0
     filemode = true
@@ -95,7 +95,7 @@ To access heroku commands, you'll need to add --remote staging or --remote stagi
 
 ### Branching & Tags
 
-We use branching to delineate between staging and production.  
+We use branching to delineate between staging and production.
 
     git checkout origin staging
     git checkout origin master
@@ -110,7 +110,7 @@ Checkout the correct branch:
 
     git checkout origin staging
 
-Merge your branch and push changes, if any, into staging (optional):  
+Merge your branch and push changes, if any, into staging (optional):
 
     git checkout origin staging
     git merge branch_name
@@ -140,7 +140,7 @@ Checkout the correct branch:
 
     git checkout origin master
 
-Merge staging branch into master (optional):  
+Merge staging branch into master (optional):
 
     git checkout origin master
     git merge staging

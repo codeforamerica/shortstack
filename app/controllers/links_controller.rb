@@ -43,7 +43,7 @@ class LinksController < ApplicationController
   def create
     if !params[:license_key].blank?
      params[:link][:name] = Link.first.licenses[params[:license_key]][0]
-     params[:link][:link_url] = Link.first.licenses[params[:license_key]][1]     
+     params[:link][:link_url] = Link.first.licenses[params[:license_key]][1]
     end
     @linkable = find_linkable
     @link = @linkable.links.build(params[:link])

@@ -5,6 +5,6 @@
   <tr><td class="td_left2"><a href="/organizations?org_type_id=<%= org_type.id %>" title="<%= org_type.name.humanize.pluralize %>" rel="nofollow"><%= org_type.name.humanize.pluralize %></a></td><td class="td_right2"><%= org_type.organizations.count %></td></tr>
 <% end %>
 		<tr><td class="td_left2"><a href="/profiles" title="Users" rel="nofollow">Contributors</a></td><td class="td_right2"><%=User.count%></td></tr>
-		<tr><td class="td_left2"><a href="/contributions" title="Contributions" rel="nofollow">Contributions</a></td><td class="td_right2"><%=Contribution.count%></td></tr> 		
+		<tr><td class="td_left2"><a href="/contributions" title="Contributions" rel="nofollow">Contributions</a></td><td class="td_right2"><%=Contribution.count%></td></tr>
 	</table>
 </div>

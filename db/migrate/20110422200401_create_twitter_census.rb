@@ -27,7 +27,7 @@ class CreateTwitterCensus < ActiveRecord::Migration
       t.decimal :follow_rate, :default => 0
       t.decimal :feedness, :default => 0
       t.decimal :sway, :default => 0
-      
+
       t.belongs_to :twitter_census
     end
   end

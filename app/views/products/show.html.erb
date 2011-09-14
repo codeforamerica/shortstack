@@ -9,7 +9,7 @@
   <%= render :partial => 'tags/tags', :locals => {:item => @product}%>
   <%= render :partial => 'relationship_forms'%>
   <%= render :partial => 'layouts/common_forms', :locals => {:item => @product}%>
-  <%= render :partial => 'products/license', :locals => {:item => @product}%>  
+  <%= render :partial => 'products/license', :locals => {:item => @product}%>
   <%= render :partial => 'notes/note', :locals => {:notes => @product.notes}%>
   <%= render :partial => 'notes/notes', :locals => {:item => @product}%>
 <% end %>
@@ -21,15 +21,15 @@
     <% if @product.links.where(:link_type_id => LinkType.where(:name => 'license')).blank?%>
     <a href="#" id="hide_link" onClick="$('#license-form').show();">Add a License</a><br>
     <% end %>
-	</div>  
+	</div>
 	<h3>Add a Relationship</h3>
 	<div class="col3_content contribute">
     <a href="#" id="hide_link" onClick="$('#organization-child-relationship-form').show();">Add an Organization User</a><br>
     <a href="#" id="hide_link" onClick="$('#product-child-relationship-form').show();">Add a Dependency</a><br>
-	</div>	
+	</div>
   <% if @has_whisks || @has_crunchies -%>
 	<h3>Batter Options</h3>
-	<div class="col3_content contribute"> 	
+	<div class="col3_content contribute">
   	<% if @has_whisks %>
       <a href="/products/whiskme/<%=@product.id%>">Whisk Me!</a><br>
     <% end %>
@@ -38,5 +38,5 @@
     <% end -%>
   </div>
   <% end -%>
-	
+
 <% end %>

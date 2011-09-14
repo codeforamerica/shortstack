@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe FacebookStat, '.save_facebook_data' do
-  
+
   before do
 
     stub_request(:get, 'http://graph.facebook.com/SF').
@@ -17,7 +17,7 @@ describe FacebookStat, '.save_facebook_data' do
     FacebookStat.count.should == 1
     graph["facebook_id"].should == 48411192144
   end
-  
+
   it "should create a new FacebookStat record and update FacebookSummary" do
     puts "starting test"
     @summary = Factory(:facebook_summary, :organization => @link.linkable, :link => @link)
@@ -28,7 +28,7 @@ describe FacebookStat, '.save_facebook_data' do
 end
 
 describe FacebookStat, '.get_graph' do
-  
+
   before do
 
     stub_request(:get, 'http://graph.facebook.com/SF').
@@ -37,7 +37,7 @@ describe FacebookStat, '.get_graph' do
       to_return(:body => fixture('facebook_graph_error.json'), :headers => {'Content-Type' => 'text/json; charset=utf-8'})
       @link = Factory(:facebook)
   end
-  
+
   it "should request the correct resource" do
     @link.facebook_stats.new.get_graph
     a_request(:get, 'http://graph.facebook.com/SF').should have_been_made
@@ -47,7 +47,7 @@ describe FacebookStat, '.get_graph' do
     graph = @link.facebook_stats.new.get_graph
     graph.should be_a Hash
     graph["id"].should == "48411192144"
-  end  
+  end
 
   it "should flag if return nil" do
     @link.flag.should == 0
@@ -63,7 +63,7 @@ describe FacebookStat, '.alter_url' do
 
     @link = Factory(:facebook)
   end
-  
+
   it "should alter the url" do
     @link.facebook_stats.new.alter_url("http://www.facebook.com/SF").
       should == "http://graph.facebook.com/SF"
@@ -72,6 +72,6 @@ describe FacebookStat, '.alter_url' do
   it "return nil if their is a problem with the link" do
     @link.facebook_stats.new.alter_url("http://www.facebook.com/").
       should == nil
-  end  
+  end
 
 end

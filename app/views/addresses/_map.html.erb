@@ -62,21 +62,21 @@
                 markerIcon.image = "/images/samplemarker.png";
                 markerIcon.iconSize = new CM.Size(8, 8);
                 markerIcon.iconAnchor = new CM.Point(4, 3.5);
-				
+
 				//Defining a sample marker
 				sampleMarker = new CM.Marker(new CM.LatLng(CENTER_LATITUDE, CENTER_LONGITUDE), {
 					title: data.location[0].name,
 					icon: markerIcon
 				});
-				
+
 				//We can have infobubbles if we want.  Put just place a string of html into the bindInfoWindow method.
                  sampleMarker.bindInfoWindow("<h2 style='color:#10394b; text-align: center' >" + data.location[0].description + "</h2>", {
                     maxWidth: 180
                  });
-				
+
 				//Adding the marker to the map
 				map.addOverlay(sampleMarker);
-				
+
                 // This is code for custom map controls.
                 var CustomMapControl = function() {}; //Creating a "class"; function() as as the constructor method
                 CustomMapControl.prototype = {
@@ -98,7 +98,7 @@
                             zoomOut.setAttribute('width', '20');
                             zoomOut.setAttribute('alt', 'Zoom In');
                             zoomOut.style.cursor = "pointer";
-							
+
                             zoomIn.onclick = function() {
                                 map.zoomIn();
                                 return false;

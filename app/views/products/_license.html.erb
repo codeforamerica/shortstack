@@ -4,12 +4,12 @@
   <a href="#" onClick="$('#license-form').hide();" id="hide">Hide Form</a>
   <p><%= f.hidden_field :link_type_id, :value => LinkType.where(:name => 'license').first.id %></p>
   <%= render :partial => 'license_list'%>
-  <div id="license_info" style="display:none;">  
+  <div id="license_info" style="display:none;">
   <p><%= f.label :name, "Name:" %><%=f.text_field :name %> </p>
   <p><%= f.label :link_url, "Url:" %><%=f.text_field :link_url %> </p>
   </div>
 
-  
+
   <p>
     <%= f.submit 'Create' %>
   </p>

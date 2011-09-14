@@ -30,7 +30,7 @@ Shortstack::Application.routes.draw do
     resources :addresses
     resources :contacts
     resources :whisks
-    resources :screenshots    
+    resources :screenshots
   end
 
   #types

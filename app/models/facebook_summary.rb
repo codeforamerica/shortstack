@@ -1,9 +1,9 @@
 class FacebookSummary < ActiveRecord::Base
   belongs_to :link
   belongs_to :organization
-  
+
   validates_presence_of :link_id, :organization_id
-  
+
   @@sortable_columns = ['name', 'org_name', 'category', 'likes'].freeze
   @@sortable_directions = ['asc', 'desc'].freeze
 

@@ -51,7 +51,7 @@ module Twitalysis
       super *args
     end
   end
-  
+
   module Acts
     module Twitalyzable
 

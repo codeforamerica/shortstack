@@ -23,7 +23,7 @@ class Wordalysis
 
   def face_init(org, time)
     linktype = LinkType.find_by_name('Facebook').id
-    links = org.links.where(:link_type_id => linktype) 
+    links = org.links.where(:link_type_id => linktype)
     day = WordDay.new(:type => "Facebook", :org_id => org.id)
     words = ""
     FacebookPost.all(:created_at => { '$gt' => time - 1.day, '$lt' => time}, :org_id => org.id).each do |tweet|

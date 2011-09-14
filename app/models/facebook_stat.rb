@@ -10,8 +10,8 @@ class FacebookStat < ActiveRecord::Base
   def get_graph(link_url=link.link_url)
     url = alter_url(link_url)
     if !url.nil?
-      body = begin  
-      JSON.parse(open(url).read) 
+      body = begin
+      JSON.parse(open(url).read)
       rescue
         { "error" => "We had a problem."}
       end
@@ -19,13 +19,13 @@ class FacebookStat < ActiveRecord::Base
       body = { "error" => "Link not properly formed"}
     end
     if body["error"].nil?
-      body 
+      body
     else
       link.upflag
       nil
     end
   end
-  
+
   # Save graph data from graph.facebook.com for a link
   #
   # @return FacebookStat
@@ -41,31 +41,31 @@ class FacebookStat < ActiveRecord::Base
       self.save
     end
     self
-  end  
-  
+  end
+
   # Changes facebook url to the social graph url
   #
   # @return string
-  # @example 
+  # @example
   #   alter_url('http://www.facebook.com/SF') returns 'http://graph.facebook.com/SF'
-  
+
   def alter_url(url)
     facebook_link = Domainatrix.parse(url)
     if !facebook_link.nil? and facebook_link.path != "" and facebook_link.path.size != 1
       if facebook_link.path.include?("pages")
-        facebook_link.path.split("/").each do |f| 
-          # Detect a facebook id numbder  
-          if f.to_i > 0 
+        facebook_link.path.split("/").each do |f|
+          # Detect a facebook id numbder
+          if f.to_i > 0
             url = "http://graph.facebook.com/" + f.to_s
           end
         end
       else
       url = "http://graph.facebook.com#{facebook_link.path}"
       end
-    else 
+    else
       url = nil
-    end   
+    end
     url
   end
-  
+
 end

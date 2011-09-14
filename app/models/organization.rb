@@ -10,10 +10,10 @@ class Organization < ActiveRecord::Base
   has_many :contacts, :as => :contactable, :class_name => "Contact" , :dependent => :destroy
   has_many :products
   has_many :parents, :as => :parentable, :class_name => "Relationship", :dependent => :destroy
-  has_many :children, :as => :childable, :class_name => "Relationship", :dependent => :destroy  
+  has_many :children, :as => :childable, :class_name => "Relationship", :dependent => :destroy
   has_many :statistics, :as => :statisticable, :class_name => "Statistic", :dependent => :destroy
   has_many :twitter_summaries, :dependent => :destroy
-  has_many :facebook_summaries, :dependent => :destroy    
+  has_many :facebook_summaries, :dependent => :destroy
 
   has_many :organization_subdomains
   has_many :subdomains, :through => :organization_subdomains
@@ -25,7 +25,7 @@ class Organization < ActiveRecord::Base
 
   scope :alpha, order("name ASC")
   scope :recent, order("created_at DESC")
-  
+
   validates_presence_of :name, :on => :create, :message => "can't be blank"
   validates_presence_of :org_type, :on => :create, :message => "can't be blank"
 

@@ -10,7 +10,7 @@ class CreateTwitterSummaries < ActiveRecord::Migration
       t.timestamps
     end
     add_index :twitter_summaries, :organization_id
-    add_index :twitter_summaries, :link_id    
+    add_index :twitter_summaries, :link_id
   end
 
   def self.down

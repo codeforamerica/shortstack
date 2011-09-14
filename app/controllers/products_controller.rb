@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @products }
-      format.json  { render :json => @products }      
+      format.json  { render :json => @products }
     end
   end
 
@@ -22,7 +22,7 @@ class ProductsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => PadSpecification.new(@product).produce }
-      format.json  { render :json => PadSpecification.new(@product).produce }      
+      format.json  { render :json => PadSpecification.new(@product).produce }
     end
   end
 

@@ -35,7 +35,7 @@
     <div id="wide_col">
       <%= yield %>
     </div>
-<% else -%>     
+<% else -%>
     <div id="col1">
       <%= yield :column1%>
     </div>
@@ -49,7 +49,7 @@
       <%= render :partial => 'layouts/actions'%>
       <%= yield :column3%>
       <%= render :partial => 'layouts/types' if current_user.try(:admin?) %>
-    </div>	
+    </div>
 <% end -%>
   </body>
 </html>

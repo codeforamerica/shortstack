@@ -1,19 +1,19 @@
 desc "This task is called by the Heroku cron add-on"
 task :cron => :environment do
-#   
+#
 #   if Time.now.hour == 0 # run at midnight
 #     linktype = LinkType.find_by_name('Facebook').id
-#     links = Link.where(:link_type_id => linktype)   
+#     links = Link.where(:link_type_id => linktype)
 #     links.each do |link|
 #       link.facebook_stats.new.delay.save_facebook_data
 #       link.delay.update_wall
-#     end 
+#     end
 #   end
-#   
+#
 #    if Time.now.hour == 0 # run at midnight
 #      linktype = LinkType.find_by_name('Twitter').id
 #      links = Link.where(:link_type_id => linktype)
-#      c = links.size/150 
+#      c = links.size/150
 # # # we throttled to 350 requests an hour, so we'll need to schedule
 #     c.times do |num|
 #        links[0..150].each do |link|
@@ -24,7 +24,7 @@ task :cron => :environment do
 #       links = links.drop(150)
 #     end
 #   end
-#   
+#
 #   if Time.now.hour == 0 # run at midnight
 #     linktype = LinkType.find_by_name('Website').id
 #     links = Link.where(:link_type_id => linktype)
@@ -37,5 +37,5 @@ task :cron => :environment do
 #         CompeteStat.new(link).delay.create_statistic
 #       end
 #   end
-  
+
 end

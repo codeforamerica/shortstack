@@ -5,7 +5,7 @@ class CreateStatistics < ActiveRecord::Migration
       t.integer :statisticable_id
       t.string :statisticable_type
       t.integer :statistic_type_id
-      
+
       t.timestamps
     end
   end

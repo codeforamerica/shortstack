@@ -48,7 +48,7 @@ class WhiskBatter
     f = get_sub_domains(subdomains)
     #add another delayed job, unless it returns nil.
     whisk = WhiskBatter.new(@item)
-    whisk.delay.get_all_subdomains unless f.nil?  
+    whisk.delay.get_all_subdomains unless f.nil?
   end
 
   # Attempts to find a profile on another site (Facebook, Twitter, etc) for an item
@@ -106,7 +106,7 @@ class WhiskBatter
   def associate_social_links(type)
     type_name = type.to_s.capitalize
     lt = LinkType.find_by_name(type_name)
-    
+
     args = [type]
     type_links = @item.links.where(:link_type_id => lt.id)
     if type_links.count > 0
@@ -167,8 +167,8 @@ class WhiskBatter
     #do a google search for link
     s = google_search(exclude_subdomains, current_link)
     #create an array of links from google search, group by url
-    if s.estimated_count > 0  
-    f = s.map { |x| "http://" + x.visible_uri }.uniq  
+    if s.estimated_count > 0
+    f = s.map { |x| "http://" + x.visible_uri }.uniq
     #strip each link to its subdomain
     subdomains = []
       f.each do |url|
@@ -190,7 +190,7 @@ class WhiskBatter
       return nil
     end
   end
-  
+
   def get_subdomain(link)
     url = Domainatrix.parse(link)
     return url.subdomain

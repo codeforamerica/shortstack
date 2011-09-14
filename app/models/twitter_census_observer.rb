@@ -8,7 +8,7 @@ class TwitterCensusObserver < ActiveRecord::Observer
       summary.update_attributes(make_attr_hash(census))
     else
       TwitterSummary.create(make_attr_hash(census).merge(:organization => census.link.linkable, :link => census.link))
-    end  
+    end
   end
 
   private

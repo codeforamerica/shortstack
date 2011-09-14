@@ -2,11 +2,11 @@
 # http://pad.asp-software.org/spec/spec.php
 
 class PadSpecification
-  
+
   def initialize(product)
     @product = product
   end
-  
+
   def produce
     content = {
     "PAD Information" => pad_information,
@@ -17,11 +17,11 @@ class PadSpecification
     "Permission Information" => permission_information
     }
   end
-  
+
   def pad_information(version="3.11", editor="shortstack", comment="http://pad.asp-software.org/spec/spec.php")
     content = {"PAD Version" => version, "PAD Editor" => editor, "PAD Comment" => comment}
   end
-  
+
   def company_information
     content = {}
     company = @product.organization
@@ -42,33 +42,33 @@ class PadSpecification
     end
     content
   end
-  
+
   def program_information
     content = {}
     content["Name"] = @product.name
     content["Requirements"] = @product.notes.requirements.first.note unless @product.notes.requirements.blank?
     content
   end
-  
+
   def program_description
-    content = {}    
+    content = {}
     content["Keywords"] = @product.tag_list unless @product.tag_list.blank?
     content["2000 character description"] = @product.notes.about.first.note unless @product.notes.about.blank?
     content
   end
-  
+
   def web_information
-    content = {}    
+    content = {}
     content["Application info URL"] = @product.links.website.first.link_url unless @product.links.website.blank?
-    content    
+    content
   end
-  
+
   def permission_information
-    content = {}    
+    content = {}
     content["Distribution permissions"] = @product.notes.permission.first.note unless @product.notes.permission.blank?
     content["EULA"] = @product.notes.eula.first.note unless @product.notes.eula.blank?
     content
   end
 
-  
+
 end
