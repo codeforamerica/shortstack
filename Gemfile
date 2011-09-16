@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '~> 3.0.10'
-gem 'rake', '0.8.7'
+gem 'rake'
 gem 'acts-as-taggable-on'
 gem 'awesome_print', :require => 'ap'
 gem 'bson_ext'
