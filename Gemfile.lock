@@ -110,7 +110,7 @@ GEM
     mime-types (1.16)
     mocha (0.10.0)
       metaclass (~> 0.0.1)
-    mogli (0.0.32)
+    mogli (0.0.33)
       hashie (~> 1.1.0)
       httparty (>= 0.4.3)
       multi_json (~> 1.0.3)
