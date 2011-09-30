@@ -250,7 +250,7 @@ GEM
       multi_json (~> 1.0.0)
       multi_xml (~> 0.4.0)
       simple_oauth (~> 0.1.5)
-    tzinfo (0.3.29)
+    tzinfo (0.3.30)
     uuid (2.3.4)
       macaddr (~> 1.0)
     warden (1.0.5)
