@@ -222,7 +222,7 @@ GEM
     ruby-openid-apps-discovery (1.2.0)
       ruby-openid (>= 2.1.7)
     rubyntlm (0.1.1)
-    sax-machine (0.0.20)
+    sax-machine (0.1.0)
       nokogiri (> 0.0.0)
     simple_oauth (0.1.5)
     simplecov (0.5.3)
