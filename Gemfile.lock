@@ -89,7 +89,7 @@ GEM
     google-search (1.0.2)
       json
     hashie (1.1.0)
-    httparty (0.8.0)
+    httparty (0.8.1)
       multi_json
       multi_xml
     i18n (0.5.0)
