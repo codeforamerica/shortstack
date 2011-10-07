@@ -253,7 +253,7 @@ GEM
     tzinfo (0.3.30)
     uuid (2.3.4)
       macaddr (~> 1.0)
-    warden (1.0.5)
+    warden (1.0.6)
       rack (>= 1.0)
     webmock (1.7.6)
       addressable (~> 2.2, > 2.2.5)
